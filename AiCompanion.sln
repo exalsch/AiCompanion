@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiCompanion", "AiCompanion.csproj", "{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "..\Setup\Setup.vdproj", "{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}.Debug|Any CPU.ActiveCfg = Debug
+		{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B60DDD4-AB8C-44E6-BE41-720AE1773B75}
+	EndGlobalSection
+EndGlobal
