@@ -63,7 +63,7 @@
             this.txt_Text.Location = new System.Drawing.Point(12, 12);
             this.txt_Text.Name = "txt_Text";
             this.txt_Text.Size = new System.Drawing.Size(288, 265);
-            this.txt_Text.TabIndex = 7;
+            this.txt_Text.TabIndex = 2;
             this.txt_Text.Text = "";
             // 
             // statusStrip1
@@ -74,7 +74,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 341);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(314, 20);
-            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel
@@ -102,13 +102,12 @@
             this.lblSpeed.Location = new System.Drawing.Point(105, 319);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(41, 13);
-            this.lblSpeed.TabIndex = 4;
+            this.lblSpeed.TabIndex = 7;
             this.lblSpeed.Text = "Speed:";
             // 
             // numUD_Speed
             // 
             this.numUD_Speed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.numUD_Speed.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::AiCompanion.Properties.Settings.Default, "TtsSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numUD_Speed.Increment = new decimal(new int[] {
             25,
             0,
@@ -127,8 +126,12 @@
             131072});
             this.numUD_Speed.Name = "numUD_Speed";
             this.numUD_Speed.Size = new System.Drawing.Size(37, 20);
-            this.numUD_Speed.TabIndex = 2;
-            this.numUD_Speed.Value = global::AiCompanion.Properties.Settings.Default.TtsSpeed;
+            this.numUD_Speed.TabIndex = 5;
+            this.numUD_Speed.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numUD_Speed.ValueChanged += new System.EventHandler(this.numUD_Speed_ValueChanged);
             // 
             // label1
@@ -138,20 +141,26 @@
             this.label1.Location = new System.Drawing.Point(195, 319);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 9;
+            this.label1.TabIndex = 8;
             this.label1.Text = "Voice:";
             // 
             // cmbBxVoice
             // 
             this.cmbBxVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmbBxVoice.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AiCompanion.Properties.Settings.Default, "TtsVoice", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cmbBxVoice.FormattingEnabled = true;
+            this.cmbBxVoice.Items.AddRange(new object[] {
+            "Alloy",
+            "Echo",
+            "Fable",
+            "Onyx",
+            "Nova",
+            "Shimmer"});
             this.cmbBxVoice.Location = new System.Drawing.Point(238, 315);
             this.cmbBxVoice.Name = "cmbBxVoice";
             this.cmbBxVoice.Size = new System.Drawing.Size(59, 21);
-            this.cmbBxVoice.TabIndex = 10;
-            this.cmbBxVoice.Text = global::AiCompanion.Properties.Settings.Default.TtsVoice;
-            this.cmbBxVoice.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbBxVoice.TabIndex = 6;
+            this.cmbBxVoice.Text = "fable";
+            this.cmbBxVoice.SelectedIndexChanged += new System.EventHandler(this.cmbBxVoice_SelectedIndexChanged);
             // 
             // checkBoxDownload
             // 
@@ -160,7 +169,7 @@
             this.checkBoxDownload.Location = new System.Drawing.Point(12, 319);
             this.checkBoxDownload.Name = "checkBoxDownload";
             this.checkBoxDownload.Size = new System.Drawing.Size(81, 17);
-            this.checkBoxDownload.TabIndex = 11;
+            this.checkBoxDownload.TabIndex = 4;
             this.checkBoxDownload.Text = "Save Audio";
             this.checkBoxDownload.UseVisualStyleBackColor = true;
             // 
@@ -170,7 +179,7 @@
             this.btn_Download.Location = new System.Drawing.Point(106, 292);
             this.btn_Download.Name = "btn_Download";
             this.btn_Download.Size = new System.Drawing.Size(75, 23);
-            this.btn_Download.TabIndex = 12;
+            this.btn_Download.TabIndex = 3;
             this.btn_Download.Text = "&Download";
             this.btn_Download.UseVisualStyleBackColor = true;
             this.btn_Download.Click += new System.EventHandler(this.btn_Download_Click);
@@ -194,6 +203,7 @@
             this.MinimumSize = new System.Drawing.Size(330, 400);
             this.Name = "Form_TTS";
             this.Text = "TextToSpeach";
+            this.Load += new System.EventHandler(this.Form_TTS_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUD_Speed)).EndInit();

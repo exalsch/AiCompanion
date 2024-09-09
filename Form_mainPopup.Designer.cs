@@ -36,8 +36,9 @@
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.try_contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.TrayToolStripMenuSettings = new System.Windows.Forms.ToolStripMenuItem();
-            this.trayToolStripMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trayToolStripMenuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_Speak2Text = new System.Windows.Forms.Button();
             this.try_contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             this.btn_TTS.Name = "btn_TTS";
             this.btn_TTS.Size = new System.Drawing.Size(21, 21);
             this.btn_TTS.TabIndex = 1;
-            this.btn_TTS.Text = "&S";
+            this.btn_TTS.Text = "&TTS";
             this.toolTip.SetToolTip(this.btn_TTS, "Whisper TTS");
             this.btn_TTS.UseVisualStyleBackColor = true;
             this.btn_TTS.Click += new System.EventHandler(this.btn_TTS_Click);
@@ -77,36 +78,48 @@
             this.aboutToolStripMenuItem,
             this.trayToolStripMenuExit});
             this.try_contextMenu.Name = "try_contextMenu";
-            this.try_contextMenu.Size = new System.Drawing.Size(181, 92);
+            this.try_contextMenu.Size = new System.Drawing.Size(131, 70);
             // 
             // TrayToolStripMenuSettings
             // 
             this.TrayToolStripMenuSettings.Name = "TrayToolStripMenuSettings";
-            this.TrayToolStripMenuSettings.Size = new System.Drawing.Size(180, 22);
+            this.TrayToolStripMenuSettings.Size = new System.Drawing.Size(130, 22);
             this.TrayToolStripMenuSettings.Text = "Settings";
             this.TrayToolStripMenuSettings.Click += new System.EventHandler(this.TrayToolStripMenuSettings_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // trayToolStripMenuExit
             // 
             this.trayToolStripMenuExit.Name = "trayToolStripMenuExit";
             this.trayToolStripMenuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.X)));
-            this.trayToolStripMenuExit.Size = new System.Drawing.Size(180, 22);
+            this.trayToolStripMenuExit.Size = new System.Drawing.Size(130, 22);
             this.trayToolStripMenuExit.Text = "Exit";
             this.trayToolStripMenuExit.Click += new System.EventHandler(this.trayToolStripMenuExit_Click);
             // 
-            // aboutToolStripMenuItem
+            // btn_Speak2Text
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.btn_Speak2Text.Location = new System.Drawing.Point(59, 2);
+            this.btn_Speak2Text.Name = "btn_Speak2Text";
+            this.btn_Speak2Text.Size = new System.Drawing.Size(20, 21);
+            this.btn_Speak2Text.TabIndex = 2;
+            this.btn_Speak2Text.Text = "&S";
+            this.toolTip.SetToolTip(this.btn_Speak2Text, "Speach-to-Text");
+            this.btn_Speak2Text.UseVisualStyleBackColor = true;
+            this.btn_Speak2Text.Click += new System.EventHandler(this.btn_Speak2Text_Click);
             // 
             // Form_mainPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(56, 28);
+            this.ClientSize = new System.Drawing.Size(91, 34);
+            this.Controls.Add(this.btn_Speak2Text);
             this.Controls.Add(this.btn_prompt);
             this.Controls.Add(this.btn_TTS);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -135,5 +148,6 @@
         private System.Windows.Forms.ToolStripMenuItem TrayToolStripMenuSettings;
         private System.Windows.Forms.ToolStripMenuItem trayToolStripMenuExit;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button btn_Speak2Text;
     }
 }

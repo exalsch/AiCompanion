@@ -1,11 +1,14 @@
 ﻿using OpenAI_API;
 using OpenAI_API.Chat;
 using System;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AiCompanion
 {
@@ -285,6 +288,79 @@ namespace AiCompanion
             catch (Exception ex)
             {
                 MessageBox.Show("Error saving settings: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Event handler for the form load.
+        /// loads pre prompts from settings
+        /// </summary>
+        private void Form_TextPrompt_Load(object sender, EventArgs e)
+        {
+            foreach (string item in Properties.Settings.Default.prePromtSelections)
+            {
+                // Add items from the StringCollection to the ComboBox
+                cmbPrePrompts.Items.Add(item);
+            }
+        }
+
+        /// <summary>        
+        /// Saves the prepromts to settings
+        /// </summary>
+        private void SavePrePrompts()
+        {
+            // Create or retrieve the existing StringCollection
+            StringCollection items = Properties.Settings.Default.prePromtSelections ?? new StringCollection();
+
+            // Clear current items in the StringCollection and add updated ones from ComboBox
+            items.Clear();
+            foreach (var item in cmbPrePrompts.Items)
+            {
+                items.Add(item.ToString());
+            }
+
+            // Save the updated StringCollection back to settings
+            Properties.Settings.Default.prePromtSelections = items;
+            Properties.Settings.Default.Save();
+        }
+
+        private void btnAddPrePromt_Click(object sender, EventArgs e)
+        {
+            // Get the entered text
+            string enteredText = cmbPrePrompts.Text;
+
+            // Add the new item if it's not already in the ComboBox
+            if (!cmbPrePrompts.Items.Contains(enteredText) && !string.IsNullOrEmpty(enteredText))
+            {
+                cmbPrePrompts.Items.Add(enteredText);
+                cmbPrePrompts.SelectedIndex = cmbPrePrompts.Items.Count - 1; // Select the newly added item
+            }
+            SavePrePrompts();
+        }
+
+        private void btnRemovePrePromt_Click(object sender, EventArgs e)
+        {
+            // Remove selected item from ComboBox and save the updated list to settings
+            if (cmbPrePrompts.SelectedItem != null)
+            {
+                cmbPrePrompts.Items.Remove(cmbPrePrompts.SelectedItem);
+                SavePrePrompts();
+            }
+        }
+
+
+        private void cmbPrePrompts_TextChanged(object sender, EventArgs e)
+        {
+            //not an existing item selected eable the add button otherwise disable
+            if (cmbPrePrompts.SelectedIndex == -1)
+            {
+                btnAddPrePromt.Enabled = true;
+                btnRemovePrePromt.Enabled = false;
+            }
+            else
+            {
+                btnAddPrePromt.Enabled = false;
+                btnRemovePrePromt.Enabled = true;
             }
         }
     }

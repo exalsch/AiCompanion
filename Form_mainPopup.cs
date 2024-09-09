@@ -143,6 +143,25 @@ namespace AiCompanion
             }
         }
 
+
+        /// <summary>
+        /// Handles the click event for the 'Speach-to-text' button, which opens the Form_Speach2Text form.
+        /// </summary>
+        private void btn_Speak2Text_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Create and show the settings form as a modal dialog
+                Form_Speach2Text STTform = new Form_Speach2Text();
+                ShowForm(STTform);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening Speach-to-text form: " + ex.Message);
+            }
+        }
+
+
         /// <summary>
         /// Positions the form near the current cursor position, ensuring it stays on-screen.
         /// </summary>

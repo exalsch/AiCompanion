@@ -87,7 +87,7 @@
             this.label2.Location = new System.Drawing.Point(3, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 4;
             this.label2.Text = "Model";
             // 
             // label3
@@ -113,7 +113,7 @@
             this.txt_ApiKey.Location = new System.Drawing.Point(99, 3);
             this.txt_ApiKey.Name = "txt_ApiKey";
             this.txt_ApiKey.Size = new System.Drawing.Size(508, 20);
-            this.txt_ApiKey.TabIndex = 4;
+            this.txt_ApiKey.TabIndex = 0;
             // 
             // cmb_Model
             // 
@@ -129,7 +129,7 @@
             this.cmb_Model.Location = new System.Drawing.Point(99, 42);
             this.cmb_Model.Name = "cmb_Model";
             this.cmb_Model.Size = new System.Drawing.Size(257, 21);
-            this.cmb_Model.TabIndex = 5;
+            this.cmb_Model.TabIndex = 1;
             this.cmb_Model.Text = global::AiCompanion.Properties.Settings.Default.ModelLLM;
             // 
             // txtPrePromt
@@ -139,7 +139,7 @@
             this.txtPrePromt.Multiline = true;
             this.txtPrePromt.Name = "txtPrePromt";
             this.txtPrePromt.Size = new System.Drawing.Size(508, 33);
-            this.txtPrePromt.TabIndex = 6;
+            this.txtPrePromt.TabIndex = 2;
             this.txtPrePromt.Text = global::AiCompanion.Properties.Settings.Default.PrePromt;
             // 
             // flowLayoutPanel1
@@ -166,7 +166,7 @@
             this.cmb_HotKeyMod.Location = new System.Drawing.Point(3, 3);
             this.cmb_HotKeyMod.Name = "cmb_HotKeyMod";
             this.cmb_HotKeyMod.Size = new System.Drawing.Size(121, 21);
-            this.cmb_HotKeyMod.TabIndex = 7;
+            this.cmb_HotKeyMod.TabIndex = 0;
             this.cmb_HotKeyMod.Text = global::AiCompanion.Properties.Settings.Default.HotKeyMod;
             // 
             // label5
@@ -185,7 +185,7 @@
             this.txt_HotkeyKey.Location = new System.Drawing.Point(149, 3);
             this.txt_HotkeyKey.Name = "txt_HotkeyKey";
             this.txt_HotkeyKey.Size = new System.Drawing.Size(108, 20);
-            this.txt_HotkeyKey.TabIndex = 9;
+            this.txt_HotkeyKey.TabIndex = 1;
             this.txt_HotkeyKey.Text = global::AiCompanion.Properties.Settings.Default.HotKeyKey;
             // 
             // btn_Done
@@ -193,12 +193,12 @@
             this.btn_Done.Location = new System.Drawing.Point(99, 159);
             this.btn_Done.Name = "btn_Done";
             this.btn_Done.Size = new System.Drawing.Size(75, 23);
-            this.btn_Done.TabIndex = 9;
+            this.btn_Done.TabIndex = 3;
             this.btn_Done.Text = "Done!";
             this.btn_Done.UseVisualStyleBackColor = true;
             this.btn_Done.Click += new System.EventHandler(this.button1_Click);
             // 
-            // SettingsForm
+            // Form_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -209,7 +209,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "SettingsForm";
+            this.Name = "Form_Settings";
             this.Text = global::AiCompanion.Properties.Settings.Default.API_Key;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

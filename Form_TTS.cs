@@ -8,6 +8,7 @@ using NAudio.Wave;
 using OpenAI_API;
 using OpenAI_API.Audio;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AiCompanion
 {
@@ -40,7 +41,7 @@ namespace AiCompanion
                 toolStripStatusLabel.Text = "Requesting...";
 
                 string txt = txt_Text.Text;
-                string voice = cmbBxVoice.Text;
+                string voice = cmbBxVoice.Text.ToLower();
                 double speed = (double)numUD_Speed.Value;
 
                 // Stream the TTS result asynchronously
@@ -197,11 +198,18 @@ namespace AiCompanion
                     }
                 }
 
-                toolStripStatusLabel.Text = "Idle";
+                Invoke((Action)(() =>
+                {
+                    toolStripStatusLabel.Text = "Idle";
+                }));
             }
             catch (Exception ex)
             {
-                toolStripStatusLabel.Text = "Error playing stream: " + ex.Message;
+                Invoke((Action)(() =>
+                {
+                    toolStripStatusLabel.Text = "Error playing stream: " + ex.Message;
+                }));
+                
             }
         }
 
@@ -305,7 +313,12 @@ namespace AiCompanion
         /// <summary>
         /// Handles changes to the voice selection combo box.
         /// </summary>
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) => Properties.Settings.Default.Save();
+        private void cmbBxVoice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //make it lower case and save
+            Properties.Settings.Default.TtsVoice=cmbBxVoice.Text.ToLower();
+            Properties.Settings.Default.Save();
+        }
 
         /// <summary>
         /// Handles changes to the speed numeric up-down control.
@@ -324,10 +337,32 @@ namespace AiCompanion
             toolStripStatusLabel.Text = "Requesting file...";
 
             // Download the TTS output
-            await DownloadTTS(txt_Text.Text, cmbBxVoice.Text, (double)numUD_Speed.Value);
+            await DownloadTTS(txt_Text.Text, cmbBxVoice.Text.ToLower(), (double)numUD_Speed.Value);
 
             btn_play.Enabled = true;
             toolStripStatusLabel.Text = "Idle";
+        }
+
+        private void Form_TTS_Load(object sender, EventArgs e)
+        {
+            string valueToSelect = char.ToUpper(Properties.Settings.Default.TtsVoice[0]) + Properties.Settings.Default.TtsVoice.Substring(1);
+            // Check if the ComboBox contains the value
+            int index = cmbBxVoice.FindStringExact(valueToSelect);
+
+            if (index != -1)
+            {
+                // If the value is found, select it
+                cmbBxVoice.SelectedIndex = index;
+            }
+            else
+            {
+                // If not found, select the first item
+                if (cmbBxVoice.Items.Count > 0)
+                {
+                    cmbBxVoice.SelectedIndex = 0;
+                }
+            }
+
         }
     }
 }
