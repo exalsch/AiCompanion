@@ -118,7 +118,7 @@ namespace AiCompanion
             string resultText = await _openAIAPI.Transcriptions.GetTextAsync(path);
             txt_result.Text = txt_result.Text + resultText;
             // inline
-            //string resultText = await _openAIAPI.Transcriptions.GetTextAsync("conversation.mp3", "en", "This is a transcript of a conversation between a medical doctor and her patient: ", 0.3);
+            //string resultText = await openAiApi.Transcriptions.GetTextAsync("conversation.mp3", "en", "This is a transcript of a conversation between a medical doctor and her patient: ", 0.3);
             deleteFile(path);
         }
 

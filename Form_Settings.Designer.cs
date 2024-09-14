@@ -42,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txt_HotkeyKey = new System.Windows.Forms.TextBox();
             this.btn_Done = new System.Windows.Forms.Button();
+            this.chkUseNewUI = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -59,16 +60,18 @@
             this.tableLayoutPanel1.Controls.Add(this.cmb_Model, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtPrePromt, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btn_Done, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btn_Done, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.chkUseNewUI, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(610, 198);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -84,7 +87,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 39);
+            this.label2.Location = new System.Drawing.Point(3, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 4;
@@ -93,7 +96,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 78);
+            this.label3.Location = new System.Drawing.Point(3, 64);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 2;
@@ -102,7 +105,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 117);
+            this.label4.Location = new System.Drawing.Point(3, 96);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 3;
@@ -110,10 +113,12 @@
             // 
             // txt_ApiKey
             // 
+            this.txt_ApiKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AiCompanion.Properties.Settings.Default, "API_Key", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txt_ApiKey.Location = new System.Drawing.Point(99, 3);
             this.txt_ApiKey.Name = "txt_ApiKey";
             this.txt_ApiKey.Size = new System.Drawing.Size(508, 20);
             this.txt_ApiKey.TabIndex = 0;
+            this.txt_ApiKey.Text = global::AiCompanion.Properties.Settings.Default.API_Key;
             // 
             // cmb_Model
             // 
@@ -126,7 +131,7 @@
             "gpt-4",
             "gpt-3.5-turbo",
             "gpt-3.5-turbo-instruct"});
-            this.cmb_Model.Location = new System.Drawing.Point(99, 42);
+            this.cmb_Model.Location = new System.Drawing.Point(99, 35);
             this.cmb_Model.Name = "cmb_Model";
             this.cmb_Model.Size = new System.Drawing.Size(257, 21);
             this.cmb_Model.TabIndex = 1;
@@ -135,10 +140,10 @@
             // txtPrePromt
             // 
             this.txtPrePromt.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AiCompanion.Properties.Settings.Default, "PrePromt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtPrePromt.Location = new System.Drawing.Point(99, 81);
+            this.txtPrePromt.Location = new System.Drawing.Point(99, 67);
             this.txtPrePromt.Multiline = true;
             this.txtPrePromt.Name = "txtPrePromt";
-            this.txtPrePromt.Size = new System.Drawing.Size(508, 33);
+            this.txtPrePromt.Size = new System.Drawing.Size(508, 26);
             this.txtPrePromt.TabIndex = 2;
             this.txtPrePromt.Text = global::AiCompanion.Properties.Settings.Default.PrePromt;
             // 
@@ -148,9 +153,9 @@
             this.flowLayoutPanel1.Controls.Add(this.label5);
             this.flowLayoutPanel1.Controls.Add(this.txt_HotkeyKey);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(99, 120);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(99, 99);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(508, 33);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(508, 26);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
             // cmb_HotKeyMod
@@ -190,7 +195,7 @@
             // 
             // btn_Done
             // 
-            this.btn_Done.Location = new System.Drawing.Point(99, 159);
+            this.btn_Done.Location = new System.Drawing.Point(99, 163);
             this.btn_Done.Name = "btn_Done";
             this.btn_Done.Size = new System.Drawing.Size(75, 23);
             this.btn_Done.TabIndex = 3;
@@ -198,19 +203,28 @@
             this.btn_Done.UseVisualStyleBackColor = true;
             this.btn_Done.Click += new System.EventHandler(this.button1_Click);
             // 
+            // chkUseNewUI
+            // 
+            this.chkUseNewUI.AutoSize = true;
+            this.chkUseNewUI.Location = new System.Drawing.Point(99, 131);
+            this.chkUseNewUI.Name = "chkUseNewUI";
+            this.chkUseNewUI.Size = new System.Drawing.Size(84, 17);
+            this.chkUseNewUI.TabIndex = 9;
+            this.chkUseNewUI.Text = "Use New UI";
+            this.chkUseNewUI.UseVisualStyleBackColor = true;
+            // 
             // Form_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(610, 198);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AiCompanion.Properties.Settings.Default, "API_Key", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form_Settings";
-            this.Text = global::AiCompanion.Properties.Settings.Default.API_Key;
+            this.Text = "Settings";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -234,5 +248,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_HotkeyKey;
         private System.Windows.Forms.Button btn_Done;
+        private System.Windows.Forms.CheckBox chkUseNewUI;
     }
 }

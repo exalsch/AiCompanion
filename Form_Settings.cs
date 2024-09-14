@@ -23,8 +23,10 @@ namespace AiCompanion
             Properties.Settings.Default.PrePromt = txtPrePromt.Text;
             Properties.Settings.Default.ModelLLM = cmb_Model.Text;
             Properties.Settings.Default.FirstLaunch =false;
+            Properties.Settings.Default.UseNewUI = chkUseNewUI.Checked;
             Properties.Settings.Default.Save();
             this.Close();
         }
+
     }
 }

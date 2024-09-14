@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="API_Key" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Settings</Value>
+      <Value Profile="(Default)">APIKEY</Value>
     </Setting>
     <Setting Name="ModelLLM" Type="System.String" Scope="User">
       <Value Profile="(Default)">gpt-4o-mini</Value>
@@ -32,6 +32,15 @@
   &lt;string /&gt;
   &lt;string&gt;correct below text for any grammar or typo mistakes.&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="STT_lang" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="UseNewUI" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="useDarkMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

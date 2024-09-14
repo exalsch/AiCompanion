@@ -25,7 +25,7 @@ namespace AiCompanion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Settings")]
+        [global::System.Configuration.DefaultSettingValueAttribute("APIKEY")]
         public string API_Key {
             get {
                 return ((string)(this["API_Key"]));
@@ -133,6 +133,42 @@ namespace AiCompanion.Properties {
             }
             set {
                 this["prePromtSelections"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("en")]
+        public string STT_lang {
+            get {
+                return ((string)(this["STT_lang"]));
+            }
+            set {
+                this["STT_lang"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseNewUI {
+            get {
+                return ((bool)(this["UseNewUI"]));
+            }
+            set {
+                this["UseNewUI"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool useDarkMode {
+            get {
+                return ((bool)(this["useDarkMode"]));
+            }
+            set {
+                this["useDarkMode"] = value;
             }
         }
     }

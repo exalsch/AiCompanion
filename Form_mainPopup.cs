@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using ReaLTaiizor.Forms;
 
 namespace AiCompanion
 {
@@ -50,7 +51,17 @@ namespace AiCompanion
                 this.Hide();
                 this.Opacity = 0;
                 this.ShowInTaskbar = false;
-
+                if (Properties.Settings.Default.FirstLaunch && string.IsNullOrEmpty(Properties.Settings.Default.API_Key)) {
+                    if (Properties.Settings.Default.UseNewUI) { 
+                        Properties.Settings.Default.API_Key = InputBox.Show("First Launch enter API Key:", "API Key not set");
+                        Properties.Settings.Default.Save();
+                    }
+                    else
+                    {
+                        Form_Settings mainForm = new Form_Settings();
+                        mainForm.ShowDialog();
+                    }
+                }
                 // Register a hotkey (Alt + G)
                 RegisterHotKey(this.Handle, HOTKEY_ID, (int)KeyModifiers.Alt, (int)Keys.G);
             }
@@ -100,7 +111,47 @@ namespace AiCompanion
                     this.Opacity = 100;
                     this.WindowState = FormWindowState.Normal;
                     this.Activate();
-                    btn_prompt.Focus();
+                    this.Size = new Size(244, 47);
+                    if (Properties.Settings.Default.UseNewUI)
+                    {
+                        //old buttons down
+                        /*
+                        btn_prompt.Location = new Point(2, 51);
+                        btn_TTS.Location = new Point(100, 51);
+                        btn_Speak2Text.Location = new Point(172, 51);
+                        */
+                        btn_promptN.Visible = true;
+                        btn_TtsN.Visible = true;
+                        btn_Speak2TextN.Visible = true;
+                        //add & as hotkey
+                        btn_promptN.Text = "&Prompt";
+                        btn_TtsN.Text = "&TTS"; 
+                        btn_Speak2TextN.Text = "&STT";
+                        //hide old buttons
+                        btn_prompt.Visible = false;
+                        btn_prompt.Enabled = false;
+                        btn_TTS.Visible = false;
+                        btn_Speak2Text.Visible = false;
+                        btn_promptN.Focus();
+                    }
+                    else
+                    {
+                        //add & as hotkey
+                        btn_prompt.Text = "&Prompt";
+                        btn_TTS.Text = "&TTS";
+                        btn_Speak2Text.Text = "&STT";
+                        //old buttons up
+                        btn_prompt.Location = new Point(2, 3);
+                        btn_TTS.Location = new Point(100, 3);
+                        btn_Speak2Text.Location = new Point(172, 3);
+                        //hide new
+                        btn_promptN.Visible = false;
+                        btn_TtsN.Visible = false;
+                        btn_Speak2TextN.Visible = false;
+                        btn_prompt.Focus();
+                    }
+                    this.Invalidate();
+                    this.Update();
                 }
                 catch (Exception ex)
                 {
@@ -163,76 +214,6 @@ namespace AiCompanion
 
 
         /// <summary>
-        /// Positions the form near the current cursor position, ensuring it stays on-screen.
-        /// </summary>
-        /// <param name="form">Form to position</param>
-        private void position_form(Form form)
-        {
-            try
-            {
-                // Get the current cursor position and screen bounds
-                Point cursorPosition = Cursor.Position;
-                Rectangle screenBounds = Screen.FromPoint(cursorPosition).WorkingArea;
-
-                // Calculate the form's position based on the cursor position
-                int formX = cursorPosition.X;
-                int formY = cursorPosition.Y;
-
-                // Prevent the form from going off-screen
-                if (formX + form.Width > screenBounds.Right)
-                    formX = screenBounds.Right - form.Width;
-
-                if (formY + form.Height > screenBounds.Bottom)
-                    formY = screenBounds.Bottom - form.Height;
-
-                // Set the form's location
-                form.Location = new Point(formX, formY);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error positioning form: " + ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Shows a form, making it visible and positioning it properly.
-        /// </summary>
-        /// <param name="form">Form to display</param>
-        private void ShowForm(Form form)
-        {
-            form.Show();
-            form.Opacity = 100;
-            form.WindowState = FormWindowState.Normal;
-            form.ShowInTaskbar = true;
-            form.Activate();
-            position_form(form);
-            Form_hide(this);
-        }
-
-        /// <summary>
-        /// Hides the form and resets its visibility and state.
-        /// </summary>
-        /// <param name="form">Form to hide</param>
-        private void Form_hide(Form form)
-        {
-            try
-            {
-                // Hide the form and reset its properties
-                form.Hide();
-                form.ShowInTaskbar = false;
-                form.Opacity = 0;
-
-                // Unregister and re-register the hotkey to ensure it remains functional
-                UnregisterHotKey(this.Handle, HOTKEY_ID);
-                RegisterHotKey(this.Handle, HOTKEY_ID, (int)KeyModifiers.Alt, (int)Keys.G);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error hiding form: " + ex.Message);
-            }
-        }
-
-        /// <summary>
         /// Handles the form's deactivation event (losing focus) by hiding the form.
         /// </summary>
         private void Form_mainPopup_Deactivate(object sender, EventArgs e)
@@ -276,13 +257,22 @@ namespace AiCompanion
         {
             try
             {
-                // Create and show the settings form as a modal dialog
-                Form_Settings form2 = new Form_Settings();
-                form2.ShowDialog();
+                // Create and show the main form 
+                if (Properties.Settings.Default.UseNewUI)
+                {
+                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPageSettings");
+                    ShowForm(mainForm);
+                }
+                else
+                {
+                    Form_Settings mainForm = new Form_Settings();
+                    mainForm.ShowDialog();
+                }
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening settings: " + ex.Message);
+                MessageBox.Show("Error opening main form: " + ex.Message);
             }
         }
 
@@ -294,14 +284,159 @@ namespace AiCompanion
 
             try
             {
-                // Create and show the settings form as a modal dialog
-                Form_AboutBox form2 = new Form_AboutBox();
-                form2.ShowDialog();
+                // Create and show the main form 
+                if (Properties.Settings.Default.UseNewUI)
+                {
+                    FormMain mainForm = new FormMain(_previousWindowHandle, "TabPageAbout");
+                    ShowForm(mainForm);
+                }
+                else
+                {
+                    Form_AboutBox mainForm = new Form_AboutBox();
+                    mainForm.ShowDialog();
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening about: " + ex.Message);
+                MessageBox.Show("Error opening main form: " + ex.Message);
             }
+        }
+
+        private void btn_TTSn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Create and show the main form 
+                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPageTTS", _copiedText);
+                ShowForm(mainForm);
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening main form: " + ex.Message);
+            }
+        }
+
+        private void btn_Speak2Text_Click_N(object sender, EventArgs e)
+        {
+            try
+            {
+                // Create and show the main form 
+                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPageSTT");
+                ShowForm(mainForm);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening main form: " + ex.Message);
+            }
+
+        }
+
+        private void btn_prompt_Click_N(object sender, EventArgs e)
+        {
+            try
+            {
+                // Create and show the main form 
+                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPagePrompt",_copiedText);
+                ShowForm(mainForm);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening main form: " + ex.Message);
+            }            
+        }
+
+
+        #region "Funtions and metods"
+
+        /// <summary>
+        /// Positions the form near the current cursor position, ensuring it stays on-screen.
+        /// </summary>
+        /// <param name="form">Form to position</param>
+        private void position_form(Form form)
+        {
+            try
+            {
+                // Get the current cursor position and screen bounds
+                Point cursorPosition = Cursor.Position;
+                Rectangle screenBounds = Screen.FromPoint(cursorPosition).WorkingArea;
+
+                // Calculate the form's position based on the cursor position
+                int formX = cursorPosition.X;
+                int formY = cursorPosition.Y;
+
+                // Prevent the form from going off-screen
+                if (formX + form.Width > screenBounds.Right)
+                    formX = screenBounds.Right - form.Width;
+
+                if (formY + form.Height > screenBounds.Bottom)
+                    formY = screenBounds.Bottom - form.Height;
+
+                // Set the form's location
+                form.Location = new Point(formX, formY);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error positioning form: " + ex.Message);
+            }
+        }
+        /// <summary>
+        /// Shows a form, making it visible and positioning it properly.
+        /// </summary>
+        /// <param name="form">Form to display</param>
+        private void ShowForm(Form form)
+        {
+            form.Opacity = 100;
+            form.WindowState = FormWindowState.Normal;
+            form.ShowInTaskbar = true;
+            position_form(form);
+            form.Activate();
+            form.Show();
+            Form_hide(this);
+        }
+
+        /// <summary>
+        /// Hides the form and resets its visibility and state.
+        /// </summary>
+        /// <param name="form">Form to hide</param>
+        private void Form_hide(Form form)
+        {
+            try
+            {
+                // Hide the form and reset its properties
+                form.Hide();
+                form.ShowInTaskbar = false;
+                form.Opacity = 0;
+
+                // Unregister and re-register the hotkey to ensure it remains functional
+                UnregisterHotKey(this.Handle, HOTKEY_ID);
+                RegisterHotKey(this.Handle, HOTKEY_ID, (int)KeyModifiers.Alt, (int)Keys.G);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error hiding form: " + ex.Message);
+            }
+        }
+        #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Create and show the main form 
+            TEST testForm = new TEST();
+
+            testForm.Opacity = 100;
+            testForm.WindowState = FormWindowState.Normal;
+            testForm.ShowInTaskbar = true;
+            
+            testForm.Activate();
+            testForm.Show();
+            Form_hide(this);
+        }
+
+        private void Form_mainPopup_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

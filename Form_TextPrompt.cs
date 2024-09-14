@@ -2,13 +2,10 @@
 using OpenAI_API.Chat;
 using System;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AiCompanion
 {
@@ -116,7 +113,9 @@ namespace AiCompanion
                     Model = Properties.Settings.Default.ModelLLM,
                     Messages = new[]
                     {
-                        new ChatMessage(ChatMessageRole.System, Properties.Settings.Default.PrePromt),
+                        new ChatMessage(ChatMessageRole.System,
+                            Properties.Settings.Default.PrePromt
+                            + (!string.IsNullOrWhiteSpace(this.cmbPrePrompts.Text) ? " " + this.cmbPrePrompts.Text : "")),
                         new ChatMessage(ChatMessageRole.User, inputText)
                     }
                 };
