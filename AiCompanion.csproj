@@ -231,12 +231,6 @@
     <Compile Include="Form_Settings.Designer.cs">
       <DependentUpon>Form_Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="TEST.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TEST.Designer.cs">
-      <DependentUpon>TEST.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form_AboutBox.resx">
       <DependentUpon>Form_AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,9 +263,6 @@
     </Compile>
     <EmbeddedResource Include="Form_Settings.resx">
       <DependentUpon>Form_Settings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TEST.resx">
-      <DependentUpon>TEST.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

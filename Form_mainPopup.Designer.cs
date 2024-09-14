@@ -42,7 +42,6 @@
             this.btn_prompt = new ReaLTaiizor.Controls.MaterialButton();
             this.btn_TTS = new ReaLTaiizor.Controls.MaterialButton();
             this.btn_Speak2Text = new ReaLTaiizor.Controls.MaterialButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.trayContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -234,22 +233,11 @@
             this.btn_Speak2Text.UseVisualStyleBackColor = true;
             this.btn_Speak2Text.Click += new System.EventHandler(this.btn_Speak2Text_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(48, 97);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "TEST";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form_mainPopup
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(244, 135);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(244, 96);
             this.Controls.Add(this.btn_prompt);
             this.Controls.Add(this.btn_Speak2Text);
             this.Controls.Add(this.btn_TTS);
@@ -288,6 +276,5 @@
         private ReaLTaiizor.Controls.MaterialButton btn_TTS;
         private ReaLTaiizor.Controls.MaterialButton btn_Speak2Text;
         private ReaLTaiizor.Controls.MaterialButton btn_prompt;
-        private System.Windows.Forms.Button button1;
     }
 }
