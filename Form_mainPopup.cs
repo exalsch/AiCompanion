@@ -419,24 +419,5 @@ namespace AiCompanion
             }
         }
         #endregion
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // Create and show the main form 
-            TEST testForm = new TEST();
-
-            testForm.Opacity = 100;
-            testForm.WindowState = FormWindowState.Normal;
-            testForm.ShowInTaskbar = true;
-            
-            testForm.Activate();
-            testForm.Show();
-            Form_hide(this);
-        }
-
-        private void Form_mainPopup_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

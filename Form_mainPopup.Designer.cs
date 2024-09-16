@@ -256,7 +256,6 @@
             this.TopMost = true;
             this.Deactivate += new System.EventHandler(this.Form_mainPopup_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_mainPopup_FormClosing);
-            this.Load += new System.EventHandler(this.Form_mainPopup_Load);
             this.trayContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
