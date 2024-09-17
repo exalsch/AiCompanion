@@ -282,6 +282,7 @@ namespace AiCompanion
         {
             try
             {
+                Properties.Settings.Default.ModelLLM = cmb_Model.SelectedText;                
                 Properties.Settings.Default.Save();
             }
             catch (Exception ex)

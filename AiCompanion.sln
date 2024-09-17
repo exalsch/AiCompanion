@@ -1,24 +1,33 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiCompanion", "AiCompanion.csproj", "{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AiCompanion", "AiCompanion.csproj", "{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "..\Setup\Setup.vdproj", "{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AiCompanionSetup", "..\Setup\Setup.vdproj", "{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Debug|x64.ActiveCfg = Debug|x64
+		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Debug|x64.Build.0 = Debug|x64
 		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Release|x64.ActiveCfg = Release|x64
+		{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}.Release|x64.Build.0 = Release|x64
 		{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}.Debug|Any CPU.ActiveCfg = Debug
+		{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}.Debug|x64.ActiveCfg = Debug
+		{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}.Debug|x64.Build.0 = Debug
 		{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}.Release|Any CPU.ActiveCfg = Release
+		{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}.Release|x64.ActiveCfg = Release
+		{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}.Release|x64.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

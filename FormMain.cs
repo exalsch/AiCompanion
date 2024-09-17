@@ -309,7 +309,7 @@ namespace AiCompanion
 
                 string txt = txt_TextTTS.Text;
                 string voice = cmbBxVoiceTTS.Text.ToLower();
-                double speed = (double)range_SpeedTTS.Value;
+                double speed = (double)((4/100)*range_SpeedTTS.Value);
 
                 // Stream the TTS result asynchronously
                 await Task.Run(() => StreamTTS(txt, voice, speed));

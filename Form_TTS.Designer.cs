@@ -29,187 +29,181 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_TTS));
-            this.btn_play = new System.Windows.Forms.Button();
-            this.txt_Text = new System.Windows.Forms.RichTextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btn_stop = new System.Windows.Forms.Button();
-            this.lblSpeed = new System.Windows.Forms.Label();
-            this.numUD_Speed = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbBxVoice = new System.Windows.Forms.ComboBox();
-            this.checkBoxDownload = new System.Windows.Forms.CheckBox();
-            this.btn_Download = new System.Windows.Forms.Button();
-            this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUD_Speed)).BeginInit();
-            this.SuspendLayout();
+            btn_play = new System.Windows.Forms.Button();
+            txt_Text = new System.Windows.Forms.RichTextBox();
+            statusStrip1 = new System.Windows.Forms.StatusStrip();
+            toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            btn_stop = new System.Windows.Forms.Button();
+            lblSpeed = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            cmbBxVoice = new System.Windows.Forms.ComboBox();
+            checkBoxDownload = new System.Windows.Forms.CheckBox();
+            btn_Download = new System.Windows.Forms.Button();
+            trackBarSpeed = new System.Windows.Forms.TrackBar();
+            lblSpeedVal = new System.Windows.Forms.Label();
+            statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)trackBarSpeed).BeginInit();
+            SuspendLayout();
             // 
             // btn_play
             // 
-            this.btn_play.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_play.Location = new System.Drawing.Point(12, 292);
-            this.btn_play.Name = "btn_play";
-            this.btn_play.Size = new System.Drawing.Size(40, 23);
-            this.btn_play.TabIndex = 0;
-            this.btn_play.Text = "&Play";
-            this.btn_play.UseVisualStyleBackColor = true;
-            this.btn_play.Click += new System.EventHandler(this.btn_play_Click);
+            btn_play.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            btn_play.Location = new System.Drawing.Point(14, 337);
+            btn_play.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btn_play.Name = "btn_play";
+            btn_play.Size = new System.Drawing.Size(47, 27);
+            btn_play.TabIndex = 0;
+            btn_play.Text = "&Play";
+            btn_play.UseVisualStyleBackColor = true;
+            btn_play.Click += btn_play_Click;
             // 
             // txt_Text
             // 
-            this.txt_Text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_Text.Location = new System.Drawing.Point(12, 12);
-            this.txt_Text.Name = "txt_Text";
-            this.txt_Text.Size = new System.Drawing.Size(288, 265);
-            this.txt_Text.TabIndex = 2;
-            this.txt_Text.Text = "";
+            txt_Text.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txt_Text.Location = new System.Drawing.Point(14, 14);
+            txt_Text.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txt_Text.Name = "txt_Text";
+            txt_Text.Size = new System.Drawing.Size(335, 305);
+            txt_Text.TabIndex = 2;
+            txt_Text.Text = "";
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 341);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(314, 20);
-            this.statusStrip1.TabIndex = 9;
-            this.statusStrip1.Text = "statusStrip1";
+            statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripStatusLabel });
+            statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            statusStrip1.Location = new System.Drawing.Point(0, 397);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            statusStrip1.Size = new System.Drawing.Size(366, 20);
+            statusStrip1.TabIndex = 9;
+            statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel
             // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(26, 15);
-            this.toolStripStatusLabel.Text = "Idle";
+            toolStripStatusLabel.Name = "toolStripStatusLabel";
+            toolStripStatusLabel.Size = new System.Drawing.Size(26, 15);
+            toolStripStatusLabel.Text = "Idle";
             // 
             // btn_stop
             // 
-            this.btn_stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_stop.Enabled = false;
-            this.btn_stop.Location = new System.Drawing.Point(58, 292);
-            this.btn_stop.Name = "btn_stop";
-            this.btn_stop.Size = new System.Drawing.Size(41, 23);
-            this.btn_stop.TabIndex = 1;
-            this.btn_stop.Text = "&Stop";
-            this.btn_stop.UseVisualStyleBackColor = true;
-            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
+            btn_stop.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            btn_stop.Enabled = false;
+            btn_stop.Location = new System.Drawing.Point(68, 337);
+            btn_stop.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btn_stop.Name = "btn_stop";
+            btn_stop.Size = new System.Drawing.Size(48, 27);
+            btn_stop.TabIndex = 1;
+            btn_stop.Text = "&Stop";
+            btn_stop.UseVisualStyleBackColor = true;
+            btn_stop.Click += btn_stop_Click;
             // 
             // lblSpeed
             // 
-            this.lblSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblSpeed.AutoSize = true;
-            this.lblSpeed.Location = new System.Drawing.Point(105, 319);
-            this.lblSpeed.Name = "lblSpeed";
-            this.lblSpeed.Size = new System.Drawing.Size(41, 13);
-            this.lblSpeed.TabIndex = 7;
-            this.lblSpeed.Text = "Speed:";
-            // 
-            // numUD_Speed
-            // 
-            this.numUD_Speed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.numUD_Speed.Increment = new decimal(new int[] {
-            25,
-            0,
-            0,
-            131072});
-            this.numUD_Speed.Location = new System.Drawing.Point(152, 316);
-            this.numUD_Speed.Maximum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.numUD_Speed.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            131072});
-            this.numUD_Speed.Name = "numUD_Speed";
-            this.numUD_Speed.Size = new System.Drawing.Size(37, 20);
-            this.numUD_Speed.TabIndex = 5;
-            this.numUD_Speed.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numUD_Speed.ValueChanged += new System.EventHandler(this.numUD_Speed_ValueChanged);
+            lblSpeed.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            lblSpeed.AutoSize = true;
+            lblSpeed.Location = new System.Drawing.Point(107, 371);
+            lblSpeed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblSpeed.Name = "lblSpeed";
+            lblSpeed.Size = new System.Drawing.Size(42, 15);
+            lblSpeed.TabIndex = 7;
+            lblSpeed.Text = "Speed:";
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(195, 319);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Voice:";
+            label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(220, 343);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(38, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Voice:";
             // 
             // cmbBxVoice
             // 
-            this.cmbBxVoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmbBxVoice.FormattingEnabled = true;
-            this.cmbBxVoice.Items.AddRange(new object[] {
-            "Alloy",
-            "Echo",
-            "Fable",
-            "Onyx",
-            "Nova",
-            "Shimmer"});
-            this.cmbBxVoice.Location = new System.Drawing.Point(238, 315);
-            this.cmbBxVoice.Name = "cmbBxVoice";
-            this.cmbBxVoice.Size = new System.Drawing.Size(59, 21);
-            this.cmbBxVoice.TabIndex = 6;
-            this.cmbBxVoice.Text = "fable";
-            this.cmbBxVoice.SelectedIndexChanged += new System.EventHandler(this.cmbBxVoice_SelectedIndexChanged);
+            cmbBxVoice.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            cmbBxVoice.FormattingEnabled = true;
+            cmbBxVoice.Items.AddRange(new object[] { "Alloy", "Echo", "Fable", "Onyx", "Nova", "Shimmer" });
+            cmbBxVoice.Location = new System.Drawing.Point(266, 337);
+            cmbBxVoice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            cmbBxVoice.Name = "cmbBxVoice";
+            cmbBxVoice.Size = new System.Drawing.Size(68, 23);
+            cmbBxVoice.TabIndex = 6;
+            cmbBxVoice.Text = "Fable";
+            cmbBxVoice.SelectedIndexChanged += cmbBxVoice_SelectedIndexChanged;
             // 
             // checkBoxDownload
             // 
-            this.checkBoxDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkBoxDownload.AutoSize = true;
-            this.checkBoxDownload.Location = new System.Drawing.Point(12, 319);
-            this.checkBoxDownload.Name = "checkBoxDownload";
-            this.checkBoxDownload.Size = new System.Drawing.Size(81, 17);
-            this.checkBoxDownload.TabIndex = 4;
-            this.checkBoxDownload.Text = "Save Audio";
-            this.checkBoxDownload.UseVisualStyleBackColor = true;
+            checkBoxDownload.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            checkBoxDownload.AutoSize = true;
+            checkBoxDownload.Location = new System.Drawing.Point(14, 369);
+            checkBoxDownload.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            checkBoxDownload.Name = "checkBoxDownload";
+            checkBoxDownload.Size = new System.Drawing.Size(85, 19);
+            checkBoxDownload.TabIndex = 4;
+            checkBoxDownload.Text = "Save Audio";
+            checkBoxDownload.UseVisualStyleBackColor = true;
             // 
             // btn_Download
             // 
-            this.btn_Download.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Download.Location = new System.Drawing.Point(106, 292);
-            this.btn_Download.Name = "btn_Download";
-            this.btn_Download.Size = new System.Drawing.Size(75, 23);
-            this.btn_Download.TabIndex = 3;
-            this.btn_Download.Text = "&Download";
-            this.btn_Download.UseVisualStyleBackColor = true;
-            this.btn_Download.Click += new System.EventHandler(this.btn_Download_Click);
+            btn_Download.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            btn_Download.Location = new System.Drawing.Point(124, 337);
+            btn_Download.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btn_Download.Name = "btn_Download";
+            btn_Download.Size = new System.Drawing.Size(88, 27);
+            btn_Download.TabIndex = 3;
+            btn_Download.Text = "&Download";
+            btn_Download.UseVisualStyleBackColor = true;
+            btn_Download.Click += btn_Download_Click;
+            // 
+            // trackBarSpeed
+            // 
+            trackBarSpeed.Location = new System.Drawing.Point(156, 368);
+            trackBarSpeed.Maximum = 100;
+            trackBarSpeed.Minimum = 10;
+            trackBarSpeed.Name = "trackBarSpeed";
+            trackBarSpeed.Size = new System.Drawing.Size(178, 45);
+            trackBarSpeed.TabIndex = 10;
+            trackBarSpeed.Value = 25;
+            trackBarSpeed.Scroll += trackBarSpeed_Scroll;
+            // 
+            // lblSpeedVal
+            // 
+            lblSpeedVal.AutoSize = true;
+            lblSpeedVal.Location = new System.Drawing.Point(328, 371);
+            lblSpeedVal.Name = "lblSpeedVal";
+            lblSpeedVal.Size = new System.Drawing.Size(29, 15);
+            lblSpeedVal.TabIndex = 11;
+            lblSpeedVal.Tag = "25 is the default";
+            lblSpeedVal.Text = "25%";
             // 
             // Form_TTS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 361);
-            this.Controls.Add(this.btn_Download);
-            this.Controls.Add(this.checkBoxDownload);
-            this.Controls.Add(this.cmbBxVoice);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.numUD_Speed);
-            this.Controls.Add(this.lblSpeed);
-            this.Controls.Add(this.btn_stop);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.txt_Text);
-            this.Controls.Add(this.btn_play);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(330, 400);
-            this.Name = "Form_TTS";
-            this.Text = "TextToSpeach";
-            this.Load += new System.EventHandler(this.Form_TTS_Load);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUD_Speed)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(366, 417);
+            Controls.Add(lblSpeedVal);
+            Controls.Add(btn_Download);
+            Controls.Add(checkBoxDownload);
+            Controls.Add(cmbBxVoice);
+            Controls.Add(label1);
+            Controls.Add(lblSpeed);
+            Controls.Add(btn_stop);
+            Controls.Add(statusStrip1);
+            Controls.Add(txt_Text);
+            Controls.Add(btn_play);
+            Controls.Add(trackBarSpeed);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MinimumSize = new System.Drawing.Size(382, 456);
+            Name = "Form_TTS";
+            Text = "TextToSpeach";
+            Load += Form_TTS_Load;
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)trackBarSpeed).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -220,10 +214,11 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.Button btn_stop;
         private System.Windows.Forms.Label lblSpeed;
-        private System.Windows.Forms.NumericUpDown numUD_Speed;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbBxVoice;
         private System.Windows.Forms.CheckBox checkBoxDownload;
         private System.Windows.Forms.Button btn_Download;
+        private System.Windows.Forms.TrackBar trackBarSpeed;
+        private System.Windows.Forms.Label lblSpeedVal;
     }
 }
