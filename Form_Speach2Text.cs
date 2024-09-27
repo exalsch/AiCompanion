@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using NAudio.Lame;
+﻿using NAudio.Lame;
 using NAudio.Wave;
 using OpenAI_API;
-using OpenAI_API.Audio;
-using OpenAI_API.Moderation;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 namespace AiCompanion
 {
@@ -39,7 +30,8 @@ namespace AiCompanion
             }
         }
 
-        private void btn_record_Click(object sender, EventArgs e) {
+        private void btn_record_Click(object sender, EventArgs e)
+        {
             if (!isRecording)
             {
                 StartRecording();
@@ -124,9 +116,11 @@ namespace AiCompanion
 
         private void deleteFile(string path)
         {
-            try { 
-                if(File.Exists(path))
-                    File.Delete(path); }
+            try
+            {
+                if (File.Exists(path))
+                    File.Delete(path);
+            }
             catch (Exception ex) { Debug.WriteLine(ex); } // Log the error but continue
         }
 

@@ -1,14 +1,13 @@
-﻿using System;
+﻿using NAudio.Wave;
+using OpenAI_API;
+using OpenAI_API.Audio;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NAudio.Wave;
-using OpenAI_API;
-using OpenAI_API.Audio;
-using System.Diagnostics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AiCompanion
 {
@@ -42,7 +41,10 @@ namespace AiCompanion
 
                 string txt = txt_Text.Text;
                 string voice = cmbBxVoice.Text.ToLower();
-                double speed = (double)numUD_Speed.Value;
+                double speed = (double)((4.0 / 100.0) * trackBarSpeed.Value);
+                //check for bounds jus to be sure
+                speed = double.Min(speed, 4.0);
+                speed = double.Max(speed, 0.25);
 
                 // Stream the TTS result asynchronously
                 await Task.Run(() => StreamTTS(txt, voice, speed));
@@ -209,7 +211,7 @@ namespace AiCompanion
                 {
                     toolStripStatusLabel.Text = "Error playing stream: " + ex.Message;
                 }));
-                
+
             }
         }
 
@@ -316,7 +318,7 @@ namespace AiCompanion
         private void cmbBxVoice_SelectedIndexChanged(object sender, EventArgs e)
         {
             //make it lower case and save
-            Properties.Settings.Default.TtsVoice=cmbBxVoice.Text.ToLower();
+            Properties.Settings.Default.TtsVoice = cmbBxVoice.Text.ToLower();
             Properties.Settings.Default.Save();
         }
 
@@ -335,9 +337,11 @@ namespace AiCompanion
 
             btn_play.Enabled = false;
             toolStripStatusLabel.Text = "Requesting file...";
-
+            double speed = (double)((4.0 / 100.0) * trackBarSpeed.Value);
+            speed = double.Min(speed, 4.0);
+            speed = double.Max(speed, 0.25);
             // Download the TTS output
-            await DownloadTTS(txt_Text.Text, cmbBxVoice.Text.ToLower(), (double)numUD_Speed.Value);
+            await DownloadTTS(txt_Text.Text, cmbBxVoice.Text.ToLower(), speed);
 
             btn_play.Enabled = true;
             toolStripStatusLabel.Text = "Idle";
@@ -363,6 +367,13 @@ namespace AiCompanion
                 }
             }
 
+        }
+
+        private void trackBarSpeed_Scroll(object sender, EventArgs e)
+        {
+            lblSpeedVal.Text = trackBarSpeed.Value + "%";
+            Properties.Settings.Default.TtsSpeed = trackBarSpeed.Value;
+            Properties.Settings.Default.Save();
         }
     }
 }

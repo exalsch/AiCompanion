@@ -3,17 +3,22 @@ using NAudio.Wave;
 using OpenAI_API;
 using OpenAI_API.Audio;
 using OpenAI_API.Chat;
+using OpenAI_API.Completions;
+using OpenAI_API.Models;
 using ReaLTaiizor.Forms;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static OpenAI_API.Chat.ChatMessage;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AiCompanion
 {
@@ -26,6 +31,7 @@ namespace AiCompanion
         private WaveFileWriter waveWriter;
         private MemoryStream waveStream;
         private bool isRecording = false;
+        private string base64Image = null;
         //STT related globals
         private bool shouldStop = false; // Indicates if the audio playback should stop
         private IntPtr previousWindowHandle; // Store the handle of the window that had focus
@@ -34,39 +40,82 @@ namespace AiCompanion
         static extern bool SetForegroundWindow(IntPtr hWnd);
 
         #region "Shared and global"
-        public FormMain(IntPtr prevWindowHandle, string startTab = "", string copiedText = "")
+        public FormMain(IntPtr prevWindowHandle, string startTab = "", string copiedText = "", string base64Img = null)
         {
             InitializeComponent();
-            this.Text = this.Text + " " + Assembly.GetExecutingAssembly().GetName().Version;
-            lblAboutVersion.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version;
+            //get and set version
+            var version = Assembly.GetEntryAssembly()?
+                          .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+                          .InformationalVersion;
+            this.Text = this.Text + " " + version;
+            lblAboutVersion.Text = "Version: " + version;
+
+            //init API Client
             openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
             //pre fill controls and vars
             txt_TextTTS.Text = copiedText;
-            txt_input.Text = copiedText;
+            txt_inputPrompt.Text = copiedText;
             previousWindowHandle = prevWindowHandle;
+            //have we got an image?
+            if(base64Img != null)
+            {                
+                base64Image = base64Img;
+                picPrompt.Image = LoadImageFromBase64String(base64Image);
+                picPrompt.Visible = true;
+            }
+
             statusLabel.Text = "Idle";
+            toolTipMain.SetToolTip(statusLabel, null);
 
-            //Load settings
-            cmbSttLanguage.SelectedText = Properties.Settings.Default.STT_lang;
-            cmbBxVoiceTTS.SelectedText = Properties.Settings.Default.TtsVoice;
-            cmb_Model.SelectedText = Properties.Settings.Default.ModelLLM;
+            //Load settings into controls
+            txt_ApiKey.Text = Properties.Settings.Default.API_Key;
+            cmbSttLanguage.SelectedItem = Properties.Settings.Default.STT_lang;
+            cmbBxVoiceTTS.SelectedItem = Properties.Settings.Default.TtsVoice;
 
+            //prompt model
+            if (string.IsNullOrEmpty(Properties.Settings.Default.ModelLLM))
+            {
+                cmb_Model.SelectedIndex = 0;
+                Properties.Settings.Default.ModelLLM = cmb_Model.SelectedItem.ToString();
+                Properties.Settings.Default.Save();
+            }
+            cmb_Model.SelectedItem = Properties.Settings.Default.ModelLLM;
+
+            //hotkey
+            txt_HotkeyKey.Text = Properties.Settings.Default.HotKeyKey;
+            cmbHotKeyMod.SelectedItem = Properties.Settings.Default.HotKeyMod;
+
+            chkAutoStartSTT.Checked = Properties.Settings.Default.AutoStartSTT;
+            chkAutoStartTTS.Checked = Properties.Settings.Default.AutoStartTTS;
+            switchDarkMode.Switched = Properties.Settings.Default.useDarkMode;
+            if (switchDarkMode.Switched)
+                metroStyleManager.Style = ReaLTaiizor.Enum.Metro.Style.Dark;
+            chkUseNewUI.Checked = Properties.Settings.Default.UseNewUI;
             foreach (string item in Properties.Settings.Default.prePromtSelections)
             {
                 // Add items from the StringCollection to the ComboBox
                 cmbPrePrompts.Items.Add(item);
             }
+            //check autostart
+            AutoStartManager autoStartManager = new AutoStartManager(Assembly.GetExecutingAssembly().GetName().Name);
+            if (autoStartManager.IsInAutoStart())
+                chkBAutoStartApp.Checked = true;
+            else
+                chkBAutoStartApp.Checked = false;
 
+            //Handle tab selection from the main popup
             if (startTab == "TabPagePrompt")
             {
                 TabControl.SelectTab("TabPagePrompt");
-                txt_input.Select(0, 0);
+                txt_inputPrompt.Select(0, 0);
                 btn_sendPrompt.Focus();
             }
             if (startTab == "TabPageTTS")
             {
                 TabControl.SelectTab("TabPageTTS");
                 btn_playTTS.Focus();
+                if (txt_TextTTS.Text.Length > 0 && Properties.Settings.Default.AutoStartTTS)
+                    btn_play_Click(this, EventArgs.Empty);
             }
             if (startTab == "TabPageSTT")
             {
@@ -79,7 +128,9 @@ namespace AiCompanion
                 }
                 else
                 {
-                    btn_record.Focus();
+                    if (Properties.Settings.Default.AutoStartSTT)
+                        btn_record_Click(this, EventArgs.Empty);
+                    btn_record.Select();
                 }
             }
             if (startTab == "TabPageSettings")
@@ -88,9 +139,22 @@ namespace AiCompanion
             }
         }
 
+        public static Bitmap LoadImageFromBase64String(string base64String)
+        {
+            // Convert the Base64 string back to a byte array
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+
+            // Create a MemoryStream from the byte array
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+                // Load the image from the MemoryStream
+                return new Bitmap(ms);
+            }
+        }
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             statusLabel.Text = "Idle";
+            toolTipMain.SetToolTip(statusLabel, null);
             if (string.IsNullOrEmpty(Properties.Settings.Default.API_Key))
             {
                 Properties.Settings.Default.API_Key = InputBox.Show("Enter API Key:", "API Key not set");
@@ -101,7 +165,7 @@ namespace AiCompanion
             {
 
                 // Give focus to the input textbox
-                txt_input.Focus();
+                txt_inputPrompt.Focus();
                 // Set the cursor to the beginning of the text
                 //txt_input.Select(0, 0);
             }
@@ -122,18 +186,21 @@ namespace AiCompanion
         /// Event handler for key presses.
         /// Handles the Alt+Enter key combination to trigger Send button click.
         /// </summary>
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        private void txt_inputPrompt_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && e.Modifiers == Keys.Alt)
+
+            if ((e.KeyCode == Keys.Enter && e.Modifiers == Keys.Alt) || (e.KeyCode == Keys.Enter && e.Shift))
             {
                 try
                 {
                     // Trigger the Send button click event when Alt + Enter is pressed
                     btn_send_Click(sender, e);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error processing key press: " + ex.Message);
+                    //MessageBox.Show("Error processing key press: " + ex.Message);
                 }
             }
         }
@@ -175,16 +242,34 @@ namespace AiCompanion
         {
             if (!isRecording)
             {
-                StartRecording();
+                try
+                {
+                    StartRecording();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error recording voice: " + ex.Message);
+                }
                 btn_record.Text = "Stop";
+                btn_record.NormalBorderColor = System.Drawing.Color.Red;
                 statusLabel.Text = "Recording...";
             }
             else
             {
-                StopRecording();
+                try
+                {
+                    StopRecording();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Error processing recording: " + ex.Message);
+                }
                 btn_record.Text = "Record";
+                btn_record.NormalBorderColor = System.Drawing.Color.FromArgb(204, 204, 204);
                 statusLabel.Text = "Stopped. MP3 Saved...";
             }
+            btn_record.Select();
         }
         private void StartRecording()
         {
@@ -214,6 +299,7 @@ namespace AiCompanion
                 waveIn.Dispose(); // Clean up the waveIn resource
                 transcribe(pathToFile);
                 statusLabel.Text = "Idle";
+                toolTipMain.SetToolTip(statusLabel, null);
             };
 
             // Start recording
@@ -264,11 +350,19 @@ namespace AiCompanion
 
         private async void transcribe(string path)
         {
-            string resultText = await openAiApi.Transcriptions.GetTextAsync(path, cmbSttLanguage.Text.Trim());
-            txt_resultSTT.Text = txt_resultSTT.Text + resultText;
-            // inline
-            //string resultText = await openAiApi.Transcriptions.GetTextAsync("conversation.mp3", "en", "This is a transcript of a conversation between a medical doctor and her patient: ", 0.3);
-            deleteFile(path);
+            try
+            {
+                string resultText = await openAiApi.Transcriptions.GetTextAsync(path, cmbSttLanguage.Text.Trim());
+                txt_resultSTT.Text = txt_resultSTT.Text + resultText;
+                // inline
+                //string resultText = await openAiApi.Transcriptions.GetTextAsync("conversation.mp3", "en", "This is a transcript of a conversation between a medical doctor and her patient: ", 0.3);
+                deleteFile(path);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -309,7 +403,7 @@ namespace AiCompanion
 
                 string txt = txt_TextTTS.Text;
                 string voice = cmbBxVoiceTTS.Text.ToLower();
-                double speed = (double)range_SpeedTTS.Value;
+                double speed = (double)((4 / 100) * range_SpeedTTS.Value);
 
                 // Stream the TTS result asynchronously
                 await Task.Run(() => StreamTTS(txt, voice, speed));
@@ -326,7 +420,8 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                statusLabel.Text = "Error: " + ex.Message;
+                statusLabel.Text = "Error getting transcription! ";
+                toolTipMain.SetToolTip(statusLabel, ex.Message);
             }
             finally
             {
@@ -359,7 +454,8 @@ namespace AiCompanion
                     }
                     catch (Exception ex)
                     {
-                        statusLabel.Text = "Error moving file: " + ex.Message;
+                        statusLabel.Text = "Error moving file!";
+                        toolTipMain.SetToolTip(statusLabel, ex.Message);
                     }
                 }
             }
@@ -399,7 +495,8 @@ namespace AiCompanion
                     }
                     catch (Exception ex)
                     {
-                        statusLabel.Text = "Failed storing file: " + ex.Message;
+                        statusLabel.Text = "Failed storing file! ";
+                        toolTipMain.SetToolTip(statusLabel, ex.Message);
                     }
                 }
 
@@ -410,7 +507,8 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                statusLabel.Text = "Error downloading TTS: " + ex.Message;
+                statusLabel.Text = "Error downloading TTS";
+                toolTipMain.SetToolTip(statusLabel, ex.Message);
             }
         }
 
@@ -468,6 +566,7 @@ namespace AiCompanion
                 Invoke((Action)(() =>
                 {
                     statusLabel.Text = "Idle";
+                    toolTipMain.SetToolTip(statusLabel, null);
                 }));
             }
             catch (Exception ex)
@@ -475,6 +574,7 @@ namespace AiCompanion
                 Invoke((Action)(() =>
                 {
                     statusLabel.Text = "Error playing stream: " + ex.Message;
+                    toolTipMain.SetToolTip(statusLabel, ex.Message);
                 }));
 
             }
@@ -500,7 +600,8 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                statusLabel.Text = "Failed storing file: " + ex.Message;
+                statusLabel.Text = "Failed storing file! ";
+                toolTipMain.SetToolTip(statusLabel, ex.Message);
             }
         }
 
@@ -595,6 +696,7 @@ namespace AiCompanion
 
             btn_playTTS.Enabled = true;
             statusLabel.Text = "Idle";
+            toolTipMain.SetToolTip(statusLabel, null);
         }
 
         private void Form_TTS_Load(object sender, EventArgs e)
@@ -630,7 +732,7 @@ namespace AiCompanion
         {
             try
             {
-                string inputText = txt_input.Text;
+                string inputText = txt_inputPrompt.Text;
 
                 // Create the chat request
                 var chatRequest = new ChatRequest()
@@ -640,10 +742,18 @@ namespace AiCompanion
                     {
                         new ChatMessage(ChatMessageRole.System,
                             Properties.Settings.Default.PrePromt
-                            + (!string.IsNullOrWhiteSpace(this.cmbPrePrompts.Text) ? " " + this.cmbPrePrompts.Text : "")),
+                            + (!string.IsNullOrWhiteSpace(this.cmbPrePrompts.Text) ? " " + this.cmbPrePrompts.Text : "")),                        
                         new ChatMessage(ChatMessageRole.User, inputText)
                     }
                 };
+
+                //adding the image
+                if (base64Image != null) {
+                    // Convert the Base64 string back to a byte array
+                    byte[] imageBytes = Convert.FromBase64String(base64Image);
+                    chatRequest.Messages[1].Images.Add(ImageInput.FromImageBytes(imageBytes));                   
+                }
+
 
                 this.Cursor = Cursors.WaitCursor;
 
@@ -655,7 +765,7 @@ namespace AiCompanion
                 if (chatResult != null)
                 {
                     var result = chatResult.Choices[0].Message.TextContent;
-                    txt_result.Text = result;
+                    txt_resultPrompt.Text = result;
                     btn_insertPrompt.Enabled = true;
                     btn_copyPrompt.Enabled = true;
                     btn_sendPrompt.Enabled = false;
@@ -681,7 +791,7 @@ namespace AiCompanion
         {
             try
             {
-                Clipboard.SetText(txt_result.Text);
+                Clipboard.SetText(txt_resultPrompt.Text);
                 this.Hide();
                 this.ShowInTaskbar = false;
             }
@@ -705,7 +815,7 @@ namespace AiCompanion
                     if (SetForegroundWindow(previousWindowHandle))
                     {
                         // Set text to clipboard
-                        Clipboard.SetText(txt_result.Text);
+                        Clipboard.SetText(txt_resultPrompt.Text);
                         // Send Ctrl+V to paste the selected text
                         SendKeys.SendWait("^v");
 
@@ -751,7 +861,7 @@ namespace AiCompanion
         {
             try
             {
-                Properties.Settings.Default.ModelLLM = cmb_Model.SelectedText;
+                Properties.Settings.Default.ModelLLM = cmb_Model.SelectedItem.ToString();
                 Properties.Settings.Default.Save();
             }
             catch (Exception ex)
@@ -821,6 +931,25 @@ namespace AiCompanion
                 btnRemovePrePromt.Enabled = true;
             }
         }
+
+        private void sendToTTSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txt_TextTTS.Text = txt_inputPrompt.Text;
+
+            TabControl.SelectTab("TabPageTTS");
+            btn_playTTS.Focus();
+            if (txt_TextTTS.Text.Length > 0 && Properties.Settings.Default.AutoStartTTS)
+                btn_play_Click(this, EventArgs.Empty);
+
+        }
+
+        private void picPromptToolStripMenuItemRemove_Click(object sender, EventArgs e)
+        {
+            base64Image=null;
+            picPrompt.Image = null;            
+            picPrompt.Visible = false;
+        }
+
         #endregion
 
 
@@ -830,15 +959,61 @@ namespace AiCompanion
             try
             {
                 Properties.Settings.Default.API_Key = txt_ApiKey.Text;
+                openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
+                if (Properties.Settings.Default.UseNewUI != chkUseNewUI.Checked)
+                    MessageBox.Show("To change of UI requires program restart!");
                 Properties.Settings.Default.UseNewUI = chkUseNewUI.Checked;
                 Properties.Settings.Default.FirstLaunch = false;
                 Properties.Settings.Default.useDarkMode = switchDarkMode.Switched;
+                Properties.Settings.Default.AutoStartSTT = chkAutoStartSTT.Checked;
+                Properties.Settings.Default.AutoStartTTS = chkAutoStartTTS.Checked;
+                //hotkey changed? need a restart for now 
+                //TODO: make some kind of auto reload in the mainPopup
+                if(txt_HotkeyKey.Text == Properties.Settings.Default.HotKeyKey || 
+                    cmbHotKeyMod.SelectedItem.ToString() == Properties.Settings.Default.HotKeyMod)
+                    Properties.Settings.Default.HotKeyKey = txt_HotkeyKey.Text;
+                Properties.Settings.Default.HotKeyMod = cmbHotKeyMod.SelectedItem.ToString();
                 Properties.Settings.Default.Save();
+                //handle autostart
+                AutoStartManager autoStartManager = new AutoStartManager(Assembly.GetExecutingAssembly().GetName().Name);
+                if (chkBAutoStartApp.Checked)
+                    autoStartManager.AddToAutoStart(); // Add to autostart
+                else
+                    autoStartManager.RemoveFromAutoStart(); // Remove from autostart
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error copying to clipboard: " + ex.Message);
             }
+        }
+
+        private void txt_HotkeyKey_TextChanged(object sender, EventArgs e)
+        {
+
+            txt_HotkeyKey.Text = txt_HotkeyKey.Text.ToLower();
+        }
+        // Event handler to filter out invalid keys
+        private void Txt_HotkeyKey_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Only allow letters (A-Z), digits (0-9), and function keys (e.g., F1-F12)
+            if (!IsValidHotKeyKey(e.KeyChar))
+            {
+                // Invalid key, prevent the character from being added
+                e.Handled = true;
+            }
+        }
+        private bool IsValidHotKeyKey(char keyChar)
+        {
+            // Check if the character is a letter or digit
+            if (char.IsLetterOrDigit(keyChar))
+                return true;
+
+            // Allow common control keys (backspace, delete, etc.)
+            if (char.IsControl(keyChar))
+                return true;
+
+            // Block everything else as invalid
+            return false;
         }
         #endregion
 
@@ -859,7 +1034,7 @@ namespace AiCompanion
         {
             try
             {
-                Properties.Settings.Default.TtsVoice = cmbBxVoiceTTS.SelectedText;
+                Properties.Settings.Default.TtsVoice = cmbBxVoiceTTS.SelectedItem.ToString();
                 Properties.Settings.Default.Save();
             }
             catch (Exception ex)
@@ -872,7 +1047,7 @@ namespace AiCompanion
         {
             try
             {
-                Properties.Settings.Default.useDarkMode = switchDarkMode.Switched;                
+                Properties.Settings.Default.useDarkMode = switchDarkMode.Switched;
                 if (switchDarkMode.Switched)
                     metroStyleManager.Style = ReaLTaiizor.Enum.Metro.Style.Dark;
                 else
@@ -888,6 +1063,24 @@ namespace AiCompanion
         private void FormMain_Load(object sender, EventArgs e)
         {
             MinimumSize = new System.Drawing.Size(412, 562);
+            chkAutoStartSTT.Checked = Properties.Settings.Default.AutoStartSTT;
+            chkAutoStartTTS.Checked = Properties.Settings.Default.AutoStartTTS;
         }
+
+        private void checkBoxDownloadTTS_CheckedChanged(object sender)
+        {
+
+        }
+
+        private void TabControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Check if the focused control is btn_record and the space key was pressed
+            if (TabControl.SelectedTab.Name == "TabPageSTT" && e.KeyCode == Keys.Space)
+            {
+                // Handle the space key 
+                btn_record_Click(sender, e);
+            }
+        }
+
     }
 }

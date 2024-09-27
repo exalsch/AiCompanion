@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using ReaLTaiizor.Forms;
 
 namespace AiCompanion
 {
@@ -51,24 +52,61 @@ namespace AiCompanion
                 this.Hide();
                 this.Opacity = 0;
                 this.ShowInTaskbar = false;
-                if (Properties.Settings.Default.FirstLaunch && string.IsNullOrEmpty(Properties.Settings.Default.API_Key)) {
-                    if (Properties.Settings.Default.UseNewUI) { 
+                if (Properties.Settings.Default.FirstLaunch && string.IsNullOrEmpty(Properties.Settings.Default.API_Key))
+                {
+                    if (Properties.Settings.Default.UseNewUI)
+                    {
                         Properties.Settings.Default.API_Key = InputBox.Show("First Launch enter API Key:", "API Key not set");
                         Properties.Settings.Default.Save();
                     }
                     else
                     {
                         Form_Settings mainForm = new Form_Settings();
-                        mainForm.ShowDialog();
+                        _ = mainForm.ShowDialog();
                     }
                 }
                 // Register a hotkey (Alt + G)
-                RegisterHotKey(this.Handle, HOTKEY_ID, (int)KeyModifiers.Alt, (int)Keys.G);
+                RegisterUserHotkey();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error registering hotkey: " + ex.Message);
+                _ = MessageBox.Show("Error registering hotkey: " + ex.Message);
             }
+        }
+
+        private void RegisterUserHotkey()
+        {
+            // Simulating user input. In practice, get this from a user input interface.
+            string modifierInput = string.IsNullOrWhiteSpace(Properties.Settings.Default.HotKeyMod)
+                                    ? "Alt"
+                                    : Properties.Settings.Default.HotKeyMod;
+            string keyInput = string.IsNullOrWhiteSpace(Properties.Settings.Default.HotKeyKey)
+                                    ? "g"
+                                    : Properties.Settings.Default.HotKeyKey;
+
+            // Convert modifier string to corresponding flags
+            KeyModifiers modifiers = ParseModifiers(modifierInput);
+
+            // Convert key string to corresponding Keys enum value
+            Keys key = (Keys)Enum.Parse(typeof(Keys), keyInput, true);
+
+            // Register the hotkey with the parsed values
+            RegisterHotKey(this.Handle, HOTKEY_ID, (int)modifiers, (int)key);
+        }
+        private KeyModifiers ParseModifiers(string modifierInput)
+        {
+            KeyModifiers modifiers = KeyModifiers.None;
+
+            if (modifierInput.Contains("Alt"))
+                modifiers |= KeyModifiers.Alt;
+            if (modifierInput.Contains("Control") || modifierInput.Contains("Ctrl"))
+                modifiers |= KeyModifiers.Control;
+            if (modifierInput.Contains("Shift"))
+                modifiers |= KeyModifiers.Shift;
+            if (modifierInput.Contains("Windows") || modifierInput.Contains("Win"))
+                modifiers |= KeyModifiers.Windows;
+
+            return modifiers;
         }
 
         /// <summary>
@@ -102,8 +140,23 @@ namespace AiCompanion
 
                         // If the clipboard content changed, update the internal copy
                         if (copiedTextPre != copiedText)
+                        {
                             _copiedText = copiedText;
+                        }
+                        else
+                        { //try again
+                            System.Threading.Thread.Sleep(100);
+                            SendKeys.SendWait("^c"); // Simulate pressing Ctrl+C
+                            System.Threading.Thread.Sleep(100);
+                            copiedText = Clipboard.GetText();
+                            if (copiedTextPre != copiedText)
+                                _copiedText = copiedText;
+                        }
+
+
                     }
+
+
 
                     // Position and show the popup form
                     position_form(this);
@@ -111,7 +164,7 @@ namespace AiCompanion
                     this.Opacity = 100;
                     this.WindowState = FormWindowState.Normal;
                     this.Activate();
-                    this.Size = new Size(244, 47);
+                    this.Size = new Size(322, 46);
                     if (Properties.Settings.Default.UseNewUI)
                     {
                         //old buttons down
@@ -125,14 +178,20 @@ namespace AiCompanion
                         btn_Speak2TextN.Visible = true;
                         //add & as hotkey
                         btn_promptN.Text = "&Prompt";
-                        btn_TtsN.Text = "&TTS"; 
+                        btn_TtsN.Text = "&TTS";
                         btn_Speak2TextN.Text = "&STT";
+
+                        //remove  & as hotkey at old
+                        btn_prompt.Text = "Prompt";
+                        btn_TTS.Text = "TTS";
+                        btn_Speak2Text.Text = "STT";
+
                         //hide old buttons
                         btn_prompt.Visible = false;
                         btn_prompt.Enabled = false;
                         btn_TTS.Visible = false;
                         btn_Speak2Text.Visible = false;
-                        btn_promptN.Focus();
+                        _ = btn_promptN.Focus();
                     }
                     else
                     {
@@ -140,6 +199,11 @@ namespace AiCompanion
                         btn_prompt.Text = "&Prompt";
                         btn_TTS.Text = "&TTS";
                         btn_Speak2Text.Text = "&STT";
+                        //remove & at new
+                        btn_promptN.Text = "Prompt";
+                        btn_TtsN.Text = "TTS";
+                        btn_Speak2TextN.Text = "STT";
+
                         //old buttons up
                         btn_prompt.Location = new Point(2, 3);
                         btn_TTS.Location = new Point(100, 3);
@@ -148,14 +212,14 @@ namespace AiCompanion
                         btn_promptN.Visible = false;
                         btn_TtsN.Visible = false;
                         btn_Speak2TextN.Visible = false;
-                        btn_prompt.Focus();
+                        _ = btn_prompt.Focus();
                     }
                     this.Invalidate();
                     this.Update();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error handling hotkey event: " + ex.Message);
+                    _ = MessageBox.Show("Error handling hotkey event: " + ex.Message);
                 }
             }
         }
@@ -173,7 +237,7 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening Text Prompt form: " + ex.Message);
+                _ = MessageBox.Show("Error opening Text Prompt form: " + ex.Message);
             }
         }
 
@@ -190,7 +254,7 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening TTS form: " + ex.Message);
+                _ = MessageBox.Show("Error opening TTS form: " + ex.Message);
             }
         }
 
@@ -208,7 +272,7 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening Speach-to-text form: " + ex.Message);
+                _ = MessageBox.Show("Error opening Speach-to-text form: " + ex.Message);
             }
         }
 
@@ -238,7 +302,7 @@ namespace AiCompanion
             try
             {
                 // Unregister the hotkey, hide the tray icon, and exit the application
-                UnregisterHotKey(this.Handle, HOTKEY_ID);
+                _ = UnregisterHotKey(this.Handle, HOTKEY_ID);
                 trayIcon.Visible = false;
                 System.Windows.Forms.Application.Exit();
                 this.Close();
@@ -246,7 +310,7 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error exiting application: " + ex.Message);
+                _ = MessageBox.Show("Error exiting application: " + ex.Message);
             }
         }
 
@@ -260,19 +324,19 @@ namespace AiCompanion
                 // Create and show the main form 
                 if (Properties.Settings.Default.UseNewUI)
                 {
-                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPageSettings");
+                    FormMain mainForm = new FormMain(_previousWindowHandle, "TabPageSettings");
                     ShowForm(mainForm);
                 }
                 else
                 {
                     Form_Settings mainForm = new Form_Settings();
-                    mainForm.ShowDialog();
+                    _ = mainForm.ShowDialog();
                 }
-                
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening main form: " + ex.Message);
+                _ = MessageBox.Show("Error opening main form: " + ex.Message);
             }
         }
 
@@ -293,13 +357,13 @@ namespace AiCompanion
                 else
                 {
                     Form_AboutBox mainForm = new Form_AboutBox();
-                    mainForm.ShowDialog();
+                    _ = mainForm.ShowDialog();
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening main form: " + ex.Message);
+                _ = MessageBox.Show("Error opening main form: " + ex.Message);
             }
         }
 
@@ -310,11 +374,11 @@ namespace AiCompanion
                 // Create and show the main form 
                 FormMain mainForm = new FormMain(_previousWindowHandle, "TabPageTTS", _copiedText);
                 ShowForm(mainForm);
-                
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening main form: " + ex.Message);
+                _ = MessageBox.Show("Error opening main form: " + ex.Message);
             }
         }
 
@@ -328,7 +392,7 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening main form: " + ex.Message);
+                _ = MessageBox.Show("Error opening main form: " + ex.Message);
             }
 
         }
@@ -338,13 +402,13 @@ namespace AiCompanion
             try
             {
                 // Create and show the main form 
-                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPagePrompt",_copiedText);
+                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPagePrompt", _copiedText);
                 ShowForm(mainForm);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening main form: " + ex.Message);
-            }            
+                _ = MessageBox.Show("Error opening main form: " + ex.Message);
+            }
         }
 
 
@@ -378,7 +442,7 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error positioning form: " + ex.Message);
+                _ = MessageBox.Show("Error positioning form: " + ex.Message);
             }
         }
         /// <summary>
@@ -410,33 +474,83 @@ namespace AiCompanion
                 form.Opacity = 0;
 
                 // Unregister and re-register the hotkey to ensure it remains functional
-                UnregisterHotKey(this.Handle, HOTKEY_ID);
-                RegisterHotKey(this.Handle, HOTKEY_ID, (int)KeyModifiers.Alt, (int)Keys.G);
+                _ = UnregisterHotKey(this.Handle, HOTKEY_ID);
+                System.Threading.Thread.Sleep(100);
+                RegisterUserHotkey();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error hiding form: " + ex.Message);
+                _ = MessageBox.Show("Error hiding form: " + ex.Message);
             }
         }
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_ImagePrompt_Click(object sender, EventArgs e)
         {
-            // Create and show the main form 
-            TEST testForm = new TEST();
+            try
+            {
 
-            testForm.Opacity = 100;
-            testForm.WindowState = FormWindowState.Normal;
-            testForm.ShowInTaskbar = true;
+                using (ScreenCaptureForm captureForm = new ScreenCaptureForm())
+                {
+                    if (captureForm.ShowDialog() == DialogResult.OK)
+                    {
+                        Bitmap screenshot = captureForm.GetCapturedImage();
+                        string base64Image = ConvertBitmapToBase64(screenshot, 80); // 75 is the quality parameter (1-100)
+
+                        if (base64Image != null)
+                        {
+                            // send the captured screenshot to prompt                            
+                            try
+                            {
+                                // Create and show the main form selecting the prompt tab
+                                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPagePrompt", _copiedText, base64Image);
+                                ShowForm(mainForm);
+                            }
+                            catch (Exception ex)
+                            {
+                                _ = MessageBox.Show("Error opening prompt form with image: " + ex.Message);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show("Error creating screenshot form: " + ex.Message);
+            }
+
             
-            testForm.Activate();
-            testForm.Show();
-            Form_hide(this);
+        }
+        public static string ConvertBitmapToBase64(Bitmap bitmap, long quality)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                // Set the quality parameter for JPEG compression
+                ImageCodecInfo jpegEncoder = GetEncoder(ImageFormat.Jpeg);
+                EncoderParameters encoderParams = new EncoderParameters(1);
+                encoderParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
+
+                // Save the bitmap as a JPEG with the specified quality
+                bitmap.Save(ms, jpegEncoder, encoderParams);
+
+                // Convert the byte array of the JPEG image to Base64 string
+                byte[] imageBytes = ms.ToArray();
+                return Convert.ToBase64String(imageBytes);
+            }
         }
 
-        private void Form_mainPopup_Load(object sender, EventArgs e)
+        // Helper function to get the JPEG encoder
+        private static ImageCodecInfo GetEncoder(ImageFormat format)
         {
-
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
         }
     }
 }
