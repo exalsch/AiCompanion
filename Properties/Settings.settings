@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="API_Key" Type="System.String" Scope="User">
-      <Value Profile="(Default)">APIKEY</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ModelLLM" Type="System.String" Scope="User">
       <Value Profile="(Default)">gpt-4o-mini</Value>
@@ -12,7 +12,7 @@
       <Value Profile="(Default)">You are a helpful assistant for the user of this client PC. try to give a direct reply that can be pasted directly by the user.</Value>
     </Setting>
     <Setting Name="HotKeyMod" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ALT</Value>
+      <Value Profile="(Default)">Alt</Value>
     </Setting>
     <Setting Name="HotKeyKey" Type="System.String" Scope="User">
       <Value Profile="(Default)">g</Value>
@@ -24,7 +24,7 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="TtsVoice" Type="System.String" Scope="User">
-      <Value Profile="(Default)">fable</Value>
+      <Value Profile="(Default)">Fable</Value>
     </Setting>
     <Setting Name="prePromtSelections" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -37,9 +37,15 @@
       <Value Profile="(Default)">en</Value>
     </Setting>
     <Setting Name="UseNewUI" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="useDarkMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoStartSTT" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoStartTTS" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

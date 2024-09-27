@@ -37,7 +37,7 @@
             btn_copy = new System.Windows.Forms.Button();
             btn_cancel = new System.Windows.Forms.Button();
             cmb_Model = new System.Windows.Forms.ComboBox();
-            txt_result = new System.Windows.Forms.RichTextBox();
+            txt_result = new MarkdownRichTextBox();
             statusStrip1 = new System.Windows.Forms.StatusStrip();
             toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -289,7 +289,7 @@
         private System.Windows.Forms.Button btn_copy;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.RichTextBox txt_input;
-        private System.Windows.Forms.RichTextBox txt_result;
+        private MarkdownRichTextBox txt_result;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ComboBox cmb_Model;

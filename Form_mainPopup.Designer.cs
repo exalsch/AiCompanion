@@ -28,238 +28,256 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_mainPopup));
-            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.trayContextMenuStrip = new ReaLTaiizor.Controls.MetroContextMenuStrip();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btn_promptN = new ReaLTaiizor.Controls.MaterialButton();
-            this.btn_TtsN = new ReaLTaiizor.Controls.MaterialButton();
-            this.btn_Speak2TextN = new ReaLTaiizor.Controls.MaterialButton();
-            this.toolTip = new ReaLTaiizor.Controls.MetroToolTip();
-            this.btn_prompt = new ReaLTaiizor.Controls.MaterialButton();
-            this.btn_TTS = new ReaLTaiizor.Controls.MaterialButton();
-            this.btn_Speak2Text = new ReaLTaiizor.Controls.MaterialButton();
-            this.trayContextMenuStrip.SuspendLayout();
-            this.SuspendLayout();
+            trayIcon = new System.Windows.Forms.NotifyIcon(components);
+            trayContextMenuStrip = new ReaLTaiizor.Controls.MetroContextMenuStrip();
+            settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            btn_promptN = new ReaLTaiizor.Controls.MaterialButton();
+            btn_TtsN = new ReaLTaiizor.Controls.MaterialButton();
+            btn_Speak2TextN = new ReaLTaiizor.Controls.MaterialButton();
+            toolTip = new ReaLTaiizor.Controls.MetroToolTip();
+            btn_prompt = new ReaLTaiizor.Controls.MaterialButton();
+            btn_ImagePrompt = new ReaLTaiizor.Controls.MaterialButton();
+            btn_TTS = new ReaLTaiizor.Controls.MaterialButton();
+            btn_Speak2Text = new ReaLTaiizor.Controls.MaterialButton();
+            trayContextMenuStrip.SuspendLayout();
+            SuspendLayout();
             // 
             // trayIcon
             // 
-            this.trayIcon.ContextMenuStrip = this.trayContextMenuStrip;
-            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "AiCompanion";
-            this.trayIcon.Visible = true;
+            trayIcon.ContextMenuStrip = trayContextMenuStrip;
+            trayIcon.Icon = (System.Drawing.Icon)resources.GetObject("trayIcon.Icon");
+            trayIcon.Text = "AiCompanion";
+            trayIcon.Visible = true;
             // 
             // trayContextMenuStrip
             // 
-            this.trayContextMenuStrip.IsDerivedStyle = true;
-            this.trayContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem,
-            this.aboutToolStripMenuItem1,
-            this.exitToolStripMenuItem});
-            this.trayContextMenuStrip.Name = "trayContextMenuStrip";
-            this.trayContextMenuStrip.Size = new System.Drawing.Size(117, 70);
-            this.trayContextMenuStrip.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            this.trayContextMenuStrip.StyleManager = null;
-            this.trayContextMenuStrip.ThemeAuthor = "Taiizor";
-            this.trayContextMenuStrip.ThemeName = "MetroLight";
+            trayContextMenuStrip.IsDerivedStyle = true;
+            trayContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { settingsToolStripMenuItem, aboutToolStripMenuItem1, exitToolStripMenuItem });
+            trayContextMenuStrip.Name = "trayContextMenuStrip";
+            trayContextMenuStrip.Size = new System.Drawing.Size(117, 70);
+            trayContextMenuStrip.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            trayContextMenuStrip.StyleManager = null;
+            trayContextMenuStrip.ThemeAuthor = "Taiizor";
+            trayContextMenuStrip.ThemeName = "MetroLight";
             // 
             // settingsToolStripMenuItem
             // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.TrayToolStripMenuSettings_Click);
+            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            settingsToolStripMenuItem.Text = "Settings";
+            settingsToolStripMenuItem.Click += TrayToolStripMenuSettings_Click;
             // 
             // aboutToolStripMenuItem1
             // 
-            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
-            this.aboutToolStripMenuItem1.Text = "About";
-            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            aboutToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
+            aboutToolStripMenuItem1.Text = "About";
+            aboutToolStripMenuItem1.Click += aboutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.trayToolStripMenuExit_Click);
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += trayToolStripMenuExit_Click;
             // 
             // btn_promptN
             // 
-            this.btn_promptN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_promptN.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btn_promptN.Depth = 0;
-            this.btn_promptN.HighEmphasis = true;
-            this.btn_promptN.Icon = null;
-            this.btn_promptN.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btn_promptN.Location = new System.Drawing.Point(2, 3);
-            this.btn_promptN.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_promptN.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
-            this.btn_promptN.Name = "btn_promptN";
-            this.btn_promptN.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btn_promptN.Size = new System.Drawing.Size(81, 36);
-            this.btn_promptN.TabIndex = 4;
-            this.btn_promptN.Text = "Prompt";
-            this.toolTip.SetToolTip(this.btn_promptN, "Text Promts");
-            this.btn_promptN.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_promptN.UseAccentColor = false;
-            this.btn_promptN.UseVisualStyleBackColor = true;
-            this.btn_promptN.Click += new System.EventHandler(this.btn_prompt_Click_N);
+            btn_promptN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btn_promptN.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_promptN.Depth = 0;
+            btn_promptN.HighEmphasis = true;
+            btn_promptN.Icon = null;
+            btn_promptN.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            btn_promptN.Location = new System.Drawing.Point(2, 3);
+            btn_promptN.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            btn_promptN.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            btn_promptN.Name = "btn_promptN";
+            btn_promptN.NoAccentTextColor = System.Drawing.Color.Empty;
+            btn_promptN.Size = new System.Drawing.Size(81, 36);
+            btn_promptN.TabIndex = 4;
+            btn_promptN.Text = "Prompt";
+            toolTip.SetToolTip(btn_promptN, "Text Promts");
+            btn_promptN.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_promptN.UseAccentColor = false;
+            btn_promptN.UseVisualStyleBackColor = true;
+            btn_promptN.Click += btn_prompt_Click_N;
             // 
             // btn_TtsN
             // 
-            this.btn_TtsN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_TtsN.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btn_TtsN.Depth = 0;
-            this.btn_TtsN.HighEmphasis = true;
-            this.btn_TtsN.Icon = null;
-            this.btn_TtsN.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btn_TtsN.Location = new System.Drawing.Point(100, 3);
-            this.btn_TtsN.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_TtsN.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
-            this.btn_TtsN.Name = "btn_TtsN";
-            this.btn_TtsN.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btn_TtsN.Size = new System.Drawing.Size(64, 36);
-            this.btn_TtsN.TabIndex = 5;
-            this.btn_TtsN.Text = "TTS";
-            this.toolTip.SetToolTip(this.btn_TtsN, "Text-To-Speach");
-            this.btn_TtsN.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_TtsN.UseAccentColor = false;
-            this.btn_TtsN.UseVisualStyleBackColor = true;
-            this.btn_TtsN.Click += new System.EventHandler(this.btn_TTSn_Click);
+            btn_TtsN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btn_TtsN.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_TtsN.Depth = 0;
+            btn_TtsN.HighEmphasis = true;
+            btn_TtsN.Icon = null;
+            btn_TtsN.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            btn_TtsN.Location = new System.Drawing.Point(100, 3);
+            btn_TtsN.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            btn_TtsN.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            btn_TtsN.Name = "btn_TtsN";
+            btn_TtsN.NoAccentTextColor = System.Drawing.Color.Empty;
+            btn_TtsN.Size = new System.Drawing.Size(64, 36);
+            btn_TtsN.TabIndex = 5;
+            btn_TtsN.Text = "TTS";
+            toolTip.SetToolTip(btn_TtsN, "Text-To-Speach");
+            btn_TtsN.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_TtsN.UseAccentColor = false;
+            btn_TtsN.UseVisualStyleBackColor = true;
+            btn_TtsN.Click += btn_TTSn_Click;
             // 
             // btn_Speak2TextN
             // 
-            this.btn_Speak2TextN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_Speak2TextN.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btn_Speak2TextN.Depth = 0;
-            this.btn_Speak2TextN.HighEmphasis = true;
-            this.btn_Speak2TextN.Icon = null;
-            this.btn_Speak2TextN.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Default;
-            this.btn_Speak2TextN.Location = new System.Drawing.Point(172, 3);
-            this.btn_Speak2TextN.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_Speak2TextN.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
-            this.btn_Speak2TextN.Name = "btn_Speak2TextN";
-            this.btn_Speak2TextN.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btn_Speak2TextN.Size = new System.Drawing.Size(64, 36);
-            this.btn_Speak2TextN.TabIndex = 6;
-            this.btn_Speak2TextN.Text = "STT";
-            this.toolTip.SetToolTip(this.btn_Speak2TextN, "Speach-To-Text");
-            this.btn_Speak2TextN.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_Speak2TextN.UseAccentColor = false;
-            this.btn_Speak2TextN.UseVisualStyleBackColor = true;
-            this.btn_Speak2TextN.Click += new System.EventHandler(this.btn_Speak2Text_Click_N);
+            btn_Speak2TextN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btn_Speak2TextN.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_Speak2TextN.Depth = 0;
+            btn_Speak2TextN.HighEmphasis = true;
+            btn_Speak2TextN.Icon = null;
+            btn_Speak2TextN.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Default;
+            btn_Speak2TextN.Location = new System.Drawing.Point(172, 3);
+            btn_Speak2TextN.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            btn_Speak2TextN.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            btn_Speak2TextN.Name = "btn_Speak2TextN";
+            btn_Speak2TextN.NoAccentTextColor = System.Drawing.Color.Empty;
+            btn_Speak2TextN.Size = new System.Drawing.Size(64, 36);
+            btn_Speak2TextN.TabIndex = 6;
+            btn_Speak2TextN.Text = "STT";
+            toolTip.SetToolTip(btn_Speak2TextN, "Speach-To-Text");
+            btn_Speak2TextN.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_Speak2TextN.UseAccentColor = false;
+            btn_Speak2TextN.UseVisualStyleBackColor = true;
+            btn_Speak2TextN.Click += btn_Speak2Text_Click_N;
             // 
             // toolTip
             // 
-            this.toolTip.BackColor = System.Drawing.Color.White;
-            this.toolTip.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.toolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
-            this.toolTip.IsDerivedStyle = true;
-            this.toolTip.OwnerDraw = true;
-            this.toolTip.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            this.toolTip.StyleManager = null;
-            this.toolTip.ThemeAuthor = "Taiizor";
-            this.toolTip.ThemeName = "MetroLight";
+            toolTip.BackColor = System.Drawing.Color.White;
+            toolTip.BorderColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            toolTip.ForeColor = System.Drawing.Color.FromArgb(170, 170, 170);
+            toolTip.IsDerivedStyle = true;
+            toolTip.OwnerDraw = true;
+            toolTip.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            toolTip.StyleManager = null;
+            toolTip.ThemeAuthor = "Taiizor";
+            toolTip.ThemeName = "MetroLight";
             // 
             // btn_prompt
             // 
-            this.btn_prompt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_prompt.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btn_prompt.Depth = 0;
-            this.btn_prompt.HighEmphasis = true;
-            this.btn_prompt.Icon = null;
-            this.btn_prompt.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btn_prompt.Location = new System.Drawing.Point(2, 51);
-            this.btn_prompt.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_prompt.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
-            this.btn_prompt.Name = "btn_prompt";
-            this.btn_prompt.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btn_prompt.Size = new System.Drawing.Size(81, 36);
-            this.btn_prompt.TabIndex = 9;
-            this.btn_prompt.Text = "Prompt";
-            this.toolTip.SetToolTip(this.btn_prompt, "Text Promts");
-            this.btn_prompt.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_prompt.UseAccentColor = false;
-            this.btn_prompt.UseVisualStyleBackColor = true;
-            this.btn_prompt.Click += new System.EventHandler(this.btn_prompt_Click);
+            btn_prompt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btn_prompt.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_prompt.Depth = 0;
+            btn_prompt.HighEmphasis = true;
+            btn_prompt.Icon = null;
+            btn_prompt.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            btn_prompt.Location = new System.Drawing.Point(2, 51);
+            btn_prompt.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            btn_prompt.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            btn_prompt.Name = "btn_prompt";
+            btn_prompt.NoAccentTextColor = System.Drawing.Color.Empty;
+            btn_prompt.Size = new System.Drawing.Size(81, 36);
+            btn_prompt.TabIndex = 9;
+            btn_prompt.Text = "Prompt";
+            toolTip.SetToolTip(btn_prompt, "Text Promts");
+            btn_prompt.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_prompt.UseAccentColor = false;
+            btn_prompt.UseVisualStyleBackColor = true;
+            btn_prompt.Click += btn_prompt_Click;
+            // 
+            // btn_ImagePrompt
+            // 
+            btn_ImagePrompt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btn_ImagePrompt.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_ImagePrompt.Depth = 0;
+            btn_ImagePrompt.HighEmphasis = true;
+            btn_ImagePrompt.Icon = null;
+            btn_ImagePrompt.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            btn_ImagePrompt.Location = new System.Drawing.Point(244, 3);
+            btn_ImagePrompt.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            btn_ImagePrompt.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            btn_ImagePrompt.Name = "btn_ImagePrompt";
+            btn_ImagePrompt.NoAccentTextColor = System.Drawing.Color.Empty;
+            btn_ImagePrompt.Size = new System.Drawing.Size(67, 36);
+            btn_ImagePrompt.TabIndex = 10;
+            btn_ImagePrompt.Text = "Image";
+            toolTip.SetToolTip(btn_ImagePrompt, "Text promt with image");
+            btn_ImagePrompt.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_ImagePrompt.UseAccentColor = false;
+            btn_ImagePrompt.UseVisualStyleBackColor = true;
+            btn_ImagePrompt.Click += btn_ImagePrompt_Click;
             // 
             // btn_TTS
             // 
-            this.btn_TTS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_TTS.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_TTS.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btn_TTS.Depth = 0;
-            this.btn_TTS.HighEmphasis = true;
-            this.btn_TTS.Icon = null;
-            this.btn_TTS.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btn_TTS.Location = new System.Drawing.Point(100, 51);
-            this.btn_TTS.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_TTS.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
-            this.btn_TTS.Name = "btn_TTS";
-            this.btn_TTS.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btn_TTS.Size = new System.Drawing.Size(64, 36);
-            this.btn_TTS.TabIndex = 7;
-            this.btn_TTS.Text = "TTS";
-            this.btn_TTS.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_TTS.UseAccentColor = false;
-            this.btn_TTS.UseVisualStyleBackColor = true;
-            this.btn_TTS.Click += new System.EventHandler(this.btn_TTS_Click);
+            btn_TTS.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            btn_TTS.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btn_TTS.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_TTS.Depth = 0;
+            btn_TTS.HighEmphasis = true;
+            btn_TTS.Icon = null;
+            btn_TTS.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            btn_TTS.Location = new System.Drawing.Point(100, 51);
+            btn_TTS.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            btn_TTS.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            btn_TTS.Name = "btn_TTS";
+            btn_TTS.NoAccentTextColor = System.Drawing.Color.Empty;
+            btn_TTS.Size = new System.Drawing.Size(64, 36);
+            btn_TTS.TabIndex = 7;
+            btn_TTS.Text = "TTS";
+            btn_TTS.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_TTS.UseAccentColor = false;
+            btn_TTS.UseVisualStyleBackColor = true;
+            btn_TTS.Click += btn_TTS_Click;
             // 
             // btn_Speak2Text
             // 
-            this.btn_Speak2Text.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Speak2Text.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_Speak2Text.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btn_Speak2Text.Depth = 0;
-            this.btn_Speak2Text.HighEmphasis = true;
-            this.btn_Speak2Text.Icon = null;
-            this.btn_Speak2Text.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btn_Speak2Text.Location = new System.Drawing.Point(172, 51);
-            this.btn_Speak2Text.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_Speak2Text.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
-            this.btn_Speak2Text.Name = "btn_Speak2Text";
-            this.btn_Speak2Text.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btn_Speak2Text.Size = new System.Drawing.Size(64, 36);
-            this.btn_Speak2Text.TabIndex = 8;
-            this.btn_Speak2Text.Text = "STT";
-            this.btn_Speak2Text.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_Speak2Text.UseAccentColor = false;
-            this.btn_Speak2Text.UseVisualStyleBackColor = true;
-            this.btn_Speak2Text.Click += new System.EventHandler(this.btn_Speak2Text_Click);
+            btn_Speak2Text.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            btn_Speak2Text.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btn_Speak2Text.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_Speak2Text.Depth = 0;
+            btn_Speak2Text.HighEmphasis = true;
+            btn_Speak2Text.Icon = null;
+            btn_Speak2Text.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            btn_Speak2Text.Location = new System.Drawing.Point(172, 51);
+            btn_Speak2Text.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            btn_Speak2Text.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            btn_Speak2Text.Name = "btn_Speak2Text";
+            btn_Speak2Text.NoAccentTextColor = System.Drawing.Color.Empty;
+            btn_Speak2Text.Size = new System.Drawing.Size(64, 36);
+            btn_Speak2Text.TabIndex = 8;
+            btn_Speak2Text.Text = "STT";
+            btn_Speak2Text.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            btn_Speak2Text.UseAccentColor = false;
+            btn_Speak2Text.UseVisualStyleBackColor = true;
+            btn_Speak2Text.Click += btn_Speak2Text_Click;
             // 
             // Form_mainPopup
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(244, 96);
-            this.Controls.Add(this.btn_prompt);
-            this.Controls.Add(this.btn_Speak2Text);
-            this.Controls.Add(this.btn_TTS);
-            this.Controls.Add(this.btn_Speak2TextN);
-            this.Controls.Add(this.btn_TtsN);
-            this.Controls.Add(this.btn_promptN);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Form_mainPopup";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "AiCompanion";
-            this.TopMost = true;
-            this.Deactivate += new System.EventHandler(this.Form_mainPopup_Deactivate);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_mainPopup_FormClosing);
-            this.trayContextMenuStrip.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
+            ClientSize = new System.Drawing.Size(322, 46);
+            Controls.Add(btn_ImagePrompt);
+            Controls.Add(btn_prompt);
+            Controls.Add(btn_Speak2Text);
+            Controls.Add(btn_TTS);
+            Controls.Add(btn_Speak2TextN);
+            Controls.Add(btn_TtsN);
+            Controls.Add(btn_promptN);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "Form_mainPopup";
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            Text = "AiCompanion";
+            TopMost = true;
+            Deactivate += Form_mainPopup_Deactivate;
+            FormClosing += Form_mainPopup_FormClosing;
+            trayContextMenuStrip.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -275,5 +293,6 @@
         private ReaLTaiizor.Controls.MaterialButton btn_TTS;
         private ReaLTaiizor.Controls.MaterialButton btn_Speak2Text;
         private ReaLTaiizor.Controls.MaterialButton btn_prompt;
+        private ReaLTaiizor.Controls.MaterialButton btn_ImagePrompt;
     }
 }

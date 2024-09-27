@@ -1,14 +1,13 @@
-﻿using System;
+﻿using NAudio.Wave;
+using OpenAI_API;
+using OpenAI_API.Audio;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NAudio.Wave;
-using OpenAI_API;
-using OpenAI_API.Audio;
-using System.Diagnostics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AiCompanion
 {
@@ -46,7 +45,7 @@ namespace AiCompanion
                 //check for bounds jus to be sure
                 speed = double.Min(speed, 4.0);
                 speed = double.Max(speed, 0.25);
-                
+
                 // Stream the TTS result asynchronously
                 await Task.Run(() => StreamTTS(txt, voice, speed));
 

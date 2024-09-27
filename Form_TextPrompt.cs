@@ -134,6 +134,7 @@ namespace AiCompanion
                     btn_insert.Enabled = true;
                     btn_copy.Enabled = true;
                     btn_send.Enabled = false;
+                    txt_result.ParseMarkdown();
                     toolStripStatusLabel.Text = "Tokens used: " + chatResult.Usage.TotalTokens.ToString();
                 }
                 else
@@ -282,7 +283,7 @@ namespace AiCompanion
         {
             try
             {
-                Properties.Settings.Default.ModelLLM = cmb_Model.SelectedText;                
+                Properties.Settings.Default.ModelLLM = cmb_Model.SelectedText;
                 Properties.Settings.Default.Save();
             }
             catch (Exception ex)

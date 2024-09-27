@@ -28,6 +28,10 @@
   <PropertyGroup>
     <ApplicationIcon>Wizard1.ico</ApplicationIcon>
     <StartupObject>AiCompanion.Program</StartupObject>
+    <AssemblyVersion>1.0.2.1</AssemblyVersion>
+    <FileVersion>1.0.2.1</FileVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Wizard1.ico" />
@@ -57,7 +61,7 @@
     <PackageReference Include="NAudio.WinMM" Version="2.2.1" />
     <PackageReference Include="OpenAI" Version="1.11.0" />
     <PackageReference Include="ReaLTaiizor" Version="3.8.0.7" />
-    <PackageReference Include="System.ClientModel" Version="1.1.0-beta.4" />
+    <PackageReference Include="System.ClientModel" Version="1.1.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
@@ -69,6 +73,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Update="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -25,7 +25,7 @@ namespace AiCompanion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("APIKEY")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string API_Key {
             get {
                 return ((string)(this["API_Key"]));
@@ -62,7 +62,7 @@ namespace AiCompanion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ALT")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Alt")]
         public string HotKeyMod {
             get {
                 return ((string)(this["HotKeyMod"]));
@@ -110,7 +110,7 @@ namespace AiCompanion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("fable")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Fable")]
         public string TtsVoice {
             get {
                 return ((string)(this["TtsVoice"]));
@@ -150,7 +150,7 @@ namespace AiCompanion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool UseNewUI {
             get {
                 return ((bool)(this["UseNewUI"]));
@@ -169,6 +169,30 @@ namespace AiCompanion.Properties {
             }
             set {
                 this["useDarkMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoStartSTT {
+            get {
+                return ((bool)(this["AutoStartSTT"]));
+            }
+            set {
+                this["AutoStartSTT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoStartTTS {
+            get {
+                return ((bool)(this["AutoStartTTS"]));
+            }
+            set {
+                this["AutoStartTTS"] = value;
             }
         }
     }

@@ -1,12 +1,5 @@
-﻿using OpenAI_API;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
-using static AiCompanion.Form_TextPrompt;
 //TODO: Add Settings window to allow setting API key, model, API Endpoint,pre-promt additions, https://stackoverflow.com/a/62018445/3193057
 //TODO: Add tokenizer to be able calculating cost (https://antbucc.github.io/PE4GenAI/tokenization/)
 //TODO: Add region screenshoter to send it to GPT4-o-vision with a promt. New form?
@@ -22,7 +15,7 @@ namespace AiCompanion
 {
     internal static class Program
     {
-        
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -37,20 +30,28 @@ namespace AiCompanion
             if (string.IsNullOrEmpty(apiKey) || Properties.Settings.Default.FirstLaunch)
             {
                 MessageBox.Show("API key need to be set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-                Form_Settings form2 = new Form_Settings();
-                // show it as a modal dialog (the current form is blocked until Form2 is closed)
-                form2.ShowDialog();                
+                // Create and show the main form 
+                if (Properties.Settings.Default.UseNewUI)
+                {
+                    FormMain setForm = new FormMain(0, "TabPageSettings");
+                    setForm.ShowDialog();
+                }
+                else
+                {
+                    Form_Settings setForm = new Form_Settings();
+                    _ = setForm.ShowDialog();
+                }
             }
 
-            if (string.IsNullOrEmpty(Properties.Settings.Default.ModelLLM))
-            {
-                MessageBox.Show("Model setting is missing. Setting to default gpt-4o-mini");
-                Properties.Settings.Default.ModelLLM = "gpt-4o-mini";
-                Properties.Settings.Default.Save();
-            }
 
-            Application.Run(new Form_mainPopup());
+            // Create the form but do not show it initially
+            Form_mainPopup mainForm = new Form_mainPopup();
+            mainForm.Load += (sender, args) => mainForm.Hide();
+
+            // Start the application, but the form will be hidden
+            Application.Run();
+
+            //Application.Run(new Form_mainPopup());
             Properties.Settings.Default.FirstLaunch = false;
             Properties.Settings.Default.Save();
         }
