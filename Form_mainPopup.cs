@@ -36,7 +36,7 @@ namespace AiCompanion
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
 
         [DllImport("user32.dll")]
-        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
         // Store the handle of the window that had focus
         private IntPtr _previousWindowHandle;
@@ -74,7 +74,7 @@ namespace AiCompanion
             }
         }
 
-        private void RegisterUserHotkey()
+        public void RegisterUserHotkey()
         {
             // Simulating user input. In practice, get this from a user input interface.
             string modifierInput = string.IsNullOrWhiteSpace(Properties.Settings.Default.HotKeyMod)

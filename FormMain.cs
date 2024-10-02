@@ -961,7 +961,7 @@ namespace AiCompanion
                 Properties.Settings.Default.API_Key = txt_ApiKey.Text;
                 openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
                 if (Properties.Settings.Default.UseNewUI != chkUseNewUI.Checked)
-                    MessageBox.Show("To change of UI requires program restart!");
+                    MessageBox.Show("A change of UI, requires a program restart!");
                 Properties.Settings.Default.UseNewUI = chkUseNewUI.Checked;
                 Properties.Settings.Default.FirstLaunch = false;
                 Properties.Settings.Default.useDarkMode = switchDarkMode.Switched;
@@ -971,7 +971,9 @@ namespace AiCompanion
                 //TODO: make some kind of auto reload in the mainPopup
                 if(txt_HotkeyKey.Text == Properties.Settings.Default.HotKeyKey || 
                     cmbHotKeyMod.SelectedItem.ToString() == Properties.Settings.Default.HotKeyMod)
-                    Properties.Settings.Default.HotKeyKey = txt_HotkeyKey.Text;
+                    MessageBox.Show("A change of HotKey, currently requires a program restart!");
+
+                Properties.Settings.Default.HotKeyKey = txt_HotkeyKey.Text;
                 Properties.Settings.Default.HotKeyMod = cmbHotKeyMod.SelectedItem.ToString();
                 Properties.Settings.Default.Save();
                 //handle autostart
