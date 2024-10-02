@@ -57,8 +57,8 @@ namespace AiCompanion
             txt_inputPrompt.Text = copiedText;
             previousWindowHandle = prevWindowHandle;
             //have we got an image?
-            if(base64Img != null)
-            {                
+            if (base64Img != null)
+            {
                 base64Image = base64Img;
                 picPrompt.Image = LoadImageFromBase64String(base64Image);
                 picPrompt.Visible = true;
@@ -742,16 +742,17 @@ namespace AiCompanion
                     {
                         new ChatMessage(ChatMessageRole.System,
                             Properties.Settings.Default.PrePromt
-                            + (!string.IsNullOrWhiteSpace(this.cmbPrePrompts.Text) ? " " + this.cmbPrePrompts.Text : "")),                        
+                            + (!string.IsNullOrWhiteSpace(this.cmbPrePrompts.Text) ? " " + this.cmbPrePrompts.Text : "")),
                         new ChatMessage(ChatMessageRole.User, inputText)
                     }
                 };
 
                 //adding the image
-                if (base64Image != null) {
+                if (base64Image != null)
+                {
                     // Convert the Base64 string back to a byte array
                     byte[] imageBytes = Convert.FromBase64String(base64Image);
-                    chatRequest.Messages[1].Images.Add(ImageInput.FromImageBytes(imageBytes));                   
+                    chatRequest.Messages[1].Images.Add(ImageInput.FromImageBytes(imageBytes));
                 }
 
 
@@ -919,15 +920,13 @@ namespace AiCompanion
 
         private void cmbPrePrompts_TextChanged(object sender, EventArgs e)
         {
-            //not an existing item selected eable the add button otherwise disable
+            //not an existing item selected, disable the remove button otherwise enable
             if (cmbPrePrompts.SelectedIndex == -1)
             {
-                btnAddPrePromt.Enabled = true;
                 btnRemovePrePromt.Enabled = false;
             }
             else
             {
-                btnAddPrePromt.Enabled = false;
                 btnRemovePrePromt.Enabled = true;
             }
         }
@@ -945,8 +944,8 @@ namespace AiCompanion
 
         private void picPromptToolStripMenuItemRemove_Click(object sender, EventArgs e)
         {
-            base64Image=null;
-            picPrompt.Image = null;            
+            base64Image = null;
+            picPrompt.Image = null;
             picPrompt.Visible = false;
         }
 
@@ -969,7 +968,7 @@ namespace AiCompanion
                 Properties.Settings.Default.AutoStartTTS = chkAutoStartTTS.Checked;
                 //hotkey changed? need a restart for now 
                 //TODO: make some kind of auto reload in the mainPopup
-                if(txt_HotkeyKey.Text == Properties.Settings.Default.HotKeyKey || 
+                if (txt_HotkeyKey.Text == Properties.Settings.Default.HotKeyKey ||
                     cmbHotKeyMod.SelectedItem.ToString() == Properties.Settings.Default.HotKeyMod)
                     MessageBox.Show("A change of HotKey, currently requires a program restart!");
 
@@ -1083,6 +1082,5 @@ namespace AiCompanion
                 btn_record_Click(sender, e);
             }
         }
-
     }
 }

@@ -140,7 +140,7 @@ namespace AiCompanion
             // metroStyleManager1
             // 
             this.metroStyleManager1.CustomTheme = "C:\\Users\\ALSCH\\AppData\\Roaming\\Microsoft\\Windows\\Templates\\ThemeFile.xml";
-            this.metroStyleManager1.OwnerForm = null;
+            this.metroStyleManager1.OwnerForm = this;
             this.metroStyleManager1.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             this.metroStyleManager1.ThemeAuthor = "Taiizor";
             this.metroStyleManager1.ThemeName = "MetroLight";
