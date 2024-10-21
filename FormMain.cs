@@ -56,12 +56,18 @@ namespace AiCompanion
             txt_TextTTS.Text = copiedText;
             txt_inputPrompt.Text = copiedText;
             previousWindowHandle = prevWindowHandle;
+
+
             //have we got an image?
             if (base64Img != null)
             {
                 base64Image = base64Img;
                 picPrompt.Image = LoadImageFromBase64String(base64Image);
                 picPrompt.Visible = true;
+            }
+            else
+            {
+                picPrompt.Visible = false;
             }
 
             statusLabel.Text = "Idle";
@@ -106,6 +112,9 @@ namespace AiCompanion
             //Handle tab selection from the main popup
             if (startTab == "TabPagePrompt")
             {
+                //clean up 
+                txt_resultPrompt.Text = "";
+
                 TabControl.SelectTab("TabPagePrompt");
                 txt_inputPrompt.Select(0, 0);
                 btn_sendPrompt.Focus();
@@ -119,6 +128,7 @@ namespace AiCompanion
             }
             if (startTab == "TabPageSTT")
             {
+                txt_resultSTT.Text = "";
                 TabControl.SelectTab("TabPageSTT");
                 // Check if there is an available recording device
                 if (WaveIn.DeviceCount < 1)
@@ -387,6 +397,16 @@ namespace AiCompanion
         {
             txt_resultSTT.Text = "";
         }
+
+        private void btn_asPromptSTT_Click(object sender, EventArgs e)
+        {
+            txt_inputPrompt.Text = txt_resultSTT.Text;
+
+            TabControl.SelectTab("TabPagePrompt");
+            txt_inputPrompt.Select(0, 0);
+            btn_sendPrompt.Focus();
+        }
+
         #endregion
         #region "TTS"
 
@@ -1082,5 +1102,6 @@ namespace AiCompanion
                 btn_record_Click(sender, e);
             }
         }
+
     }
 }

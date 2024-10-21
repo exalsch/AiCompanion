@@ -58,6 +58,7 @@
             btn_stopTTS = new ReaLTaiizor.Controls.MetroButton();
             btn_playTTS = new ReaLTaiizor.Controls.MetroDefaultButton();
             TabPageSTT = new ReaLTaiizor.Child.Metro.MetroTabPage();
+            btn_asPromptSTT = new ReaLTaiizor.Controls.MetroButton();
             cmbSttLanguage = new ReaLTaiizor.Controls.MetroComboBox();
             btn_clearSTT = new ReaLTaiizor.Controls.MetroButton();
             btn_copySTT = new ReaLTaiizor.Controls.MetroButton();
@@ -91,6 +92,8 @@
             WindowControlBox = new ReaLTaiizor.Controls.MetroControlBox();
             btn_cancel = new System.Windows.Forms.Button();
             toolTipMain = new ReaLTaiizor.Controls.MetroToolTip();
+            linkHome = new System.Windows.Forms.LinkLabel();
+            metroDivider2 = new ReaLTaiizor.Controls.MetroDivider();
             TabControl.SuspendLayout();
             TabPagePrompt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPrompt).BeginInit();
@@ -164,6 +167,7 @@
             TabPagePrompt.Text = "Prompt";
             TabPagePrompt.ThemeAuthor = "Taiizor";
             TabPagePrompt.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(TabPagePrompt, "Text prompting");
             TabPagePrompt.ToolTipText = null;
             // 
             // picPrompt
@@ -177,6 +181,7 @@
             picPrompt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             picPrompt.TabIndex = 11;
             picPrompt.TabStop = false;
+            toolTipMain.SetToolTip(picPrompt, "Text prompting");
             picPrompt.Visible = false;
             // 
             // pictPromptContextMenu
@@ -224,6 +229,7 @@
             btn_sendPrompt.Text = "Send";
             btn_sendPrompt.ThemeAuthor = "Taiizor";
             btn_sendPrompt.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_sendPrompt, "Text prompting");
             btn_sendPrompt.Click += btn_send_Click;
             // 
             // metroStyleManager
@@ -264,6 +270,7 @@
             cmb_Model.TabIndex = 9;
             cmb_Model.ThemeAuthor = "Taiizor";
             cmb_Model.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(cmb_Model, "Text prompting");
             cmb_Model.SelectedIndexChanged += cmb_Model_SelectedIndexChanged;
             // 
             // btn_copyPrompt
@@ -293,6 +300,7 @@
             btn_copyPrompt.Text = "Copy";
             btn_copyPrompt.ThemeAuthor = "Taiizor";
             btn_copyPrompt.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_copyPrompt, "Text prompting");
             btn_copyPrompt.Click += btn_copy_Click;
             // 
             // btn_insertPrompt
@@ -322,6 +330,7 @@
             btn_insertPrompt.Text = "Insert";
             btn_insertPrompt.ThemeAuthor = "Taiizor";
             btn_insertPrompt.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_insertPrompt, "Text prompting");
             btn_insertPrompt.Click += btn_insert_Click;
             // 
             // txt_inputPrompt
@@ -352,6 +361,7 @@
             txt_inputPrompt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             txt_inputPrompt.ThemeAuthor = "Taiizor";
             txt_inputPrompt.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(txt_inputPrompt, "Text prompting");
             txt_inputPrompt.UseSystemPasswordChar = false;
             txt_inputPrompt.WatermarkText = "Prompt";
             txt_inputPrompt.TextChanged += txt_input_TextChanged;
@@ -384,6 +394,7 @@
             btnRemovePrePromt.Text = "Remove";
             btnRemovePrePromt.ThemeAuthor = "Taiizor";
             btnRemovePrePromt.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btnRemovePrePromt, "Text prompting");
             btnRemovePrePromt.Click += btnRemovePrePromt_Click;
             // 
             // btnAddPrePromt
@@ -413,6 +424,7 @@
             btnAddPrePromt.Text = "Add";
             btnAddPrePromt.ThemeAuthor = "Taiizor";
             btnAddPrePromt.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btnAddPrePromt, "Text prompting");
             btnAddPrePromt.Click += btnAddPrePromt_Click;
             // 
             // cmbPrePrompts
@@ -444,6 +456,7 @@
             cmbPrePrompts.TabIndex = 2;
             cmbPrePrompts.ThemeAuthor = "Taiizor";
             cmbPrePrompts.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(cmbPrePrompts, "Text prompting");
             cmbPrePrompts.TextChanged += cmbPrePrompts_TextChanged;
             // 
             // txt_resultPrompt
@@ -470,6 +483,7 @@
             txt_resultPrompt.TabIndex = 1;
             txt_resultPrompt.ThemeAuthor = "Taiizor";
             txt_resultPrompt.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(txt_resultPrompt, "Text prompting");
             txt_resultPrompt.WordWrap = true;
             // 
             // txt_resultPromptContextMenu
@@ -506,6 +520,7 @@
             metroDivider1.ThemeAuthor = "Taiizor";
             metroDivider1.ThemeName = "MetroLight";
             metroDivider1.Thickness = 1;
+            toolTipMain.SetToolTip(metroDivider1, "Text prompting");
             // 
             // TabPageTTS
             // 
@@ -533,6 +548,7 @@
             TabPageTTS.Text = "Text-To-Speach";
             TabPageTTS.ThemeAuthor = "Taiizor";
             TabPageTTS.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(TabPageTTS, "Read aloud text");
             TabPageTTS.ToolTipText = null;
             // 
             // txt_TextTTS
@@ -563,6 +579,7 @@
             txt_TextTTS.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             txt_TextTTS.ThemeAuthor = "Taiizor";
             txt_TextTTS.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(txt_TextTTS, "Read aloud text");
             txt_TextTTS.UseSystemPasswordChar = false;
             txt_TextTTS.WatermarkText = "Text to transrcribe...";
             // 
@@ -589,6 +606,7 @@
             range_SpeedTTS.Text = "metroTrackBar1";
             range_SpeedTTS.ThemeAuthor = "Taiizor";
             range_SpeedTTS.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(range_SpeedTTS, "Read aloud text");
             range_SpeedTTS.Value = 25;
             range_SpeedTTS.ValueColor = System.Drawing.Color.FromArgb(65, 177, 225);
             range_SpeedTTS.Scroll += range_SpeedTTS_Scroll;
@@ -623,6 +641,7 @@
             cmbBxVoiceTTS.TabIndex = 8;
             cmbBxVoiceTTS.ThemeAuthor = "Taiizor";
             cmbBxVoiceTTS.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(cmbBxVoiceTTS, "Read aloud text");
             cmbBxVoiceTTS.SelectedIndexChanged += cmbBxVoiceTTS_SelectedIndexChanged;
             // 
             // lblVoice
@@ -640,6 +659,7 @@
             lblVoice.Text = "Voice:";
             lblVoice.ThemeAuthor = "Taiizor";
             lblVoice.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(lblVoice, "Read aloud text");
             // 
             // lblSpeed
             // 
@@ -656,6 +676,7 @@
             lblSpeed.Text = "Speed:";
             lblSpeed.ThemeAuthor = "Taiizor";
             lblSpeed.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(lblSpeed, "Read aloud text");
             // 
             // checkBoxDownloadTTS
             // 
@@ -681,6 +702,7 @@
             checkBoxDownloadTTS.Text = "Save Audio";
             checkBoxDownloadTTS.ThemeAuthor = "Taiizor";
             checkBoxDownloadTTS.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(checkBoxDownloadTTS, "Read aloud text");
             checkBoxDownloadTTS.CheckedChanged += checkBoxDownloadTTS_CheckedChanged;
             // 
             // btn_DownloadTTS
@@ -710,6 +732,7 @@
             btn_DownloadTTS.Text = "Download";
             btn_DownloadTTS.ThemeAuthor = "Taiizor";
             btn_DownloadTTS.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_DownloadTTS, "Read aloud text");
             btn_DownloadTTS.Click += btn_Download_Click;
             // 
             // btn_stopTTS
@@ -739,6 +762,7 @@
             btn_stopTTS.Text = "Stop";
             btn_stopTTS.ThemeAuthor = "Taiizor";
             btn_stopTTS.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_stopTTS, "Read aloud text");
             btn_stopTTS.Click += btn_stop_Click;
             // 
             // btn_playTTS
@@ -768,11 +792,13 @@
             btn_playTTS.Text = "Play";
             btn_playTTS.ThemeAuthor = "Taiizor";
             btn_playTTS.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_playTTS, "Read aloud text");
             btn_playTTS.Click += btn_play_Click;
             // 
             // TabPageSTT
             // 
             TabPageSTT.BaseColor = System.Drawing.Color.White;
+            TabPageSTT.Controls.Add(btn_asPromptSTT);
             TabPageSTT.Controls.Add(cmbSttLanguage);
             TabPageSTT.Controls.Add(btn_clearSTT);
             TabPageSTT.Controls.Add(btn_copySTT);
@@ -792,7 +818,38 @@
             TabPageSTT.Text = "Speach-To-text";
             TabPageSTT.ThemeAuthor = "Taiizor";
             TabPageSTT.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(TabPageSTT, "Record and transcribe voice");
             TabPageSTT.ToolTipText = null;
+            // 
+            // btn_asPromptSTT
+            // 
+            btn_asPromptSTT.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            btn_asPromptSTT.DisabledBackColor = System.Drawing.Color.FromArgb(120, 65, 177, 225);
+            btn_asPromptSTT.DisabledBorderColor = System.Drawing.Color.FromArgb(120, 65, 177, 225);
+            btn_asPromptSTT.DisabledForeColor = System.Drawing.Color.Gray;
+            btn_asPromptSTT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            btn_asPromptSTT.HoverBorderColor = System.Drawing.Color.FromArgb(95, 207, 255);
+            btn_asPromptSTT.HoverColor = System.Drawing.Color.FromArgb(95, 207, 255);
+            btn_asPromptSTT.HoverTextColor = System.Drawing.Color.White;
+            btn_asPromptSTT.IsDerivedStyle = true;
+            btn_asPromptSTT.Location = new System.Drawing.Point(182, 563);
+            btn_asPromptSTT.Margin = new System.Windows.Forms.Padding(2);
+            btn_asPromptSTT.Name = "btn_asPromptSTT";
+            btn_asPromptSTT.NormalBorderColor = System.Drawing.Color.FromArgb(65, 177, 225);
+            btn_asPromptSTT.NormalColor = System.Drawing.Color.FromArgb(65, 177, 225);
+            btn_asPromptSTT.NormalTextColor = System.Drawing.Color.White;
+            btn_asPromptSTT.PressBorderColor = System.Drawing.Color.FromArgb(35, 147, 195);
+            btn_asPromptSTT.PressColor = System.Drawing.Color.FromArgb(35, 147, 195);
+            btn_asPromptSTT.PressTextColor = System.Drawing.Color.White;
+            btn_asPromptSTT.Size = new System.Drawing.Size(78, 30);
+            btn_asPromptSTT.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            btn_asPromptSTT.StyleManager = metroStyleManager;
+            btn_asPromptSTT.TabIndex = 5;
+            btn_asPromptSTT.Text = "As Prompt";
+            btn_asPromptSTT.ThemeAuthor = "Taiizor";
+            btn_asPromptSTT.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_asPromptSTT, "Record and transcribe voice");
+            btn_asPromptSTT.Click += btn_asPromptSTT_Click;
             // 
             // cmbSttLanguage
             // 
@@ -813,7 +870,7 @@
             cmbSttLanguage.IsDerivedStyle = true;
             cmbSttLanguage.ItemHeight = 20;
             cmbSttLanguage.Items.AddRange(new object[] { "en", "de", "cz", "se", "dk", "no", "fr", "es" });
-            cmbSttLanguage.Location = new System.Drawing.Point(183, 563);
+            cmbSttLanguage.Location = new System.Drawing.Point(264, 563);
             cmbSttLanguage.Margin = new System.Windows.Forms.Padding(2);
             cmbSttLanguage.Name = "cmbSttLanguage";
             cmbSttLanguage.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
@@ -824,6 +881,7 @@
             cmbSttLanguage.TabIndex = 4;
             cmbSttLanguage.ThemeAuthor = "Taiizor";
             cmbSttLanguage.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(cmbSttLanguage, "Record and transcribe voice");
             cmbSttLanguage.SelectedIndexChanged += comboBoxSttLanguage_SelectedIndexChanged;
             // 
             // btn_clearSTT
@@ -853,6 +911,7 @@
             btn_clearSTT.Text = "Clear";
             btn_clearSTT.ThemeAuthor = "Taiizor";
             btn_clearSTT.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_clearSTT, "Record and transcribe voice");
             btn_clearSTT.Click += btn_clearSTT_Click;
             // 
             // btn_copySTT
@@ -882,6 +941,7 @@
             btn_copySTT.Text = "Copy";
             btn_copySTT.ThemeAuthor = "Taiizor";
             btn_copySTT.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_copySTT, "Record and transcribe voice");
             btn_copySTT.Click += btn_copySTT_Click;
             // 
             // btn_record
@@ -911,6 +971,7 @@
             btn_record.Text = "Record";
             btn_record.ThemeAuthor = "Taiizor";
             btn_record.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(btn_record, "Record and transcribe voice");
             btn_record.Click += btn_record_Click;
             // 
             // txt_resultSTT
@@ -936,6 +997,7 @@
             txt_resultSTT.TabIndex = 0;
             txt_resultSTT.ThemeAuthor = "Taiizor";
             txt_resultSTT.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(txt_resultSTT, "Record and transcribe voice");
             txt_resultSTT.WordWrap = true;
             // 
             // TabPageSettings
@@ -1306,6 +1368,8 @@
             // TabPageAbout
             // 
             TabPageAbout.BaseColor = System.Drawing.Color.White;
+            TabPageAbout.Controls.Add(metroDivider2);
+            TabPageAbout.Controls.Add(linkHome);
             TabPageAbout.Controls.Add(lblAboutVersion);
             TabPageAbout.Controls.Add(metroLinkLabel4);
             TabPageAbout.Controls.Add(metroLinkLabel3);
@@ -1333,7 +1397,7 @@
             // 
             lblAboutVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             lblAboutVersion.IsDerivedStyle = true;
-            lblAboutVersion.Location = new System.Drawing.Point(5, 5);
+            lblAboutVersion.Location = new System.Drawing.Point(5, 28);
             lblAboutVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAboutVersion.Name = "lblAboutVersion";
             lblAboutVersion.Size = new System.Drawing.Size(117, 27);
@@ -1541,6 +1605,31 @@
             toolTipMain.ThemeAuthor = "Taiizor";
             toolTipMain.ThemeName = "MetroLight";
             // 
+            // linkHome
+            // 
+            linkHome.AutoSize = true;
+            linkHome.Location = new System.Drawing.Point(5, 11);
+            linkHome.Name = "linkHome";
+            linkHome.Size = new System.Drawing.Size(258, 17);
+            linkHome.TabIndex = 7;
+            linkHome.TabStop = true;
+            linkHome.Text = "https://github.com/exalsch/AiCompanion";
+            // 
+            // metroDivider2
+            // 
+            metroDivider2.IsDerivedStyle = true;
+            metroDivider2.Location = new System.Drawing.Point(5, 113);
+            metroDivider2.Name = "metroDivider2";
+            metroDivider2.Orientation = ReaLTaiizor.Enum.Metro.DividerStyle.Horizontal;
+            metroDivider2.Size = new System.Drawing.Size(461, 4);
+            metroDivider2.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroDivider2.StyleManager = null;
+            metroDivider2.TabIndex = 8;
+            metroDivider2.Text = "metroDivider2";
+            metroDivider2.ThemeAuthor = "Taiizor";
+            metroDivider2.ThemeName = "MetroLight";
+            metroDivider2.Thickness = 1;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1569,13 +1658,12 @@
             TabPageSTT.ResumeLayout(false);
             TabPageSettings.ResumeLayout(false);
             TabPageAbout.ResumeLayout(false);
+            TabPageAbout.PerformLayout();
             metroPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private ReaLTaiizor.Controls.MetroTabControl TabControl;
         private ReaLTaiizor.Child.Metro.MetroTabPage TabPagePrompt;
         private ReaLTaiizor.Child.Metro.MetroTabPage TabPageTTS;
         private ReaLTaiizor.Child.Metro.MetroTabPage TabPageSTT;
@@ -1637,5 +1725,9 @@
         private System.Windows.Forms.PictureBox picPrompt;
         private ReaLTaiizor.Controls.MetroContextMenuStrip pictPromptContextMenu;
         private System.Windows.Forms.ToolStripMenuItem picPromptToolStripMenuItemRemove;
+        private ReaLTaiizor.Controls.MetroButton btn_asPromptSTT;
+        public ReaLTaiizor.Controls.MetroTabControl TabControl;
+        private System.Windows.Forms.LinkLabel linkHome;
+        private ReaLTaiizor.Controls.MetroDivider metroDivider2;
     }
 }

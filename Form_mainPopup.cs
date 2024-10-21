@@ -411,6 +411,42 @@ namespace AiCompanion
             }
         }
 
+        private void btn_ImagePrompt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                using (ScreenCaptureForm captureForm = new ScreenCaptureForm())
+                {
+                    if (captureForm.ShowDialog() == DialogResult.OK)
+                    {
+                        Bitmap screenshot = captureForm.GetCapturedImage();
+                        string base64Image = ConvertBitmapToBase64(screenshot, 80); // 75 is the quality parameter (1-100)
+
+                        if (base64Image != null)
+                        {
+                            // send the captured screenshot to prompt                            
+                            try
+                            {
+                                // Create and show the main form selecting the prompt tab
+                                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPagePrompt", _copiedText, base64Image);
+                                ShowForm(mainForm);
+                            }
+                            catch (Exception ex)
+                            {
+                                _ = MessageBox.Show("Error opening prompt form with image: " + ex.Message);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show("Error creating screenshot form: " + ex.Message);
+            }
+
+            
+        }
 
         #region "Funtions and metods"
 
@@ -485,42 +521,6 @@ namespace AiCompanion
         }
         #endregion
 
-        private void btn_ImagePrompt_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                using (ScreenCaptureForm captureForm = new ScreenCaptureForm())
-                {
-                    if (captureForm.ShowDialog() == DialogResult.OK)
-                    {
-                        Bitmap screenshot = captureForm.GetCapturedImage();
-                        string base64Image = ConvertBitmapToBase64(screenshot, 80); // 75 is the quality parameter (1-100)
-
-                        if (base64Image != null)
-                        {
-                            // send the captured screenshot to prompt                            
-                            try
-                            {
-                                // Create and show the main form selecting the prompt tab
-                                FormMain mainForm = new FormMain(_previousWindowHandle, "TabPagePrompt", _copiedText, base64Image);
-                                ShowForm(mainForm);
-                            }
-                            catch (Exception ex)
-                            {
-                                _ = MessageBox.Show("Error opening prompt form with image: " + ex.Message);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _ = MessageBox.Show("Error creating screenshot form: " + ex.Message);
-            }
-
-            
-        }
         public static string ConvertBitmapToBase64(Bitmap bitmap, long quality)
         {
             using (MemoryStream ms = new MemoryStream())

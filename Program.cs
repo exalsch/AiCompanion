@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReaLTaiizor.Controls;
+using System;
 using System.Windows.Forms;
 //TODO: Add Settings window to allow setting API key, model, API Endpoint,pre-promt additions, https://stackoverflow.com/a/62018445/3193057
 //TODO: Add tokenizer to be able calculating cost (https://antbucc.github.io/PE4GenAI/tokenization/)
@@ -30,17 +31,23 @@ namespace AiCompanion
             if (string.IsNullOrEmpty(apiKey) || Properties.Settings.Default.FirstLaunch)
             {
                 MessageBox.Show("API key need to be set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                // Create and show the main form 
-                if (Properties.Settings.Default.UseNewUI)
+                
+                //Show settings as dialog but hide other tabs
+                FormMain setForm = new FormMain(0, "TabPageSettings");
+                foreach (ReaLTaiizor.Controls.TabPage tabPage in setForm.TabControl.TabPages)
                 {
-                    FormMain setForm = new FormMain(0, "TabPageSettings");
-                    setForm.ShowDialog();
+                    if(tabPage.Name!= "TabPageSettings")
+                        tabPage.Hide();
+
                 }
-                else
+                setForm.ShowDialog();
+                foreach(ReaLTaiizor.Controls.TabPage tabPage in setForm.TabControl.TabPages)
                 {
-                    Form_Settings setForm = new Form_Settings();
-                    _ = setForm.ShowDialog();
+                    if (tabPage.Name != "TabPageSettings")
+                        tabPage.Show();
                 }
+
+
             }
 
 

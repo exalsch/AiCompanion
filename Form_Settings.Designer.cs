@@ -28,209 +28,228 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Properties.Settings settings1 = new Properties.Settings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Settings));
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txt_ApiKey = new System.Windows.Forms.TextBox();
-            this.cmb_Model = new System.Windows.Forms.ComboBox();
-            this.txtPrePromt = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.cmb_HotKeyMod = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txt_HotkeyKey = new System.Windows.Forms.TextBox();
-            this.btn_Done = new System.Windows.Forms.Button();
-            this.chkUseNewUI = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            txt_ApiKey = new System.Windows.Forms.TextBox();
+            cmb_Model = new System.Windows.Forms.ComboBox();
+            txtPrePromt = new System.Windows.Forms.TextBox();
+            flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            cmb_HotKeyMod = new System.Windows.Forms.ComboBox();
+            label5 = new System.Windows.Forms.Label();
+            txt_HotkeyKey = new System.Windows.Forms.TextBox();
+            btn_Done = new System.Windows.Forms.Button();
+            chkUseNewUI = new System.Windows.Forms.CheckBox();
+            tableLayoutPanel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.87561F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.12439F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txt_ApiKey, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.cmb_Model, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtPrePromt, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btn_Done, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.chkUseNewUI, 1, 4);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(610, 198);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.87561F));
+            tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.12439F));
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(label2, 0, 1);
+            tableLayoutPanel1.Controls.Add(label3, 0, 2);
+            tableLayoutPanel1.Controls.Add(label4, 0, 3);
+            tableLayoutPanel1.Controls.Add(txt_ApiKey, 1, 0);
+            tableLayoutPanel1.Controls.Add(cmb_Model, 1, 1);
+            tableLayoutPanel1.Controls.Add(txtPrePromt, 1, 2);
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 1, 3);
+            tableLayoutPanel1.Controls.Add(btn_Done, 1, 5);
+            tableLayoutPanel1.Controls.Add(chkUseNewUI, 1, 4);
+            tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 8;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new System.Drawing.Size(720, 307);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "OpenAI API Key";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(4, 0);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(90, 15);
+            label1.TabIndex = 0;
+            label1.Text = "OpenAI API Key";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Model";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(4, 45);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(41, 15);
+            label2.TabIndex = 4;
+            label2.Text = "Model";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 64);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Pre Promt";
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(4, 90);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(60, 15);
+            label3.TabIndex = 2;
+            label3.Text = "Pre Promt";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 96);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Hotkey";
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(4, 135);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(45, 15);
+            label4.TabIndex = 3;
+            label4.Text = "Hotkey";
             // 
             // txt_ApiKey
             // 
-            this.txt_ApiKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AiCompanion.Properties.Settings.Default, "API_Key", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txt_ApiKey.Location = new System.Drawing.Point(99, 3);
-            this.txt_ApiKey.Name = "txt_ApiKey";
-            this.txt_ApiKey.Size = new System.Drawing.Size(508, 20);
-            this.txt_ApiKey.TabIndex = 0;
-            this.txt_ApiKey.Text = global::AiCompanion.Properties.Settings.Default.API_Key;
+            settings1.API_Key = "";
+            settings1.AutoStartSTT = false;
+            settings1.AutoStartTTS = false;
+            settings1.FirstLaunch = true;
+            settings1.HotKeyKey = "g";
+            settings1.HotKeyMod = "Alt";
+            settings1.ModelLLM = "gpt-4o-mini";
+            settings1.PrePromt = "You are a helpful assistant for the user of this client PC. try to give a direct reply that can be pasted directly by the user.";
+            settings1.prePromtSelections = (System.Collections.Specialized.StringCollection)resources.GetObject("settings1.prePromtSelections");
+            settings1.SettingsKey = "";
+            settings1.STT_lang = "en";
+            settings1.TtsSpeed = new decimal(new int[] { 1, 0, 0, 0 });
+            settings1.TtsVoice = "Fable";
+            settings1.useDarkMode = false;
+            settings1.UseNewUI = true;
+            txt_ApiKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "API_Key", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            txt_ApiKey.Location = new System.Drawing.Point(118, 3);
+            txt_ApiKey.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txt_ApiKey.Name = "txt_ApiKey";
+            txt_ApiKey.Size = new System.Drawing.Size(592, 23);
+            txt_ApiKey.TabIndex = 0;
             // 
             // cmb_Model
             // 
-            this.cmb_Model.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AiCompanion.Properties.Settings.Default, "ModelLLM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cmb_Model.FormattingEnabled = true;
-            this.cmb_Model.Items.AddRange(new object[] {
-            "gpt-4o-mini",
-            "gpt-4o",
-            "gpt-4-turbo",
-            "gpt-4",
-            "gpt-3.5-turbo",
-            "gpt-3.5-turbo-instruct"});
-            this.cmb_Model.Location = new System.Drawing.Point(99, 35);
-            this.cmb_Model.Name = "cmb_Model";
-            this.cmb_Model.Size = new System.Drawing.Size(257, 21);
-            this.cmb_Model.TabIndex = 1;
-            this.cmb_Model.Text = global::AiCompanion.Properties.Settings.Default.ModelLLM;
+            cmb_Model.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "ModelLLM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            cmb_Model.FormattingEnabled = true;
+            cmb_Model.Items.AddRange(new object[] { "gpt-4o-mini", "gpt-4o", "gpt-4-turbo", "gpt-4", "gpt-3.5-turbo", "gpt-3.5-turbo-instruct" });
+            cmb_Model.Location = new System.Drawing.Point(118, 48);
+            cmb_Model.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            cmb_Model.Name = "cmb_Model";
+            cmb_Model.Size = new System.Drawing.Size(299, 23);
+            cmb_Model.TabIndex = 1;
+            cmb_Model.Text = "gpt-4o-mini";
             // 
             // txtPrePromt
             // 
-            this.txtPrePromt.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AiCompanion.Properties.Settings.Default, "PrePromt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtPrePromt.Location = new System.Drawing.Point(99, 67);
-            this.txtPrePromt.Multiline = true;
-            this.txtPrePromt.Name = "txtPrePromt";
-            this.txtPrePromt.Size = new System.Drawing.Size(508, 26);
-            this.txtPrePromt.TabIndex = 2;
-            this.txtPrePromt.Text = global::AiCompanion.Properties.Settings.Default.PrePromt;
+            txtPrePromt.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "PrePromt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            txtPrePromt.Location = new System.Drawing.Point(118, 93);
+            txtPrePromt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtPrePromt.Multiline = true;
+            txtPrePromt.Name = "txtPrePromt";
+            txtPrePromt.Size = new System.Drawing.Size(592, 29);
+            txtPrePromt.TabIndex = 2;
+            txtPrePromt.Text = "You are a helpful assistant for the user of this client PC. try to give a direct reply that can be pasted directly by the user.";
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.cmb_HotKeyMod);
-            this.flowLayoutPanel1.Controls.Add(this.label5);
-            this.flowLayoutPanel1.Controls.Add(this.txt_HotkeyKey);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(99, 99);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(508, 26);
-            this.flowLayoutPanel1.TabIndex = 8;
+            flowLayoutPanel1.Controls.Add(cmb_HotKeyMod);
+            flowLayoutPanel1.Controls.Add(label5);
+            flowLayoutPanel1.Controls.Add(txt_HotkeyKey);
+            flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            flowLayoutPanel1.Location = new System.Drawing.Point(118, 138);
+            flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new System.Drawing.Size(598, 39);
+            flowLayoutPanel1.TabIndex = 8;
             // 
             // cmb_HotKeyMod
             // 
-            this.cmb_HotKeyMod.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AiCompanion.Properties.Settings.Default, "HotKeyMod", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cmb_HotKeyMod.Enabled = false;
-            this.cmb_HotKeyMod.FormattingEnabled = true;
-            this.cmb_HotKeyMod.Items.AddRange(new object[] {
-            "ALT",
-            "CTR",
-            "SHIFT",
-            "WIN"});
-            this.cmb_HotKeyMod.Location = new System.Drawing.Point(3, 3);
-            this.cmb_HotKeyMod.Name = "cmb_HotKeyMod";
-            this.cmb_HotKeyMod.Size = new System.Drawing.Size(121, 21);
-            this.cmb_HotKeyMod.TabIndex = 0;
-            this.cmb_HotKeyMod.Text = global::AiCompanion.Properties.Settings.Default.HotKeyMod;
+            cmb_HotKeyMod.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "HotKeyMod", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            cmb_HotKeyMod.FormattingEnabled = true;
+            cmb_HotKeyMod.Items.AddRange(new object[] { "ALT", "CTR", "SHIFT", "WIN" });
+            cmb_HotKeyMod.Location = new System.Drawing.Point(4, 3);
+            cmb_HotKeyMod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            cmb_HotKeyMod.Name = "cmb_HotKeyMod";
+            cmb_HotKeyMod.Size = new System.Drawing.Size(140, 23);
+            cmb_HotKeyMod.TabIndex = 0;
+            cmb_HotKeyMod.Text = "ALT";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(130, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(13, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "+";
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(152, 0);
+            label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(15, 15);
+            label5.TabIndex = 8;
+            label5.Text = "+";
             // 
             // txt_HotkeyKey
             // 
-            this.txt_HotkeyKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AiCompanion.Properties.Settings.Default, "HotKeyKey", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txt_HotkeyKey.Enabled = false;
-            this.txt_HotkeyKey.Location = new System.Drawing.Point(149, 3);
-            this.txt_HotkeyKey.Name = "txt_HotkeyKey";
-            this.txt_HotkeyKey.Size = new System.Drawing.Size(108, 20);
-            this.txt_HotkeyKey.TabIndex = 1;
-            this.txt_HotkeyKey.Text = global::AiCompanion.Properties.Settings.Default.HotKeyKey;
+            txt_HotkeyKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "HotKeyKey", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            txt_HotkeyKey.Location = new System.Drawing.Point(175, 3);
+            txt_HotkeyKey.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txt_HotkeyKey.Name = "txt_HotkeyKey";
+            txt_HotkeyKey.Size = new System.Drawing.Size(125, 23);
+            txt_HotkeyKey.TabIndex = 1;
+            txt_HotkeyKey.Text = "g";
             // 
             // btn_Done
             // 
-            this.btn_Done.Location = new System.Drawing.Point(99, 163);
-            this.btn_Done.Name = "btn_Done";
-            this.btn_Done.Size = new System.Drawing.Size(75, 23);
-            this.btn_Done.TabIndex = 3;
-            this.btn_Done.Text = "Done!";
-            this.btn_Done.UseVisualStyleBackColor = true;
-            this.btn_Done.Click += new System.EventHandler(this.button1_Click);
+            btn_Done.Location = new System.Drawing.Point(118, 228);
+            btn_Done.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btn_Done.Name = "btn_Done";
+            btn_Done.Size = new System.Drawing.Size(88, 27);
+            btn_Done.TabIndex = 3;
+            btn_Done.Text = "Done!";
+            btn_Done.UseVisualStyleBackColor = true;
+            btn_Done.Click += button1_Click;
             // 
             // chkUseNewUI
             // 
-            this.chkUseNewUI.AutoSize = true;
-            this.chkUseNewUI.Location = new System.Drawing.Point(99, 131);
-            this.chkUseNewUI.Name = "chkUseNewUI";
-            this.chkUseNewUI.Size = new System.Drawing.Size(84, 17);
-            this.chkUseNewUI.TabIndex = 9;
-            this.chkUseNewUI.Text = "Use New UI";
-            this.chkUseNewUI.UseVisualStyleBackColor = true;
+            chkUseNewUI.AutoSize = true;
+            chkUseNewUI.Location = new System.Drawing.Point(118, 183);
+            chkUseNewUI.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            chkUseNewUI.Name = "chkUseNewUI";
+            chkUseNewUI.Size = new System.Drawing.Size(86, 19);
+            chkUseNewUI.TabIndex = 9;
+            chkUseNewUI.Text = "Use New UI";
+            chkUseNewUI.UseVisualStyleBackColor = true;
             // 
             // Form_Settings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(610, 198);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Form_Settings";
-            this.Text = "Settings";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(720, 307);
+            Controls.Add(tableLayoutPanel1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "Form_Settings";
+            Text = "Settings";
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
