@@ -33,137 +33,137 @@ namespace AiCompanion
         /// </summary>
         private void InitializeComponent()
         {
-            this.inputLabel = new ReaLTaiizor.Controls.MetroLabel();
-            this.inputTextBox = new ReaLTaiizor.Controls.MetroTextBox();
-            this.OkButton = new ReaLTaiizor.Controls.MetroDefaultButton();
-            this.btn_cancel = new ReaLTaiizor.Controls.MetroButton();
-            this.metroStyleManager1 = new ReaLTaiizor.Manager.MetroStyleManager();
-            this.SuspendLayout();
+            inputLabel = new ReaLTaiizor.Controls.MetroLabel();
+            inputTextBox = new ReaLTaiizor.Controls.MetroTextBox();
+            OkButton = new ReaLTaiizor.Controls.MetroDefaultButton();
+            btn_cancel = new ReaLTaiizor.Controls.MetroButton();
+            metroStyleManager1 = new ReaLTaiizor.Manager.MetroStyleManager();
+            SuspendLayout();
             // 
             // inputLabel
             // 
-            this.inputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.inputLabel.IsDerivedStyle = true;
-            this.inputLabel.Location = new System.Drawing.Point(16, 43);
-            this.inputLabel.Name = "inputLabel";
-            this.inputLabel.Size = new System.Drawing.Size(348, 48);
-            this.inputLabel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            this.inputLabel.StyleManager = null;
-            this.inputLabel.TabIndex = 0;
-            this.inputLabel.Text = "Input text:";
-            this.inputLabel.ThemeAuthor = "Taiizor";
-            this.inputLabel.ThemeName = "MetroLight";
+            inputLabel.Font = new Font("Microsoft Sans Serif", 10F);
+            inputLabel.IsDerivedStyle = true;
+            inputLabel.Location = new Point(16, 43);
+            inputLabel.Name = "inputLabel";
+            inputLabel.Size = new Size(348, 48);
+            inputLabel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            inputLabel.StyleManager = metroStyleManager1;
+            inputLabel.TabIndex = 0;
+            inputLabel.Text = "Input text:";
+            inputLabel.ThemeAuthor = "Taiizor";
+            inputLabel.ThemeName = "MetroLight";
             // 
             // inputTextBox
             // 
-            this.inputTextBox.AutoCompleteCustomSource = null;
-            this.inputTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.inputTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.inputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            this.inputTextBox.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.inputTextBox.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            this.inputTextBox.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            this.inputTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.inputTextBox.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.inputTextBox.Image = null;
-            this.inputTextBox.IsDerivedStyle = true;
-            this.inputTextBox.Lines = null;
-            this.inputTextBox.Location = new System.Drawing.Point(16, 94);
-            this.inputTextBox.MaxLength = 32767;
-            this.inputTextBox.Multiline = false;
-            this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.ReadOnly = false;
-            this.inputTextBox.Size = new System.Drawing.Size(348, 47);
-            this.inputTextBox.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            this.inputTextBox.StyleManager = null;
-            this.inputTextBox.TabIndex = 1;
-            this.inputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.inputTextBox.ThemeAuthor = "Taiizor";
-            this.inputTextBox.ThemeName = "MetroLight";
-            this.inputTextBox.UseSystemPasswordChar = false;
-            this.inputTextBox.WatermarkText = "";
+            inputTextBox.AutoCompleteCustomSource = null;
+            inputTextBox.AutoCompleteMode = AutoCompleteMode.None;
+            inputTextBox.AutoCompleteSource = AutoCompleteSource.None;
+            inputTextBox.BorderColor = Color.FromArgb(155, 155, 155);
+            inputTextBox.DisabledBackColor = Color.FromArgb(204, 204, 204);
+            inputTextBox.DisabledBorderColor = Color.FromArgb(155, 155, 155);
+            inputTextBox.DisabledForeColor = Color.FromArgb(136, 136, 136);
+            inputTextBox.Font = new Font("Microsoft Sans Serif", 10F);
+            inputTextBox.HoverColor = Color.FromArgb(102, 102, 102);
+            inputTextBox.Image = null;
+            inputTextBox.IsDerivedStyle = true;
+            inputTextBox.Lines = null;
+            inputTextBox.Location = new Point(16, 94);
+            inputTextBox.MaxLength = 32767;
+            inputTextBox.Multiline = false;
+            inputTextBox.Name = "inputTextBox";
+            inputTextBox.ReadOnly = false;
+            inputTextBox.Size = new Size(348, 47);
+            inputTextBox.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            inputTextBox.StyleManager = metroStyleManager1;
+            inputTextBox.TabIndex = 1;
+            inputTextBox.TextAlign = HorizontalAlignment.Left;
+            inputTextBox.ThemeAuthor = "Taiizor";
+            inputTextBox.ThemeName = "MetroLight";
+            inputTextBox.UseSystemPasswordChar = false;
+            inputTextBox.WatermarkText = "";
             // 
             // OkButton
             // 
-            this.OkButton.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.OkButton.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            this.OkButton.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            this.OkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.OkButton.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.OkButton.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.OkButton.HoverTextColor = System.Drawing.Color.White;
-            this.OkButton.IsDerivedStyle = true;
-            this.OkButton.Location = new System.Drawing.Point(16, 147);
-            this.OkButton.Name = "OkButton";
-            this.OkButton.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.OkButton.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.OkButton.NormalTextColor = System.Drawing.Color.Black;
-            this.OkButton.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.OkButton.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.OkButton.PressTextColor = System.Drawing.Color.White;
-            this.OkButton.Size = new System.Drawing.Size(75, 23);
-            this.OkButton.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            this.OkButton.StyleManager = null;
-            this.OkButton.TabIndex = 2;
-            this.OkButton.Text = "Ok";
-            this.OkButton.ThemeAuthor = "Taiizor";
-            this.OkButton.ThemeName = "MetroLight";
-            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
+            OkButton.DisabledBackColor = Color.FromArgb(204, 204, 204);
+            OkButton.DisabledBorderColor = Color.FromArgb(155, 155, 155);
+            OkButton.DisabledForeColor = Color.FromArgb(136, 136, 136);
+            OkButton.Font = new Font("Microsoft Sans Serif", 10F);
+            OkButton.HoverBorderColor = Color.FromArgb(102, 102, 102);
+            OkButton.HoverColor = Color.FromArgb(102, 102, 102);
+            OkButton.HoverTextColor = Color.White;
+            OkButton.IsDerivedStyle = true;
+            OkButton.Location = new Point(16, 147);
+            OkButton.Name = "OkButton";
+            OkButton.NormalBorderColor = Color.FromArgb(204, 204, 204);
+            OkButton.NormalColor = Color.FromArgb(238, 238, 238);
+            OkButton.NormalTextColor = Color.Black;
+            OkButton.PressBorderColor = Color.FromArgb(51, 51, 51);
+            OkButton.PressColor = Color.FromArgb(51, 51, 51);
+            OkButton.PressTextColor = Color.White;
+            OkButton.Size = new Size(75, 23);
+            OkButton.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            OkButton.StyleManager = metroStyleManager1;
+            OkButton.TabIndex = 2;
+            OkButton.Text = "Ok";
+            OkButton.ThemeAuthor = "Taiizor";
+            OkButton.ThemeName = "MetroLight";
+            OkButton.Click += OkButton_Click;
             // 
             // btn_cancel
             // 
-            this.btn_cancel.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.btn_cancel.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.btn_cancel.DisabledForeColor = System.Drawing.Color.Gray;
-            this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btn_cancel.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.btn_cancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.btn_cancel.HoverTextColor = System.Drawing.Color.White;
-            this.btn_cancel.IsDerivedStyle = true;
-            this.btn_cancel.Location = new System.Drawing.Point(97, 147);
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.btn_cancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.btn_cancel.NormalTextColor = System.Drawing.Color.White;
-            this.btn_cancel.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.btn_cancel.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.btn_cancel.PressTextColor = System.Drawing.Color.White;
-            this.btn_cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            this.btn_cancel.StyleManager = null;
-            this.btn_cancel.TabIndex = 3;
-            this.btn_cancel.Text = "Cancel";
-            this.btn_cancel.ThemeAuthor = "Taiizor";
-            this.btn_cancel.ThemeName = "MetroLight";
-            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
+            btn_cancel.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
+            btn_cancel.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
+            btn_cancel.DisabledForeColor = Color.Gray;
+            btn_cancel.Font = new Font("Microsoft Sans Serif", 10F);
+            btn_cancel.HoverBorderColor = Color.FromArgb(95, 207, 255);
+            btn_cancel.HoverColor = Color.FromArgb(95, 207, 255);
+            btn_cancel.HoverTextColor = Color.White;
+            btn_cancel.IsDerivedStyle = true;
+            btn_cancel.Location = new Point(97, 147);
+            btn_cancel.Name = "btn_cancel";
+            btn_cancel.NormalBorderColor = Color.FromArgb(65, 177, 225);
+            btn_cancel.NormalColor = Color.FromArgb(65, 177, 225);
+            btn_cancel.NormalTextColor = Color.White;
+            btn_cancel.PressBorderColor = Color.FromArgb(35, 147, 195);
+            btn_cancel.PressColor = Color.FromArgb(35, 147, 195);
+            btn_cancel.PressTextColor = Color.White;
+            btn_cancel.Size = new Size(75, 23);
+            btn_cancel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            btn_cancel.StyleManager = metroStyleManager1;
+            btn_cancel.TabIndex = 3;
+            btn_cancel.Text = "Cancel";
+            btn_cancel.ThemeAuthor = "Taiizor";
+            btn_cancel.ThemeName = "MetroLight";
+            btn_cancel.Click += btn_cancel_Click;
             // 
             // metroStyleManager1
             // 
-            this.metroStyleManager1.CustomTheme = "C:\\Users\\ALSCH\\AppData\\Roaming\\Microsoft\\Windows\\Templates\\ThemeFile.xml";
-            this.metroStyleManager1.OwnerForm = this;
-            this.metroStyleManager1.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            this.metroStyleManager1.ThemeAuthor = "Taiizor";
-            this.metroStyleManager1.ThemeName = "MetroLight";
+            metroStyleManager1.CustomTheme = "C:\\Users\\ALSCH\\AppData\\Roaming\\Microsoft\\Windows\\Templates\\ThemeFile.xml";
+            metroStyleManager1.OwnerForm = this;
+            metroStyleManager1.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroStyleManager1.ThemeAuthor = "Taiizor";
+            metroStyleManager1.ThemeName = "MetroLight";
             // 
             // InputBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 192);
-            this.Controls.Add(this.btn_cancel);
-            this.Controls.Add(this.OkButton);
-            this.Controls.Add(this.inputTextBox);
-            this.Controls.Add(this.inputLabel);
-            this.Name = "InputBox";
-            this.Padding = new System.Windows.Forms.Padding(2, 70, 2, 2);
-            this.ShowHeader = true;
-            this.ShowIcon = false;
-            this.ShowLeftRect = false;
-            this.StyleManager = this.metroStyleManager1;
-            this.Text = "INPUTBOX";
-            this.TextColor = System.Drawing.Color.White;
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(10F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(379, 192);
+            Controls.Add(btn_cancel);
+            Controls.Add(OkButton);
+            Controls.Add(inputTextBox);
+            Controls.Add(inputLabel);
+            Name = "InputBox";
+            Padding = new Padding(2, 70, 2, 2);
+            ShowHeader = true;
+            ShowIcon = false;
+            ShowLeftRect = false;
+            StyleManager = metroStyleManager1;
+            Text = "INPUTBOX";
+            TextColor = Color.White;
+            Load += InputBox_Load;
+            ResumeLayout(false);
         }
 
         #endregion

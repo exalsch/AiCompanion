@@ -183,7 +183,6 @@
             btn_prompt.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             btn_prompt.UseAccentColor = false;
             btn_prompt.UseVisualStyleBackColor = true;
-            btn_prompt.Click += btn_prompt_Click;
             // 
             // btn_ImagePrompt
             // 
@@ -227,7 +226,6 @@
             btn_TTS.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             btn_TTS.UseAccentColor = false;
             btn_TTS.UseVisualStyleBackColor = true;
-            btn_TTS.Click += btn_TTS_Click;
             // 
             // btn_Speak2Text
             // 
@@ -249,7 +247,6 @@
             btn_Speak2Text.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             btn_Speak2Text.UseAccentColor = false;
             btn_Speak2Text.UseVisualStyleBackColor = true;
-            btn_Speak2Text.Click += btn_Speak2Text_Click;
             // 
             // Form_mainPopup
             // 
@@ -275,6 +272,7 @@
             TopMost = true;
             Deactivate += Form_mainPopup_Deactivate;
             FormClosing += Form_mainPopup_FormClosing;
+            KeyUp += Form_mainPopup_KeyUp;
             trayContextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

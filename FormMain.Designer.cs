@@ -65,6 +65,20 @@
             btn_record = new ReaLTaiizor.Controls.MetroDefaultButton();
             txt_resultSTT = new ReaLTaiizor.Controls.MetroRichTextBox();
             TabPageSettings = new ReaLTaiizor.Child.Metro.MetroTabPage();
+            txt_QuickPrompt5 = new ReaLTaiizor.Controls.MetroTextBox();
+            metroLabel13 = new ReaLTaiizor.Controls.MetroLabel();
+            txt_QuickPrompt4 = new ReaLTaiizor.Controls.MetroTextBox();
+            metroLabel12 = new ReaLTaiizor.Controls.MetroLabel();
+            txt_QuickPrompt3 = new ReaLTaiizor.Controls.MetroTextBox();
+            metroLabel11 = new ReaLTaiizor.Controls.MetroLabel();
+            txt_QuickPrompt2 = new ReaLTaiizor.Controls.MetroTextBox();
+            metroLabel10 = new ReaLTaiizor.Controls.MetroLabel();
+            cmb_SettingQuickPromptModel = new ReaLTaiizor.Controls.MetroComboBox();
+            metroLabel9 = new ReaLTaiizor.Controls.MetroLabel();
+            txt_QuickPrompt1 = new ReaLTaiizor.Controls.MetroTextBox();
+            metroLabel8 = new ReaLTaiizor.Controls.MetroLabel();
+            metroLabel7 = new ReaLTaiizor.Controls.MetroLabel();
+            metroDivider3 = new ReaLTaiizor.Controls.MetroDivider();
             chkBAutoStartApp = new ReaLTaiizor.Controls.MetroCheckBox();
             chkAutoStartTTS = new ReaLTaiizor.Controls.MetroCheckBox();
             chkAutoStartSTT = new ReaLTaiizor.Controls.MetroCheckBox();
@@ -78,8 +92,9 @@
             cmbHotKeyMod = new ReaLTaiizor.Controls.MetroComboBox();
             txt_API_URL = new ReaLTaiizor.Controls.MetroTextBox();
             txt_ApiKey = new ReaLTaiizor.Controls.MetroTextBox();
-            chkUseNewUI = new ReaLTaiizor.Controls.MetroCheckBox();
             TabPageAbout = new ReaLTaiizor.Child.Metro.MetroTabPage();
+            metroLinkLabel5 = new ReaLTaiizor.Controls.MetroLinkLabel();
+            metroDivider2 = new ReaLTaiizor.Controls.MetroDivider();
             lblAboutVersion = new ReaLTaiizor.Controls.MetroLabel();
             metroLinkLabel4 = new ReaLTaiizor.Controls.MetroLinkLabel();
             metroLinkLabel3 = new ReaLTaiizor.Controls.MetroLinkLabel();
@@ -92,8 +107,6 @@
             WindowControlBox = new ReaLTaiizor.Controls.MetroControlBox();
             btn_cancel = new System.Windows.Forms.Button();
             toolTipMain = new ReaLTaiizor.Controls.MetroToolTip();
-            linkHome = new System.Windows.Forms.LinkLabel();
-            metroDivider2 = new ReaLTaiizor.Controls.MetroDivider();
             TabControl.SuspendLayout();
             TabPagePrompt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPrompt).BeginInit();
@@ -258,7 +271,6 @@
             cmb_Model.FormattingEnabled = true;
             cmb_Model.IsDerivedStyle = true;
             cmb_Model.ItemHeight = 20;
-            cmb_Model.Items.AddRange(new object[] { "gpt-4o-mini", "gpt-4o", "gpt-4-turbo", "gpt-4", "gpt-3.5-turbo", "gpt-3.5-turbo-instruct" });
             cmb_Model.Location = new System.Drawing.Point(343, 563);
             cmb_Model.Margin = new System.Windows.Forms.Padding(2);
             cmb_Model.Name = "cmb_Model";
@@ -1003,6 +1015,20 @@
             // TabPageSettings
             // 
             TabPageSettings.BaseColor = System.Drawing.Color.White;
+            TabPageSettings.Controls.Add(txt_QuickPrompt5);
+            TabPageSettings.Controls.Add(metroLabel13);
+            TabPageSettings.Controls.Add(txt_QuickPrompt4);
+            TabPageSettings.Controls.Add(metroLabel12);
+            TabPageSettings.Controls.Add(txt_QuickPrompt3);
+            TabPageSettings.Controls.Add(metroLabel11);
+            TabPageSettings.Controls.Add(txt_QuickPrompt2);
+            TabPageSettings.Controls.Add(metroLabel10);
+            TabPageSettings.Controls.Add(cmb_SettingQuickPromptModel);
+            TabPageSettings.Controls.Add(metroLabel9);
+            TabPageSettings.Controls.Add(txt_QuickPrompt1);
+            TabPageSettings.Controls.Add(metroLabel8);
+            TabPageSettings.Controls.Add(metroLabel7);
+            TabPageSettings.Controls.Add(metroDivider3);
             TabPageSettings.Controls.Add(chkBAutoStartApp);
             TabPageSettings.Controls.Add(chkAutoStartTTS);
             TabPageSettings.Controls.Add(chkAutoStartSTT);
@@ -1016,7 +1042,6 @@
             TabPageSettings.Controls.Add(cmbHotKeyMod);
             TabPageSettings.Controls.Add(txt_API_URL);
             TabPageSettings.Controls.Add(txt_ApiKey);
-            TabPageSettings.Controls.Add(chkUseNewUI);
             TabPageSettings.Font = null;
             TabPageSettings.ImageIndex = 0;
             TabPageSettings.ImageKey = null;
@@ -1032,6 +1057,293 @@
             TabPageSettings.ThemeAuthor = "Taiizor";
             TabPageSettings.ThemeName = "MetroLight";
             TabPageSettings.ToolTipText = null;
+            // 
+            // txt_QuickPrompt5
+            // 
+            txt_QuickPrompt5.AutoCompleteCustomSource = null;
+            txt_QuickPrompt5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            txt_QuickPrompt5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            txt_QuickPrompt5.BorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt5.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            txt_QuickPrompt5.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt5.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            txt_QuickPrompt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            txt_QuickPrompt5.HoverColor = System.Drawing.Color.FromArgb(102, 102, 102);
+            txt_QuickPrompt5.Image = null;
+            txt_QuickPrompt5.IsDerivedStyle = true;
+            txt_QuickPrompt5.Lines = null;
+            txt_QuickPrompt5.Location = new System.Drawing.Point(66, 461);
+            txt_QuickPrompt5.MaxLength = 32767;
+            txt_QuickPrompt5.Multiline = false;
+            txt_QuickPrompt5.Name = "txt_QuickPrompt5";
+            txt_QuickPrompt5.ReadOnly = false;
+            txt_QuickPrompt5.Size = new System.Drawing.Size(403, 30);
+            txt_QuickPrompt5.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            txt_QuickPrompt5.StyleManager = metroStyleManager;
+            txt_QuickPrompt5.TabIndex = 27;
+            txt_QuickPrompt5.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txt_QuickPrompt5.ThemeAuthor = "Taiizor";
+            txt_QuickPrompt5.ThemeName = "MetroLight";
+            txt_QuickPrompt5.UseSystemPasswordChar = false;
+            txt_QuickPrompt5.WatermarkText = "";
+            // 
+            // metroLabel13
+            // 
+            metroLabel13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            metroLabel13.IsDerivedStyle = true;
+            metroLabel13.Location = new System.Drawing.Point(8, 461);
+            metroLabel13.Name = "metroLabel13";
+            metroLabel13.Size = new System.Drawing.Size(54, 23);
+            metroLabel13.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLabel13.StyleManager = metroStyleManager;
+            metroLabel13.TabIndex = 26;
+            metroLabel13.Text = "Key 5:";
+            metroLabel13.ThemeAuthor = "Taiizor";
+            metroLabel13.ThemeName = "MetroLight";
+            // 
+            // txt_QuickPrompt4
+            // 
+            txt_QuickPrompt4.AutoCompleteCustomSource = null;
+            txt_QuickPrompt4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            txt_QuickPrompt4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            txt_QuickPrompt4.BorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt4.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            txt_QuickPrompt4.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt4.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            txt_QuickPrompt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            txt_QuickPrompt4.HoverColor = System.Drawing.Color.FromArgb(102, 102, 102);
+            txt_QuickPrompt4.Image = null;
+            txt_QuickPrompt4.IsDerivedStyle = true;
+            txt_QuickPrompt4.Lines = null;
+            txt_QuickPrompt4.Location = new System.Drawing.Point(66, 425);
+            txt_QuickPrompt4.MaxLength = 32767;
+            txt_QuickPrompt4.Multiline = false;
+            txt_QuickPrompt4.Name = "txt_QuickPrompt4";
+            txt_QuickPrompt4.ReadOnly = false;
+            txt_QuickPrompt4.Size = new System.Drawing.Size(403, 30);
+            txt_QuickPrompt4.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            txt_QuickPrompt4.StyleManager = metroStyleManager;
+            txt_QuickPrompt4.TabIndex = 25;
+            txt_QuickPrompt4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txt_QuickPrompt4.ThemeAuthor = "Taiizor";
+            txt_QuickPrompt4.ThemeName = "MetroLight";
+            txt_QuickPrompt4.UseSystemPasswordChar = false;
+            txt_QuickPrompt4.WatermarkText = "";
+            // 
+            // metroLabel12
+            // 
+            metroLabel12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            metroLabel12.IsDerivedStyle = true;
+            metroLabel12.Location = new System.Drawing.Point(8, 425);
+            metroLabel12.Name = "metroLabel12";
+            metroLabel12.Size = new System.Drawing.Size(54, 23);
+            metroLabel12.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLabel12.StyleManager = metroStyleManager;
+            metroLabel12.TabIndex = 24;
+            metroLabel12.Text = "Key 4:";
+            metroLabel12.ThemeAuthor = "Taiizor";
+            metroLabel12.ThemeName = "MetroLight";
+            // 
+            // txt_QuickPrompt3
+            // 
+            txt_QuickPrompt3.AutoCompleteCustomSource = null;
+            txt_QuickPrompt3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            txt_QuickPrompt3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            txt_QuickPrompt3.BorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt3.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            txt_QuickPrompt3.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt3.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            txt_QuickPrompt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            txt_QuickPrompt3.HoverColor = System.Drawing.Color.FromArgb(102, 102, 102);
+            txt_QuickPrompt3.Image = null;
+            txt_QuickPrompt3.IsDerivedStyle = true;
+            txt_QuickPrompt3.Lines = null;
+            txt_QuickPrompt3.Location = new System.Drawing.Point(66, 389);
+            txt_QuickPrompt3.MaxLength = 32767;
+            txt_QuickPrompt3.Multiline = false;
+            txt_QuickPrompt3.Name = "txt_QuickPrompt3";
+            txt_QuickPrompt3.ReadOnly = false;
+            txt_QuickPrompt3.Size = new System.Drawing.Size(403, 30);
+            txt_QuickPrompt3.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            txt_QuickPrompt3.StyleManager = metroStyleManager;
+            txt_QuickPrompt3.TabIndex = 23;
+            txt_QuickPrompt3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txt_QuickPrompt3.ThemeAuthor = "Taiizor";
+            txt_QuickPrompt3.ThemeName = "MetroLight";
+            txt_QuickPrompt3.UseSystemPasswordChar = false;
+            txt_QuickPrompt3.WatermarkText = "";
+            // 
+            // metroLabel11
+            // 
+            metroLabel11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            metroLabel11.IsDerivedStyle = true;
+            metroLabel11.Location = new System.Drawing.Point(8, 389);
+            metroLabel11.Name = "metroLabel11";
+            metroLabel11.Size = new System.Drawing.Size(54, 23);
+            metroLabel11.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLabel11.StyleManager = metroStyleManager;
+            metroLabel11.TabIndex = 22;
+            metroLabel11.Text = "Key 3:";
+            metroLabel11.ThemeAuthor = "Taiizor";
+            metroLabel11.ThemeName = "MetroLight";
+            // 
+            // txt_QuickPrompt2
+            // 
+            txt_QuickPrompt2.AutoCompleteCustomSource = null;
+            txt_QuickPrompt2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            txt_QuickPrompt2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            txt_QuickPrompt2.BorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt2.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            txt_QuickPrompt2.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt2.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            txt_QuickPrompt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            txt_QuickPrompt2.HoverColor = System.Drawing.Color.FromArgb(102, 102, 102);
+            txt_QuickPrompt2.Image = null;
+            txt_QuickPrompt2.IsDerivedStyle = true;
+            txt_QuickPrompt2.Lines = null;
+            txt_QuickPrompt2.Location = new System.Drawing.Point(66, 353);
+            txt_QuickPrompt2.MaxLength = 32767;
+            txt_QuickPrompt2.Multiline = false;
+            txt_QuickPrompt2.Name = "txt_QuickPrompt2";
+            txt_QuickPrompt2.ReadOnly = false;
+            txt_QuickPrompt2.Size = new System.Drawing.Size(403, 30);
+            txt_QuickPrompt2.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            txt_QuickPrompt2.StyleManager = metroStyleManager;
+            txt_QuickPrompt2.TabIndex = 21;
+            txt_QuickPrompt2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txt_QuickPrompt2.ThemeAuthor = "Taiizor";
+            txt_QuickPrompt2.ThemeName = "MetroLight";
+            txt_QuickPrompt2.UseSystemPasswordChar = false;
+            txt_QuickPrompt2.WatermarkText = "";
+            // 
+            // metroLabel10
+            // 
+            metroLabel10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            metroLabel10.IsDerivedStyle = true;
+            metroLabel10.Location = new System.Drawing.Point(9, 353);
+            metroLabel10.Name = "metroLabel10";
+            metroLabel10.Size = new System.Drawing.Size(54, 23);
+            metroLabel10.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLabel10.StyleManager = metroStyleManager;
+            metroLabel10.TabIndex = 20;
+            metroLabel10.Text = "Key 2:";
+            metroLabel10.ThemeAuthor = "Taiizor";
+            metroLabel10.ThemeName = "MetroLight";
+            // 
+            // cmb_SettingQuickPromptModel
+            // 
+            cmb_SettingQuickPromptModel.AllowDrop = true;
+            cmb_SettingQuickPromptModel.ArrowColor = System.Drawing.Color.FromArgb(150, 150, 150);
+            cmb_SettingQuickPromptModel.BackColor = System.Drawing.Color.Transparent;
+            cmb_SettingQuickPromptModel.BackgroundColor = System.Drawing.Color.FromArgb(238, 238, 238);
+            cmb_SettingQuickPromptModel.BorderColor = System.Drawing.Color.FromArgb(150, 150, 150);
+            cmb_SettingQuickPromptModel.CausesValidation = false;
+            cmb_SettingQuickPromptModel.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            cmb_SettingQuickPromptModel.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            cmb_SettingQuickPromptModel.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            cmb_SettingQuickPromptModel.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            cmb_SettingQuickPromptModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cmb_SettingQuickPromptModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            cmb_SettingQuickPromptModel.FormattingEnabled = true;
+            cmb_SettingQuickPromptModel.IsDerivedStyle = true;
+            cmb_SettingQuickPromptModel.ItemHeight = 20;
+            cmb_SettingQuickPromptModel.Location = new System.Drawing.Point(66, 279);
+            cmb_SettingQuickPromptModel.Name = "cmb_SettingQuickPromptModel";
+            cmb_SettingQuickPromptModel.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
+            cmb_SettingQuickPromptModel.SelectedItemForeColor = System.Drawing.Color.White;
+            cmb_SettingQuickPromptModel.Size = new System.Drawing.Size(220, 26);
+            cmb_SettingQuickPromptModel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            cmb_SettingQuickPromptModel.StyleManager = metroStyleManager;
+            cmb_SettingQuickPromptModel.TabIndex = 19;
+            cmb_SettingQuickPromptModel.ThemeAuthor = "Taiizor";
+            cmb_SettingQuickPromptModel.ThemeName = "MetroLight";
+            // 
+            // metroLabel9
+            // 
+            metroLabel9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            metroLabel9.IsDerivedStyle = true;
+            metroLabel9.Location = new System.Drawing.Point(8, 282);
+            metroLabel9.Name = "metroLabel9";
+            metroLabel9.Size = new System.Drawing.Size(100, 23);
+            metroLabel9.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLabel9.StyleManager = metroStyleManager;
+            metroLabel9.TabIndex = 18;
+            metroLabel9.Text = "Model:";
+            metroLabel9.ThemeAuthor = "Taiizor";
+            metroLabel9.ThemeName = "MetroLight";
+            // 
+            // txt_QuickPrompt1
+            // 
+            txt_QuickPrompt1.AutoCompleteCustomSource = null;
+            txt_QuickPrompt1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            txt_QuickPrompt1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            txt_QuickPrompt1.BorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt1.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            txt_QuickPrompt1.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_QuickPrompt1.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            txt_QuickPrompt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            txt_QuickPrompt1.HoverColor = System.Drawing.Color.FromArgb(102, 102, 102);
+            txt_QuickPrompt1.Image = null;
+            txt_QuickPrompt1.IsDerivedStyle = true;
+            txt_QuickPrompt1.Lines = null;
+            txt_QuickPrompt1.Location = new System.Drawing.Point(66, 317);
+            txt_QuickPrompt1.MaxLength = 32767;
+            txt_QuickPrompt1.Multiline = false;
+            txt_QuickPrompt1.Name = "txt_QuickPrompt1";
+            txt_QuickPrompt1.ReadOnly = false;
+            txt_QuickPrompt1.Size = new System.Drawing.Size(403, 30);
+            txt_QuickPrompt1.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            txt_QuickPrompt1.StyleManager = metroStyleManager;
+            txt_QuickPrompt1.TabIndex = 17;
+            txt_QuickPrompt1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txt_QuickPrompt1.ThemeAuthor = "Taiizor";
+            txt_QuickPrompt1.ThemeName = "MetroLight";
+            txt_QuickPrompt1.UseSystemPasswordChar = false;
+            txt_QuickPrompt1.WatermarkText = "";
+            // 
+            // metroLabel8
+            // 
+            metroLabel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            metroLabel8.IsDerivedStyle = true;
+            metroLabel8.Location = new System.Drawing.Point(8, 317);
+            metroLabel8.Name = "metroLabel8";
+            metroLabel8.Size = new System.Drawing.Size(54, 23);
+            metroLabel8.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLabel8.StyleManager = metroStyleManager;
+            metroLabel8.TabIndex = 16;
+            metroLabel8.Text = "Key 1:";
+            metroLabel8.ThemeAuthor = "Taiizor";
+            metroLabel8.ThemeName = "MetroLight";
+            // 
+            // metroLabel7
+            // 
+            metroLabel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, 0);
+            metroLabel7.IsDerivedStyle = true;
+            metroLabel7.Location = new System.Drawing.Point(6, 259);
+            metroLabel7.Name = "metroLabel7";
+            metroLabel7.Size = new System.Drawing.Size(201, 23);
+            metroLabel7.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLabel7.StyleManager = metroStyleManager;
+            metroLabel7.TabIndex = 15;
+            metroLabel7.Text = "Quick prompt replacements";
+            metroLabel7.ThemeAuthor = "Taiizor";
+            metroLabel7.ThemeName = "MetroLight";
+            toolTipMain.SetToolTip(metroLabel7, "Key bindings for quick prompts that will directly insert");
+            // 
+            // metroDivider3
+            // 
+            metroDivider3.IsDerivedStyle = true;
+            metroDivider3.Location = new System.Drawing.Point(5, 254);
+            metroDivider3.Name = "metroDivider3";
+            metroDivider3.Orientation = ReaLTaiizor.Enum.Metro.DividerStyle.Horizontal;
+            metroDivider3.Size = new System.Drawing.Size(464, 4);
+            metroDivider3.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroDivider3.StyleManager = null;
+            metroDivider3.TabIndex = 14;
+            metroDivider3.Text = "metroDivider3";
+            metroDivider3.ThemeAuthor = "Taiizor";
+            metroDivider3.ThemeName = "MetroLight";
+            metroDivider3.Thickness = 1;
             // 
             // chkBAutoStartApp
             // 
@@ -1245,7 +1557,7 @@
             metroLabel3.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             metroLabel3.StyleManager = metroStyleManager;
             metroLabel3.TabIndex = 4;
-            metroLabel3.Text = "Hotkey:";
+            metroLabel3.Text = "Global Hotkey:";
             metroLabel3.ThemeAuthor = "Taiizor";
             metroLabel3.ThemeName = "MetroLight";
             // 
@@ -1341,35 +1653,11 @@
             txt_ApiKey.UseSystemPasswordChar = true;
             txt_ApiKey.WatermarkText = "API Key";
             // 
-            // chkUseNewUI
-            // 
-            chkUseNewUI.BackColor = System.Drawing.Color.Transparent;
-            chkUseNewUI.BackgroundColor = System.Drawing.Color.White;
-            chkUseNewUI.BorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
-            chkUseNewUI.Checked = false;
-            chkUseNewUI.CheckSignColor = System.Drawing.Color.FromArgb(65, 177, 225);
-            chkUseNewUI.CheckState = ReaLTaiizor.Enum.Metro.CheckState.Unchecked;
-            chkUseNewUI.Cursor = System.Windows.Forms.Cursors.Hand;
-            chkUseNewUI.DisabledBorderColor = System.Drawing.Color.FromArgb(205, 205, 205);
-            chkUseNewUI.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            chkUseNewUI.IsDerivedStyle = true;
-            chkUseNewUI.Location = new System.Drawing.Point(4, 180);
-            chkUseNewUI.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            chkUseNewUI.Name = "chkUseNewUI";
-            chkUseNewUI.SignStyle = ReaLTaiizor.Enum.Metro.SignStyle.Sign;
-            chkUseNewUI.Size = new System.Drawing.Size(103, 16);
-            chkUseNewUI.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            chkUseNewUI.StyleManager = metroStyleManager;
-            chkUseNewUI.TabIndex = 0;
-            chkUseNewUI.Text = "UseNewUI";
-            chkUseNewUI.ThemeAuthor = "Taiizor";
-            chkUseNewUI.ThemeName = "MetroLight";
-            // 
             // TabPageAbout
             // 
             TabPageAbout.BaseColor = System.Drawing.Color.White;
+            TabPageAbout.Controls.Add(metroLinkLabel5);
             TabPageAbout.Controls.Add(metroDivider2);
-            TabPageAbout.Controls.Add(linkHome);
             TabPageAbout.Controls.Add(lblAboutVersion);
             TabPageAbout.Controls.Add(metroLinkLabel4);
             TabPageAbout.Controls.Add(metroLinkLabel3);
@@ -1392,6 +1680,38 @@
             TabPageAbout.ThemeAuthor = "Taiizor";
             TabPageAbout.ThemeName = "MetroLight";
             TabPageAbout.ToolTipText = null;
+            // 
+            // metroLinkLabel5
+            // 
+            metroLinkLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            metroLinkLabel5.IsDerivedStyle = true;
+            metroLinkLabel5.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            metroLinkLabel5.Location = new System.Drawing.Point(5, 5);
+            metroLinkLabel5.Name = "metroLinkLabel5";
+            metroLinkLabel5.Size = new System.Drawing.Size(282, 23);
+            metroLinkLabel5.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLinkLabel5.StyleManager = metroStyleManager;
+            metroLinkLabel5.TabIndex = 9;
+            metroLinkLabel5.TabStop = true;
+            metroLinkLabel5.Text = "https://github.com/exalsch/AiCompanion";
+            metroLinkLabel5.ThemeAuthor = "Taiizor";
+            metroLinkLabel5.ThemeName = "MetroLight";
+            metroLinkLabel5.VisitedLinkColor = System.Drawing.Color.FromArgb(45, 157, 205);
+            // 
+            // metroDivider2
+            // 
+            metroDivider2.IsDerivedStyle = true;
+            metroDivider2.Location = new System.Drawing.Point(5, 113);
+            metroDivider2.Name = "metroDivider2";
+            metroDivider2.Orientation = ReaLTaiizor.Enum.Metro.DividerStyle.Horizontal;
+            metroDivider2.Size = new System.Drawing.Size(461, 4);
+            metroDivider2.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroDivider2.StyleManager = null;
+            metroDivider2.TabIndex = 8;
+            metroDivider2.Text = "metroDivider2";
+            metroDivider2.ThemeAuthor = "Taiizor";
+            metroDivider2.ThemeName = "MetroLight";
+            metroDivider2.Thickness = 1;
             // 
             // lblAboutVersion
             // 
@@ -1605,31 +1925,6 @@
             toolTipMain.ThemeAuthor = "Taiizor";
             toolTipMain.ThemeName = "MetroLight";
             // 
-            // linkHome
-            // 
-            linkHome.AutoSize = true;
-            linkHome.Location = new System.Drawing.Point(5, 11);
-            linkHome.Name = "linkHome";
-            linkHome.Size = new System.Drawing.Size(258, 17);
-            linkHome.TabIndex = 7;
-            linkHome.TabStop = true;
-            linkHome.Text = "https://github.com/exalsch/AiCompanion";
-            // 
-            // metroDivider2
-            // 
-            metroDivider2.IsDerivedStyle = true;
-            metroDivider2.Location = new System.Drawing.Point(5, 113);
-            metroDivider2.Name = "metroDivider2";
-            metroDivider2.Orientation = ReaLTaiizor.Enum.Metro.DividerStyle.Horizontal;
-            metroDivider2.Size = new System.Drawing.Size(461, 4);
-            metroDivider2.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            metroDivider2.StyleManager = null;
-            metroDivider2.TabIndex = 8;
-            metroDivider2.Text = "metroDivider2";
-            metroDivider2.ThemeAuthor = "Taiizor";
-            metroDivider2.ThemeName = "MetroLight";
-            metroDivider2.Thickness = 1;
-            // 
             // FormMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1658,7 +1953,6 @@
             TabPageSTT.ResumeLayout(false);
             TabPageSettings.ResumeLayout(false);
             TabPageAbout.ResumeLayout(false);
-            TabPageAbout.PerformLayout();
             metroPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -1706,7 +2000,6 @@
         private ReaLTaiizor.Controls.MetroLabel metroLabel2;
         private ReaLTaiizor.Controls.MetroLabel lblAboutVersion;
         private ReaLTaiizor.Controls.MetroTextBox txt_ApiKey;
-        private ReaLTaiizor.Controls.MetroCheckBox chkUseNewUI;
         private ReaLTaiizor.Controls.MetroTextBox txt_API_URL;
         private ReaLTaiizor.Controls.MetroLabel metroLabel4;
         private ReaLTaiizor.Controls.MetroLabel metroLabel3;
@@ -1727,7 +2020,21 @@
         private System.Windows.Forms.ToolStripMenuItem picPromptToolStripMenuItemRemove;
         private ReaLTaiizor.Controls.MetroButton btn_asPromptSTT;
         public ReaLTaiizor.Controls.MetroTabControl TabControl;
-        private System.Windows.Forms.LinkLabel linkHome;
         private ReaLTaiizor.Controls.MetroDivider metroDivider2;
+        private ReaLTaiizor.Controls.MetroTextBox txt_QuickPrompt1;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel8;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel7;
+        private ReaLTaiizor.Controls.MetroDivider metroDivider3;
+        private ReaLTaiizor.Controls.MetroComboBox cmb_SettingQuickPromptModel;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel9;
+        private ReaLTaiizor.Controls.MetroTextBox txt_QuickPrompt5;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel13;
+        private ReaLTaiizor.Controls.MetroTextBox txt_QuickPrompt4;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel12;
+        private ReaLTaiizor.Controls.MetroTextBox txt_QuickPrompt3;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel11;
+        private ReaLTaiizor.Controls.MetroTextBox txt_QuickPrompt2;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel10;
+        private ReaLTaiizor.Controls.MetroLinkLabel metroLinkLabel5;
     }
 }

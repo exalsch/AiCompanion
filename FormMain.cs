@@ -44,11 +44,10 @@ namespace AiCompanion
         {
             InitializeComponent();
             //get and set version
-            var version = Assembly.GetEntryAssembly()?
-                          .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
-                          .InformationalVersion;
-            this.Text = this.Text + " " + version;
-            lblAboutVersion.Text = "Version: " + version;
+            var version = System.Windows.Forms.Application.ProductVersion;
+
+            //this.Text = this.Text + " " + version; //TODO: Can't get this to work ffs!
+            lblAboutVersion.Text = "Version: 1.0.4.0";// + version;
 
             //init API Client
             openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
@@ -75,17 +74,55 @@ namespace AiCompanion
 
             //Load settings into controls
             txt_ApiKey.Text = Properties.Settings.Default.API_Key;
-            cmbSttLanguage.SelectedItem = Properties.Settings.Default.STT_lang;
-            cmbBxVoiceTTS.SelectedItem = Properties.Settings.Default.TtsVoice;
+            
+            //Voice lang
+            cmbSttLanguage.SelectedItem = cmbSttLanguage.Items.Contains(Properties.Settings.Default.STT_lang)
+                ? Properties.Settings.Default.STT_lang
+                : "en";
+            //Voice
+            cmbBxVoiceTTS.SelectedItem = cmbBxVoiceTTS.Items.Contains(Properties.Settings.Default.TtsVoice)
+                ? Properties.Settings.Default.TtsVoice
+                : "nova";
 
             //prompt model
-            if (string.IsNullOrEmpty(Properties.Settings.Default.ModelLLM))
+
+            try
             {
-                cmb_Model.SelectedIndex = 0;
-                Properties.Settings.Default.ModelLLM = cmb_Model.SelectedItem.ToString();
-                Properties.Settings.Default.Save();
+                //Fill model combobox                    
+                foreach (var model in Program.modelsList)
+                {
+                    cmb_Model.Items.Add(model.ModelID);
+                }
+                // Set the selected item if it exists in the combo box items
+                cmb_Model.SelectedItem = cmb_Model.Items.Contains(Properties.Settings.Default.ModelLLM)
+                ? Properties.Settings.Default.ModelLLM
+                : "gpt - 4o - mini";
             }
-            cmb_Model.SelectedItem = Properties.Settings.Default.ModelLLM;
+            catch (Exception)
+            {
+
+                throw; //TODO Handle this maybe
+            }
+
+            //Quick Prompts models
+
+            try
+            {
+                //Fill model combobox                    
+                foreach (var model in Program.modelsList)
+                {
+                    cmb_SettingQuickPromptModel.Items.Add(model.ModelID);
+                }
+                // Set the selected item if it exists in the combo box items
+                cmb_SettingQuickPromptModel.SelectedItem = cmb_SettingQuickPromptModel.Items.Contains(Properties.Settings.Default.QPromptModel)
+                ? Properties.Settings.Default.QPromptModel
+                : "gpt - 4o - mini";
+            }
+            catch (Exception)
+            {
+
+                throw; //TODO Handle this maybe
+            }
 
             //hotkey
             txt_HotkeyKey.Text = Properties.Settings.Default.HotKeyKey;
@@ -94,9 +131,18 @@ namespace AiCompanion
             chkAutoStartSTT.Checked = Properties.Settings.Default.AutoStartSTT;
             chkAutoStartTTS.Checked = Properties.Settings.Default.AutoStartTTS;
             switchDarkMode.Switched = Properties.Settings.Default.useDarkMode;
+
+
+            txt_QuickPrompt1.Text = Properties.Settings.Default.QPrompt1;
+            txt_QuickPrompt2.Text = Properties.Settings.Default.QPrompt2;
+            txt_QuickPrompt3.Text = Properties.Settings.Default.QPrompt3;
+            txt_QuickPrompt4.Text = Properties.Settings.Default.QPrompt4;
+            txt_QuickPrompt5.Text = Properties.Settings.Default.QPrompt5;
+
+
             if (switchDarkMode.Switched)
                 metroStyleManager.Style = ReaLTaiizor.Enum.Metro.Style.Dark;
-            chkUseNewUI.Checked = Properties.Settings.Default.UseNewUI;
+
             foreach (string item in Properties.Settings.Default.prePromtSelections)
             {
                 // Add items from the StringCollection to the ComboBox
@@ -145,6 +191,8 @@ namespace AiCompanion
             }
             if (startTab == "TabPageSettings")
             {
+
+                //cmbx_SettingQuickPromptModel.Items.AddRange(new ListViewItem[] {
                 TabControl.SelectTab("TabPageSettings");
             }
         }
@@ -914,17 +962,17 @@ namespace AiCompanion
         private void btnAddPrePromt_Click(object sender, EventArgs e)
         {
             // Get the entered text
-            string enteredText = InputBox.Show("Enter an custom directive :", "New directive");
-            // Add a dot and space if needed
-            enteredText = !string.IsNullOrWhiteSpace(enteredText) && !enteredText.Trim().EndsWith(".") ? enteredText.TrimEnd() + ". " : enteredText;
-
-            // Add the new item if it's not already in the ComboBox
-            if (!cmbPrePrompts.Items.Contains(enteredText) && !string.IsNullOrEmpty(enteredText))
+            string enteredText = InputBox.Show("Enter a custom directive :", "New directive");
+            if (!string.IsNullOrWhiteSpace(enteredText))
             {
-                cmbPrePrompts.Items.Add(enteredText);
-                cmbPrePrompts.SelectedIndex = cmbPrePrompts.Items.Count - 1; // Select the newly added item
+                // Add the new item if it's not already in the ComboBox
+                if (!cmbPrePrompts.Items.Contains(enteredText) && !string.IsNullOrEmpty(enteredText))
+                {
+                    cmbPrePrompts.Items.Add(enteredText);
+                    cmbPrePrompts.SelectedIndex = cmbPrePrompts.Items.Count - 1; // Select the newly added item
+                }
+                SavePrePrompts();
             }
-            SavePrePrompts();
         }
 
         private void btnRemovePrePromt_Click(object sender, EventArgs e)
@@ -979,21 +1027,26 @@ namespace AiCompanion
             {
                 Properties.Settings.Default.API_Key = txt_ApiKey.Text;
                 openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
-                if (Properties.Settings.Default.UseNewUI != chkUseNewUI.Checked)
-                    MessageBox.Show("A change of UI, requires a program restart!");
-                Properties.Settings.Default.UseNewUI = chkUseNewUI.Checked;
+
                 Properties.Settings.Default.FirstLaunch = false;
                 Properties.Settings.Default.useDarkMode = switchDarkMode.Switched;
                 Properties.Settings.Default.AutoStartSTT = chkAutoStartSTT.Checked;
                 Properties.Settings.Default.AutoStartTTS = chkAutoStartTTS.Checked;
                 //hotkey changed? need a restart for now 
                 //TODO: make some kind of auto reload in the mainPopup
-                if (txt_HotkeyKey.Text == Properties.Settings.Default.HotKeyKey ||
-                    cmbHotKeyMod.SelectedItem.ToString() == Properties.Settings.Default.HotKeyMod)
+                if (txt_HotkeyKey.Text != Properties.Settings.Default.HotKeyKey ||
+                    cmbHotKeyMod.SelectedItem.ToString() != Properties.Settings.Default.HotKeyMod)
                     MessageBox.Show("A change of HotKey, currently requires a program restart!");
 
                 Properties.Settings.Default.HotKeyKey = txt_HotkeyKey.Text;
                 Properties.Settings.Default.HotKeyMod = cmbHotKeyMod.SelectedItem.ToString();
+                Properties.Settings.Default.QPromptModel = cmb_SettingQuickPromptModel.SelectedItem.ToString();
+                Properties.Settings.Default.QPrompt1 = txt_QuickPrompt1.Text;
+                Properties.Settings.Default.QPrompt2 = txt_QuickPrompt2.Text;
+                Properties.Settings.Default.QPrompt3 = txt_QuickPrompt3.Text;
+                Properties.Settings.Default.QPrompt4 = txt_QuickPrompt4.Text;
+                Properties.Settings.Default.QPrompt5 = txt_QuickPrompt5.Text;
+
                 Properties.Settings.Default.Save();
                 //handle autostart
                 AutoStartManager autoStartManager = new AutoStartManager(Assembly.GetExecutingAssembly().GetName().Name);

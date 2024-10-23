@@ -1,9 +1,17 @@
-﻿using System;
+﻿using OpenAI_API.Chat;
+using OpenAI_API;
+using OpenAI_API.Completions;
+using OpenAI_API.Models;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static OpenAI_API.Chat.ChatMessage;
+using System.Threading;
+using System.Diagnostics;
+
 
 namespace AiCompanion
 {
@@ -45,24 +53,20 @@ namespace AiCompanion
         // Constructor for the main popup form
         public Form_mainPopup()
         {
-            InitializeComponent();
+            InitializeComponent();            
             try
             {
                 // Hide the form initially and set properties
                 this.Hide();
                 this.Opacity = 0;
                 this.ShowInTaskbar = false;
+                this.KeyPreview = true;
                 if (Properties.Settings.Default.FirstLaunch && string.IsNullOrEmpty(Properties.Settings.Default.API_Key))
                 {
                     if (Properties.Settings.Default.UseNewUI)
                     {
                         Properties.Settings.Default.API_Key = InputBox.Show("First Launch enter API Key:", "API Key not set");
                         Properties.Settings.Default.Save();
-                    }
-                    else
-                    {
-                        Form_Settings mainForm = new Form_Settings();
-                        _ = mainForm.ShowDialog();
                     }
                 }
                 // Register a hotkey (Alt + G)
@@ -122,40 +126,7 @@ namespace AiCompanion
             {
                 try
                 {
-                    // Get the window that had focus before the hotkey was pressed
-                    _previousWindowHandle = GetForegroundWindow();
-
-                    // Get the current content of the clipboard to compare
-                    string copiedTextPre = Clipboard.GetText();
-
-                    // Focus on the previous window and send a Ctrl+C to copy selected text
-                    if (_previousWindowHandle != IntPtr.Zero && SetForegroundWindow(_previousWindowHandle))
-                    {
-                        System.Threading.Thread.Sleep(300);
-                        SendKeys.SendWait("^c"); // Simulate pressing Ctrl+C
-                        System.Threading.Thread.Sleep(100);
-
-                        // Get the updated clipboard content
-                        string copiedText = Clipboard.GetText();
-
-                        // If the clipboard content changed, update the internal copy
-                        if (copiedTextPre != copiedText)
-                        {
-                            _copiedText = copiedText;
-                        }
-                        else
-                        { //try again
-                            System.Threading.Thread.Sleep(100);
-                            SendKeys.SendWait("^c"); // Simulate pressing Ctrl+C
-                            System.Threading.Thread.Sleep(100);
-                            copiedText = Clipboard.GetText();
-                            if (copiedTextPre != copiedText)
-                                _copiedText = copiedText;
-                        }
-
-
-                    }
-
+                    CopyTextFromPreviousWindow();
 
 
                     // Position and show the popup form
@@ -224,56 +195,36 @@ namespace AiCompanion
             }
         }
 
-        /// <summary>
-        /// Handles the click event for the 'Prompt' button, which opens the Form_TextPrompt form.
-        /// </summary>
-        private void btn_prompt_Click(object sender, EventArgs e)
+        public void CopyTextFromPreviousWindow(bool onlyOnChange = true)
         {
-            try
+            // Get the window that had focus before the hotkey was pressed
+            _previousWindowHandle = GetForegroundWindow();
+
+            // Get the current content of the clipboard to compare
+            string copiedTextPre = Clipboard.GetText();
+
+            // Focus on the previous window and send a Ctrl+C to copy selected text
+            if (_previousWindowHandle != IntPtr.Zero && SetForegroundWindow(_previousWindowHandle))
             {
-                // Create and show the text prompt form
-                var pForm = new Form_TextPrompt(_copiedText, _previousWindowHandle);
-                ShowForm(pForm);
-            }
-            catch (Exception ex)
-            {
-                _ = MessageBox.Show("Error opening Text Prompt form: " + ex.Message);
+                // Try copying the text twice if needed
+                if (TryCopyText(out string copiedText, copiedTextPre, onlyOnChange) ||
+                    TryCopyText(out copiedText, copiedTextPre, onlyOnChange))
+                {
+                    _copiedText = copiedText;
+                }
             }
         }
 
-        /// <summary>
-        /// Handles the click event for the 'TTS' button, which opens the Form_TTS form.
-        /// </summary>
-        private void btn_TTS_Click(object sender, EventArgs e)
+        private bool TryCopyText(out string copiedText, string previousText, bool onlyOnChange=false)
         {
-            try
-            {
-                // Create and show the TTS form
-                var ttsForm = new Form_TTS(_copiedText);
-                ShowForm(ttsForm);
-            }
-            catch (Exception ex)
-            {
-                _ = MessageBox.Show("Error opening TTS form: " + ex.Message);
-            }
-        }
+            Thread.Sleep(300);
+            SendKeys.SendWait("^c"); // Simulate pressing Ctrl+C
+            Thread.Sleep(100);
 
+            copiedText = Clipboard.GetText();
 
-        /// <summary>
-        /// Handles the click event for the 'Speach-to-text' button, which opens the Form_Speach2Text form.
-        /// </summary>
-        private void btn_Speak2Text_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Create and show the settings form as a modal dialog
-                Form_Speach2Text STTform = new Form_Speach2Text();
-                ShowForm(STTform);
-            }
-            catch (Exception ex)
-            {
-                _ = MessageBox.Show("Error opening Speach-to-text form: " + ex.Message);
-            }
+            // Return true if the clipboard content changed or if it should be returned anyhow
+            return copiedText != previousText || onlyOnChange;
         }
 
 
@@ -327,11 +278,6 @@ namespace AiCompanion
                     FormMain mainForm = new FormMain(_previousWindowHandle, "TabPageSettings");
                     ShowForm(mainForm);
                 }
-                else
-                {
-                    Form_Settings mainForm = new Form_Settings();
-                    _ = mainForm.ShowDialog();
-                }
 
             }
             catch (Exception ex)
@@ -353,11 +299,6 @@ namespace AiCompanion
                 {
                     FormMain mainForm = new FormMain(_previousWindowHandle, "TabPageAbout");
                     ShowForm(mainForm);
-                }
-                else
-                {
-                    Form_AboutBox mainForm = new Form_AboutBox();
-                    _ = mainForm.ShowDialog();
                 }
 
             }
@@ -445,9 +386,40 @@ namespace AiCompanion
                 _ = MessageBox.Show("Error creating screenshot form: " + ex.Message);
             }
 
-            
+
         }
 
+        public static string ConvertBitmapToBase64(Bitmap bitmap, long quality)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                // Set the quality parameter for JPEG compression
+                ImageCodecInfo jpegEncoder = GetEncoder(ImageFormat.Jpeg);
+                EncoderParameters encoderParams = new EncoderParameters(1);
+                encoderParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
+
+                // Save the bitmap as a JPEG with the specified quality
+                bitmap.Save(ms, jpegEncoder, encoderParams);
+
+                // Convert the byte array of the JPEG image to Base64 string
+                byte[] imageBytes = ms.ToArray();
+                return Convert.ToBase64String(imageBytes);
+            }
+        }
+
+        // Helper function to get the JPEG encoder
+        private static ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
+        }
         #region "Funtions and metods"
 
         /// <summary>
@@ -521,36 +493,93 @@ namespace AiCompanion
         }
         #endregion
 
-        public static string ConvertBitmapToBase64(Bitmap bitmap, long quality)
+        #region "Quick prompts"
+        //handle quick short cuts 1-5 for prompts
+        private void Form_mainPopup_KeyUp(object sender, KeyEventArgs e)
         {
-            using (MemoryStream ms = new MemoryStream())
+            int keyNumber = -1;
+
+            if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D5) // Checks if keys "1" to "5" were pressed
             {
-                // Set the quality parameter for JPEG compression
-                ImageCodecInfo jpegEncoder = GetEncoder(ImageFormat.Jpeg);
-                EncoderParameters encoderParams = new EncoderParameters(1);
-                encoderParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
-
-                // Save the bitmap as a JPEG with the specified quality
-                bitmap.Save(ms, jpegEncoder, encoderParams);
-
-                // Convert the byte array of the JPEG image to Base64 string
-                byte[] imageBytes = ms.ToArray();
-                return Convert.ToBase64String(imageBytes);
+                keyNumber = e.KeyCode - Keys.D0;
             }
-        }
-
-        // Helper function to get the JPEG encoder
-        private static ImageCodecInfo GetEncoder(ImageFormat format)
-        {
-            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
-            foreach (ImageCodecInfo codec in codecs)
+            else if (e.KeyCode >= Keys.NumPad1 && e.KeyCode <= Keys.NumPad5) // Checks if NumPad keys "1" to "5" were pressed
             {
-                if (codec.FormatID == format.Guid)
+                keyNumber = e.KeyCode - Keys.NumPad0;
+            }
+
+            if (keyNumber >= 1 && keyNumber <= 5)
+            {
+                string quickPrompt = Properties.Settings.Default[$"QPrompt{keyNumber}"] as string;
+                if (!string.IsNullOrEmpty(quickPrompt))
                 {
-                    return codec;
+                    QuickPrompt(_copiedText, quickPrompt);
                 }
             }
-            return null;
+            Form_hide(this);
         }
+
+        
+        private async void QuickPrompt(string inputText, string prePrompt)
+        {
+
+            OpenAIAPI openAiApi; // Instance of the OpenAI API
+
+            openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
+            if (!string.IsNullOrEmpty(inputText))
+            {
+                try
+                {
+
+                    // Create the chat request
+                    var chatRequest = new ChatRequest()
+                    {
+                        Model = Properties.Settings.Default.QPromptModel,
+                        Messages = new[]
+                        {
+                            new ChatMessage(ChatMessageRole.System, prePrompt),
+                            new ChatMessage(ChatMessageRole.User, inputText)
+                        }
+                    };
+
+
+                    this.Cursor = Cursors.WaitCursor;
+
+                    // Send the request and get the response
+                    var chatResult = await openAiApi.Chat.CreateChatCompletionAsync(chatRequest);
+
+
+                    if (chatResult != null)
+                    {
+                        var result = chatResult.Choices[0].Message.TextContent;
+                        //Debug.WriteLine("Quick prompt result: " + result);
+                        if (_previousWindowHandle != IntPtr.Zero)
+                        {
+                            // Set focus back to the previously focused window
+                            if (SetForegroundWindow(_previousWindowHandle))
+                            {
+                                Thread.Sleep(100);
+                                // Set text to clipboard
+                                Clipboard.SetText(result); 
+                                Thread.Sleep(100);
+                                // Send Ctrl+V to paste the selected text
+                                SendKeys.SendWait("^v");
+
+                                // Reset the window handle
+                                _previousWindowHandle = IntPtr.Zero;
+                            }
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    
+                }
+                catch (Exception ex)
+                {
+                    this.Cursor = Cursors.Default;
+                    Debug.WriteLine("Faild inserting back. " + ex.ToString());
+                }
+            }
+        }
+        #endregion
     }
 }

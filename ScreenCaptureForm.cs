@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace AiCompanion
 {
@@ -21,6 +22,9 @@ namespace AiCompanion
         {
             // Set form properties to make it cover the entire virtual screen (all monitors)
             this.FormBorderStyle = FormBorderStyle.None;
+            this.StartPosition = FormStartPosition.Manual;
+            //this.MinimumSize = new Size(1, 1); // Allow any size initially
+            //this.MaximumSize = Screen.PrimaryScreen.Bounds.Size; // Expandable if necessary
             this.Bounds = GetVirtualScreenBounds();
             this.TopMost = true;
             this.Opacity = 0.5; // Set transparency
@@ -37,7 +41,13 @@ namespace AiCompanion
             this.MouseMove += new MouseEventHandler(ScreenCaptureForm_MouseMove);
             this.MouseUp += new MouseEventHandler(ScreenCaptureForm_MouseUp);
         }
+        
+        private void ScreenCaptureForm_Load(object sender, EventArgs e)
+        {
+            this.StartPosition = FormStartPosition.Manual;
 
+            this.Bounds = GetVirtualScreenBounds();
+        }
         private Rectangle GetVirtualScreenBounds()
         {
             int left = int.MaxValue;
@@ -51,6 +61,8 @@ namespace AiCompanion
                 top = Math.Min(top, screen.Bounds.Top);
                 right = Math.Max(right, screen.Bounds.Right);
                 bottom = Math.Max(bottom, screen.Bounds.Bottom);
+                Debug.WriteLine($"Screen: {screen.DeviceName}, Bounds: {screen.Bounds}");
+
             }
 
             return new Rectangle(left, top, right - left, bottom - top);
@@ -88,8 +100,10 @@ namespace AiCompanion
             if (isSelecting)
             {
                 isSelecting = false;
-                CaptureSelectedRegion();
-                this.DialogResult = DialogResult.OK; // Set the dialog result to OK
+                if (CaptureSelectedRegion())
+                    this.DialogResult = DialogResult.OK; // Set the dialog result to OK
+                else
+                    this.DialogResult = DialogResult.Cancel; // Set the dialog result to cancel
                 this.Close(); // Close the form after capturing the region
             }
         }
@@ -116,7 +130,7 @@ namespace AiCompanion
             }
         }
 
-        private void CaptureSelectedRegion()
+        private bool CaptureSelectedRegion()
         {
             if (selectionRect.Width > 0 && selectionRect.Height > 0)
             {
@@ -126,7 +140,9 @@ namespace AiCompanion
                 {
                     g.CopyFromScreen(selectionRect.Location, Point.Empty, selectionRect.Size);
                 }
+                return true;
             }
+            return false;
         }
 
         public Bitmap GetCapturedImage()

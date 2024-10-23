@@ -48,5 +48,23 @@
     <Setting Name="AutoStartTTS" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="QPromptModel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">gpt-4o-mini</Value>
+    </Setting>
+    <Setting Name="QPrompt1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fix all typos, misspellings, and grammar errors:</Value>
+    </Setting>
+    <Setting Name="QPrompt2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="QPrompt3" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="QPrompt4" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="QPrompt5" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

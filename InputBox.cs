@@ -37,5 +37,10 @@ namespace AiCompanion
             this.Close();
         }
 
+        private void InputBox_Load(object sender, EventArgs e)
+        {
+            if(Properties.Settings.Default.useDarkMode)
+                this.Style = ReaLTaiizor.Enum.Metro.Style.Dark;
+        }
     }
 }

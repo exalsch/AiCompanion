@@ -195,5 +195,77 @@ namespace AiCompanion.Properties {
                 this["AutoStartTTS"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("gpt-4o-mini")]
+        public string QPromptModel {
+            get {
+                return ((string)(this["QPromptModel"]));
+            }
+            set {
+                this["QPromptModel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Fix all typos, misspellings, and grammar errors:")]
+        public string QPrompt1 {
+            get {
+                return ((string)(this["QPrompt1"]));
+            }
+            set {
+                this["QPrompt1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string QPrompt2 {
+            get {
+                return ((string)(this["QPrompt2"]));
+            }
+            set {
+                this["QPrompt2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string QPrompt3 {
+            get {
+                return ((string)(this["QPrompt3"]));
+            }
+            set {
+                this["QPrompt3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string QPrompt4 {
+            get {
+                return ((string)(this["QPrompt4"]));
+            }
+            set {
+                this["QPrompt4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string QPrompt5 {
+            get {
+                return ((string)(this["QPrompt5"]));
+            }
+            set {
+                this["QPrompt5"] = value;
+            }
+        }
     }
 }
