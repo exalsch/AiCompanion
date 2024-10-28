@@ -66,5 +66,8 @@
     <Setting Name="QPrompt5" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="API_URL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://api.openai.com/v1/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -267,5 +267,17 @@ namespace AiCompanion.Properties {
                 this["QPrompt5"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.openai.com/v1/")]
+        public string API_URL {
+            get {
+                return ((string)(this["API_URL"]));
+            }
+            set {
+                this["API_URL"] = value;
+            }
+        }
     }
 }

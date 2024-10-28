@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static OpenAI_API.Chat.ChatMessage;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
 
 namespace AiCompanion
 {
@@ -74,7 +75,8 @@ namespace AiCompanion
 
             //Load settings into controls
             txt_ApiKey.Text = Properties.Settings.Default.API_Key;
-            
+            txt_API_URL.Text = Properties.Settings.Default.API_URL;
+
             //Voice lang
             cmbSttLanguage.SelectedItem = cmbSttLanguage.Items.Contains(Properties.Settings.Default.STT_lang)
                 ? Properties.Settings.Default.STT_lang
@@ -271,8 +273,8 @@ namespace AiCompanion
         {
             try
             {
-                if (File.Exists(path))
-                    File.Delete(path);
+                if (System.IO.File.Exists(path))
+                    System.IO.File.Delete(path);
             }
             catch (Exception ex) { Debug.WriteLine(ex); } // Log the error but continue
         }
@@ -287,8 +289,8 @@ namespace AiCompanion
             {
                 try
                 {
-                    if (File.Exists(file))
-                        File.Delete(file);
+                    if (System.IO.File.Exists(file))
+                        System.IO.File.Delete(file);
                 }
                 catch (Exception ex) { Debug.WriteLine(ex); } // Log the error but continue
             }
@@ -663,7 +665,7 @@ namespace AiCompanion
                     result.Position = 0;
                     await result.CopyToAsync(memoryStream);
                     string tempFile = Path.Combine(Path.GetTempPath(), $"TTS{index}.mp3");
-                    File.WriteAllBytes(tempFile, memoryStream.ToArray());
+                    System.IO.File.WriteAllBytes(tempFile, memoryStream.ToArray());
                 }
             }
             catch (Exception ex)
@@ -1026,7 +1028,13 @@ namespace AiCompanion
             try
             {
                 Properties.Settings.Default.API_Key = txt_ApiKey.Text;
-                openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
+                
+                txt_API_URL.Text = txt_API_URL.Text.EndsWith("/")
+                    ? txt_API_URL.Text
+                    : txt_API_URL.Text + "/";
+                Properties.Settings.Default.API_URL = txt_API_URL.Text;
+                openAiApi = new OpenAIAPI(txt_ApiKey.Text);
+                openAiApi.ApiUrlFormat = txt_API_URL.Text + "{0}/{1}";
 
                 Properties.Settings.Default.FirstLaunch = false;
                 Properties.Settings.Default.useDarkMode = switchDarkMode.Switched;

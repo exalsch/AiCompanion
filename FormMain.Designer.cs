@@ -1600,7 +1600,6 @@
             txt_API_URL.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
             txt_API_URL.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
             txt_API_URL.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
-            txt_API_URL.Enabled = false;
             txt_API_URL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             txt_API_URL.HoverColor = System.Drawing.Color.FromArgb(102, 102, 102);
             txt_API_URL.Image = null;
