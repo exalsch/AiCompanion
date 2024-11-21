@@ -42,20 +42,18 @@ namespace AiCompanion
                 
                 //Show settings as dialog but hide other tabs
                 FormMain setForm = new FormMain(0, "TabPageSettings");
-                foreach (ReaLTaiizor.Controls.TabPage tabPage in setForm.TabControl.TabPages)
+                foreach (ReaLTaiizor.Child.Metro.MetroTabPage tabPage in setForm.TabControl.TabPages)
                 {
                     if(tabPage.Name!= "TabPageSettings")
-                        tabPage.Hide();
+                        tabPage.Hide();                    
 
                 }
                 setForm.ShowDialog();
-                foreach(ReaLTaiizor.Controls.TabPage tabPage in setForm.TabControl.TabPages)
+                foreach(ReaLTaiizor.Child.Metro.MetroTabPage tabPage in setForm.TabControl.TabPages)
                 {
                     if (tabPage.Name != "TabPageSettings")
                         tabPage.Show();
                 }
-
-
             }
             if (!string.IsNullOrEmpty(apiKey))
             {

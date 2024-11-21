@@ -238,7 +238,7 @@
             btn_sendPrompt.Size = new System.Drawing.Size(64, 30);
             btn_sendPrompt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             btn_sendPrompt.StyleManager = metroStyleManager;
-            btn_sendPrompt.TabIndex = 10;
+            btn_sendPrompt.TabIndex = 1;
             btn_sendPrompt.Text = "Send";
             btn_sendPrompt.ThemeAuthor = "Taiizor";
             btn_sendPrompt.ThemeName = "MetroLight";
@@ -279,7 +279,7 @@
             cmb_Model.Size = new System.Drawing.Size(118, 26);
             cmb_Model.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             cmb_Model.StyleManager = metroStyleManager;
-            cmb_Model.TabIndex = 9;
+            cmb_Model.TabIndex = 4;
             cmb_Model.ThemeAuthor = "Taiizor";
             cmb_Model.ThemeName = "MetroLight";
             toolTipMain.SetToolTip(cmb_Model, "Text prompting");
@@ -308,7 +308,7 @@
             btn_copyPrompt.Size = new System.Drawing.Size(65, 30);
             btn_copyPrompt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             btn_copyPrompt.StyleManager = metroStyleManager;
-            btn_copyPrompt.TabIndex = 7;
+            btn_copyPrompt.TabIndex = 2;
             btn_copyPrompt.Text = "Copy";
             btn_copyPrompt.ThemeAuthor = "Taiizor";
             btn_copyPrompt.ThemeName = "MetroLight";
@@ -338,7 +338,7 @@
             btn_insertPrompt.Size = new System.Drawing.Size(52, 30);
             btn_insertPrompt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             btn_insertPrompt.StyleManager = metroStyleManager;
-            btn_insertPrompt.TabIndex = 6;
+            btn_insertPrompt.TabIndex = 3;
             btn_insertPrompt.Text = "Insert";
             btn_insertPrompt.ThemeAuthor = "Taiizor";
             btn_insertPrompt.ThemeName = "MetroLight";
@@ -369,7 +369,7 @@
             txt_inputPrompt.Size = new System.Drawing.Size(471, 190);
             txt_inputPrompt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             txt_inputPrompt.StyleManager = metroStyleManager;
-            txt_inputPrompt.TabIndex = 5;
+            txt_inputPrompt.TabIndex = 0;
             txt_inputPrompt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             txt_inputPrompt.ThemeAuthor = "Taiizor";
             txt_inputPrompt.ThemeName = "MetroLight";
@@ -377,6 +377,8 @@
             txt_inputPrompt.UseSystemPasswordChar = false;
             txt_inputPrompt.WatermarkText = "Prompt";
             txt_inputPrompt.TextChanged += txt_input_TextChanged;
+            txt_inputPrompt.Click += txt_inputPrompt_Click;
+            txt_inputPrompt.KeyDown += txt_inputPrompt_KeyDown;
             txt_inputPrompt.KeyUp += txt_inputPrompt_KeyDown;
             // 
             // btnRemovePrePromt
@@ -402,7 +404,7 @@
             btnRemovePrePromt.Size = new System.Drawing.Size(69, 30);
             btnRemovePrePromt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             btnRemovePrePromt.StyleManager = metroStyleManager;
-            btnRemovePrePromt.TabIndex = 4;
+            btnRemovePrePromt.TabIndex = 7;
             btnRemovePrePromt.Text = "Remove";
             btnRemovePrePromt.ThemeAuthor = "Taiizor";
             btnRemovePrePromt.ThemeName = "MetroLight";
@@ -432,7 +434,7 @@
             btnAddPrePromt.Size = new System.Drawing.Size(48, 30);
             btnAddPrePromt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             btnAddPrePromt.StyleManager = metroStyleManager;
-            btnAddPrePromt.TabIndex = 3;
+            btnAddPrePromt.TabIndex = 6;
             btnAddPrePromt.Text = "Add";
             btnAddPrePromt.ThemeAuthor = "Taiizor";
             btnAddPrePromt.ThemeName = "MetroLight";
@@ -465,7 +467,7 @@
             cmbPrePrompts.Size = new System.Drawing.Size(335, 26);
             cmbPrePrompts.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             cmbPrePrompts.StyleManager = metroStyleManager;
-            cmbPrePrompts.TabIndex = 2;
+            cmbPrePrompts.TabIndex = 5;
             cmbPrePrompts.ThemeAuthor = "Taiizor";
             cmbPrePrompts.ThemeName = "MetroLight";
             toolTipMain.SetToolTip(cmbPrePrompts, "Text prompting");
@@ -492,7 +494,7 @@
             txt_resultPrompt.Size = new System.Drawing.Size(475, 321);
             txt_resultPrompt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             txt_resultPrompt.StyleManager = metroStyleManager;
-            txt_resultPrompt.TabIndex = 1;
+            txt_resultPrompt.TabIndex = 8;
             txt_resultPrompt.ThemeAuthor = "Taiizor";
             txt_resultPrompt.ThemeName = "MetroLight";
             toolTipMain.SetToolTip(txt_resultPrompt, "Text prompting");

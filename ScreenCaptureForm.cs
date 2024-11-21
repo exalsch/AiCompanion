@@ -100,6 +100,7 @@ namespace AiCompanion
             if (isSelecting)
             {
                 isSelecting = false;
+                this.Hide();
                 if (CaptureSelectedRegion())
                     this.DialogResult = DialogResult.OK; // Set the dialog result to OK
                 else
@@ -134,11 +135,20 @@ namespace AiCompanion
         {
             if (selectionRect.Width > 0 && selectionRect.Height > 0)
             {
+                // Convert selectionRect.Location to the absolute desktop space
+                var absoluteSelectionStart = this.PointToScreen(selectionRect.Location); // If selectionRect.Location is in the form's coordinate system
+
+                // Get the correct screen that contains the selection starting point
+                Screen selectedScreen = Screen.FromPoint(absoluteSelectionStart);
+
+                
                 // Capture the selected region as a screenshot
                 capturedImage = new Bitmap(selectionRect.Width, selectionRect.Height);
+
                 using (Graphics g = Graphics.FromImage(capturedImage))
                 {
-                    g.CopyFromScreen(selectionRect.Location, Point.Empty, selectionRect.Size);
+                    // Directly use absolute coordinates for screen capture
+                    g.CopyFromScreen(absoluteSelectionStart, Point.Empty, selectionRect.Size);
                 }
                 return true;
             }

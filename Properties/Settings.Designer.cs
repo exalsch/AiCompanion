@@ -270,7 +270,7 @@ namespace AiCompanion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://api.openai.com/v1/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.openai.com/")]
         public string API_URL {
             get {
                 return ((string)(this["API_URL"]));

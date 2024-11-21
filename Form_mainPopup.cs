@@ -49,7 +49,7 @@ namespace AiCompanion
         // Store the handle of the window that had focus
         private IntPtr _previousWindowHandle;
         private string _copiedText = ""; // Holds the copied text
-
+        string copiedTextPre = ""; //holds previous clipboard text (used in quick prompts)
         // Constructor for the main popup form
         public Form_mainPopup()
         {
@@ -201,7 +201,7 @@ namespace AiCompanion
             _previousWindowHandle = GetForegroundWindow();
 
             // Get the current content of the clipboard to compare
-            string copiedTextPre = Clipboard.GetText();
+            copiedTextPre = Clipboard.GetText();
 
             // Focus on the previous window and send a Ctrl+C to copy selected text
             if (_previousWindowHandle != IntPtr.Zero && SetForegroundWindow(_previousWindowHandle))
@@ -220,11 +220,12 @@ namespace AiCompanion
             Thread.Sleep(300);
             SendKeys.SendWait("^c"); // Simulate pressing Ctrl+C
             Thread.Sleep(100);
-
             copiedText = Clipboard.GetText();
+            if (copiedText == previousText && onlyOnChange)
+                copiedText = "";
 
             // Return true if the clipboard content changed or if it should be returned anyhow
-            return copiedText != previousText || onlyOnChange;
+            return copiedText != previousText || !onlyOnChange;
         }
 
 
@@ -513,7 +514,7 @@ namespace AiCompanion
                 string quickPrompt = Properties.Settings.Default[$"QPrompt{keyNumber}"] as string;
                 if (!string.IsNullOrEmpty(quickPrompt))
                 {
-                    QuickPrompt(_copiedText, quickPrompt);
+                    QuickPrompt(_copiedText.Length>0 ? _copiedText : copiedTextPre, quickPrompt);
                 }
             }
             Form_hide(this);
@@ -526,6 +527,8 @@ namespace AiCompanion
             OpenAIAPI openAiApi; // Instance of the OpenAI API
 
             openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
+            openAiApi.ApiUrlFormat = Properties.Settings.Default.API_URL + "{0}/{1}";
+
             if (!string.IsNullOrEmpty(inputText))
             {
                 try

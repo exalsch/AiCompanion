@@ -52,6 +52,7 @@ namespace AiCompanion
 
             //init API Client
             openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
+            openAiApi.ApiUrlFormat = Properties.Settings.Default.API_URL + "{0}/{1}";
             //pre fill controls and vars
             txt_TextTTS.Text = copiedText;
             txt_inputPrompt.Text = copiedText;
@@ -69,6 +70,7 @@ namespace AiCompanion
             {
                 picPrompt.Visible = false;
             }
+
 
             statusLabel.Text = "Idle";
             toolTipMain.SetToolTip(statusLabel, null);
@@ -358,7 +360,7 @@ namespace AiCompanion
                 waveStream.Dispose(); // Dispose the stream after saving the MP3
                 waveIn.Dispose(); // Clean up the waveIn resource
                 transcribe(pathToFile);
-                statusLabel.Text = "Idle";
+                //statusLabel.Text = "Idle";
                 toolTipMain.SetToolTip(statusLabel, null);
             };
 
@@ -473,8 +475,9 @@ namespace AiCompanion
 
                 string txt = txt_TextTTS.Text;
                 string voice = cmbBxVoiceTTS.Text.ToLower();
-                double speed = (double)((4 / 100) * range_SpeedTTS.Value);
-
+                double speed = (double)((4.0 / 100) * range_SpeedTTS.Value);
+                speed = speed < 0.25 ? 0.25 : speed; //min 0,25
+                speed = speed > 4.0 ? 4 : speed; //max 4
                 // Stream the TTS result asynchronously
                 await Task.Run(() => StreamTTS(txt, voice, speed));
 
@@ -800,6 +803,7 @@ namespace AiCompanion
         /// </summary>
         private async void btn_send_Click(object sender, EventArgs e)
         {
+            txt_resultPrompt.Text = "";
             try
             {
                 string inputText = txt_inputPrompt.Text;
@@ -846,6 +850,20 @@ namespace AiCompanion
                 {
                     MessageBox.Show("Error: Unable to communicate with OpenAI API");
                 }
+            }
+
+            catch (System.Net.Http.HttpRequestException ex) when (ex.Message.Contains("NotFound"))
+            {
+                MessageBox.Show("HTTP Request Error: URL not found. Please check the API endpoint URL.\n\nError details: " + ex.Message,
+                                "Request Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Optional: additional handling, e.g., retry logic or alert to user
+            }
+            catch (System.Net.Http.HttpRequestException ex)
+            {
+                // General HttpRequestException handling for any other HTTP-related errors
+                MessageBox.Show("An HTTP request error occurred.\n\nError details: " + ex.Message,
+                                "Request Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -916,7 +934,13 @@ namespace AiCompanion
         {
             try
             {
-                btn_sendPrompt.Enabled = true;
+                if (txt_inputPrompt.Text.Length>0)
+                    btn_sendPrompt.Enabled = true;
+                else
+                    btn_sendPrompt.Enabled = false;
+                
+                if (txt_inputPrompt.Text == "Prompt here...")
+                    txt_inputPrompt.Text = "";
             }
             catch (Exception ex)
             {
@@ -1028,7 +1052,7 @@ namespace AiCompanion
             try
             {
                 Properties.Settings.Default.API_Key = txt_ApiKey.Text;
-                
+
                 txt_API_URL.Text = txt_API_URL.Text.EndsWith("/")
                     ? txt_API_URL.Text
                     : txt_API_URL.Text + "/";
@@ -1048,13 +1072,15 @@ namespace AiCompanion
 
                 Properties.Settings.Default.HotKeyKey = txt_HotkeyKey.Text;
                 Properties.Settings.Default.HotKeyMod = cmbHotKeyMod.SelectedItem.ToString();
-                Properties.Settings.Default.QPromptModel = cmb_SettingQuickPromptModel.SelectedItem.ToString();
+                if (cmb_SettingQuickPromptModel.Items.Count > 0) { 
+                    Properties.Settings.Default.QPromptModel = cmb_SettingQuickPromptModel.SelectedItem.ToString();
+                }                
                 Properties.Settings.Default.QPrompt1 = txt_QuickPrompt1.Text;
                 Properties.Settings.Default.QPrompt2 = txt_QuickPrompt2.Text;
                 Properties.Settings.Default.QPrompt3 = txt_QuickPrompt3.Text;
                 Properties.Settings.Default.QPrompt4 = txt_QuickPrompt4.Text;
                 Properties.Settings.Default.QPrompt5 = txt_QuickPrompt5.Text;
-
+                
                 Properties.Settings.Default.Save();
                 //handle autostart
                 AutoStartManager autoStartManager = new AutoStartManager(Assembly.GetExecutingAssembly().GetName().Name);
@@ -1065,7 +1091,7 @@ namespace AiCompanion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error copying to clipboard: " + ex.Message);
+                MessageBox.Show("Error Saving: " + ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
 
@@ -1164,5 +1190,10 @@ namespace AiCompanion
             }
         }
 
+        private void txt_inputPrompt_Click(object sender, EventArgs e)
+        {
+            if (txt_inputPrompt.Text == "Prompt here...")
+                txt_inputPrompt.Text = "";
+        }
     }
 }
