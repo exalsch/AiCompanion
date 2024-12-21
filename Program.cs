@@ -5,18 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Reflection;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//TODO: Add Settings window to allow setting API key, model, API Endpoint,pre-promt additions, https://stackoverflow.com/a/62018445/3193057
+
 //TODO: Add tokenizer to be able calculating cost (https://antbucc.github.io/PE4GenAI/tokenization/)
-//TODO: Add region screenshoter to send it to GPT4-o-vision with a promt. New form?
-//TODO: Add autostart option
-/*TODO: Enable local OOLAMA usage:
- * OpenAIClientOptions settings = new()
- *{
- *    Endpoint = new Uri("https://my-domain.tld")
- *}; 
- */
+
+
 
 namespace AiCompanion
 {
@@ -98,5 +95,6 @@ namespace AiCompanion
                 Debug.WriteLine($"Error while loading models: {ex.Message}");
             }
         }
+
     }
 }

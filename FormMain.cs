@@ -267,6 +267,10 @@ namespace AiCompanion
             }
         }
 
+        private void txt_inputPrompt_KeyPressed(object sender, KeyPressEventArgs e)
+        {
+
+        }
         /// <summary>
         /// Tries to delete file
         /// </summary>
@@ -306,7 +310,9 @@ namespace AiCompanion
             {
                 try
                 {
+                    txt_resultSTT.Text = "";
                     StartRecording();
+
                 }
                 catch (Exception ex)
                 {
@@ -452,7 +458,7 @@ namespace AiCompanion
 
         private void btn_asPromptSTT_Click(object sender, EventArgs e)
         {
-            txt_inputPrompt.Text = txt_resultSTT.Text;
+            txt_inputPrompt.Text = txt_resultSTT.Text + Environment.NewLine + txt_inputPrompt.Text;
 
             TabControl.SelectTab("TabPagePrompt");
             txt_inputPrompt.Select(0, 0);
@@ -460,6 +466,7 @@ namespace AiCompanion
         }
 
         #endregion
+
         #region "TTS"
 
         /// <summary>
@@ -793,6 +800,41 @@ namespace AiCompanion
             }
 
         }
+        private void range_SpeedTTS_Scroll(object sender)
+        {
+            try
+            {
+                Properties.Settings.Default.TtsSpeed = range_SpeedTTS.Value;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error copying to clipboard: " + ex.Message);
+            }
+        }
+
+        private void cmbBxVoiceTTS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.TtsVoice = cmbBxVoiceTTS.SelectedItem.ToString();
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error copying to clipboard: " + ex.Message);
+            }
+        }
+
+        private void TabControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Check if the focused control is btn_record and the space key was pressed
+            if (TabControl.SelectedTab.Name == "TabPageSTT" && e.KeyCode == Keys.Space)
+            {
+                // Handle the space key 
+                btn_record_Click(sender, e);
+            }
+        }
         #endregion
 
         #region "Prompt"
@@ -934,11 +976,11 @@ namespace AiCompanion
         {
             try
             {
-                if (txt_inputPrompt.Text.Length>0)
+                if (txt_inputPrompt.Text.Length > 0)
                     btn_sendPrompt.Enabled = true;
                 else
                     btn_sendPrompt.Enabled = false;
-                
+
                 if (txt_inputPrompt.Text == "Prompt here...")
                     txt_inputPrompt.Text = "";
             }
@@ -1035,7 +1077,22 @@ namespace AiCompanion
                 btn_play_Click(this, EventArgs.Empty);
 
         }
+        private void setAsPromptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txt_inputPrompt.Text = txt_resultPrompt.Text;
+            txt_resultPrompt.Text = "";
+            btn_sendPrompt.Enabled = true;
+            txt_resultPromptContextMenu.Hide();
+            btn_sendPrompt.Focus();
+            txt_resultPromptContextMenu.Hide();
 
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txt_resultPrompt.Copy();
+            txt_resultPromptContextMenu.Hide();
+        }
         private void picPromptToolStripMenuItemRemove_Click(object sender, EventArgs e)
         {
             base64Image = null;
@@ -1043,8 +1100,13 @@ namespace AiCompanion
             picPrompt.Visible = false;
         }
 
-        #endregion
+        private void txt_inputPrompt_Click(object sender, EventArgs e)
+        {
+            if (txt_inputPrompt.Text == "Prompt here...")
+                txt_inputPrompt.Text = "";
+        }
 
+        #endregion
 
         #region "Settings"
         private void btn_saveSettings_Click(object sender, EventArgs e)
@@ -1072,15 +1134,16 @@ namespace AiCompanion
 
                 Properties.Settings.Default.HotKeyKey = txt_HotkeyKey.Text;
                 Properties.Settings.Default.HotKeyMod = cmbHotKeyMod.SelectedItem.ToString();
-                if (cmb_SettingQuickPromptModel.Items.Count > 0) { 
+                if (cmb_SettingQuickPromptModel.Items.Count > 0)
+                {
                     Properties.Settings.Default.QPromptModel = cmb_SettingQuickPromptModel.SelectedItem.ToString();
-                }                
+                }
                 Properties.Settings.Default.QPrompt1 = txt_QuickPrompt1.Text;
                 Properties.Settings.Default.QPrompt2 = txt_QuickPrompt2.Text;
                 Properties.Settings.Default.QPrompt3 = txt_QuickPrompt3.Text;
                 Properties.Settings.Default.QPrompt4 = txt_QuickPrompt4.Text;
                 Properties.Settings.Default.QPrompt5 = txt_QuickPrompt5.Text;
-                
+
                 Properties.Settings.Default.Save();
                 //handle autostart
                 AutoStartManager autoStartManager = new AutoStartManager(Assembly.GetExecutingAssembly().GetName().Name);
@@ -1123,34 +1186,6 @@ namespace AiCompanion
             // Block everything else as invalid
             return false;
         }
-        #endregion
-
-        private void range_SpeedTTS_Scroll(object sender)
-        {
-            try
-            {
-                Properties.Settings.Default.TtsSpeed = range_SpeedTTS.Value;
-                Properties.Settings.Default.Save();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error copying to clipboard: " + ex.Message);
-            }
-        }
-
-        private void cmbBxVoiceTTS_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                Properties.Settings.Default.TtsVoice = cmbBxVoiceTTS.SelectedItem.ToString();
-                Properties.Settings.Default.Save();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error copying to clipboard: " + ex.Message);
-            }
-        }
-
         private void switchDarkMode_SwitchedChanged(object sender)
         {
             try
@@ -1168,6 +1203,8 @@ namespace AiCompanion
             }
         }
 
+        #endregion
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             MinimumSize = new System.Drawing.Size(412, 562);
@@ -1175,25 +1212,5 @@ namespace AiCompanion
             chkAutoStartTTS.Checked = Properties.Settings.Default.AutoStartTTS;
         }
 
-        private void checkBoxDownloadTTS_CheckedChanged(object sender)
-        {
-
-        }
-
-        private void TabControl_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Check if the focused control is btn_record and the space key was pressed
-            if (TabControl.SelectedTab.Name == "TabPageSTT" && e.KeyCode == Keys.Space)
-            {
-                // Handle the space key 
-                btn_record_Click(sender, e);
-            }
-        }
-
-        private void txt_inputPrompt_Click(object sender, EventArgs e)
-        {
-            if (txt_inputPrompt.Text == "Prompt here...")
-                txt_inputPrompt.Text = "";
-        }
     }
 }

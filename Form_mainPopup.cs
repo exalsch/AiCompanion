@@ -151,11 +151,13 @@ namespace AiCompanion
                         btn_promptN.Text = "&Prompt";
                         btn_TtsN.Text = "&TTS";
                         btn_Speak2TextN.Text = "&STT";
+                        btn_ImagePrompt.Text = "&Image";
 
                         //remove  & as hotkey at old
                         btn_prompt.Text = "Prompt";
                         btn_TTS.Text = "TTS";
                         btn_Speak2Text.Text = "STT";
+
 
                         //hide old buttons
                         btn_prompt.Visible = false;

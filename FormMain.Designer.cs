@@ -46,6 +46,8 @@
             txt_resultPrompt = new ReaLTaiizor.Controls.MetroRichTextBox();
             txt_resultPromptContextMenu = new ReaLTaiizor.Controls.MetroContextMenuStrip();
             sendToTTSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            setAsPromptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             metroDivider1 = new ReaLTaiizor.Controls.MetroDivider();
             TabPageTTS = new ReaLTaiizor.Child.Metro.MetroTabPage();
             txt_TextTTS = new ReaLTaiizor.Controls.MetroTextBox();
@@ -392,7 +394,7 @@
             btnRemovePrePromt.HoverColor = System.Drawing.Color.FromArgb(95, 207, 255);
             btnRemovePrePromt.HoverTextColor = System.Drawing.Color.White;
             btnRemovePrePromt.IsDerivedStyle = true;
-            btnRemovePrePromt.Location = new System.Drawing.Point(393, 333);
+            btnRemovePrePromt.Location = new System.Drawing.Point(401, 333);
             btnRemovePrePromt.Margin = new System.Windows.Forms.Padding(2);
             btnRemovePrePromt.Name = "btnRemovePrePromt";
             btnRemovePrePromt.NormalBorderColor = System.Drawing.Color.FromArgb(65, 177, 225);
@@ -422,7 +424,7 @@
             btnAddPrePromt.HoverColor = System.Drawing.Color.FromArgb(95, 207, 255);
             btnAddPrePromt.HoverTextColor = System.Drawing.Color.White;
             btnAddPrePromt.IsDerivedStyle = true;
-            btnAddPrePromt.Location = new System.Drawing.Point(341, 333);
+            btnAddPrePromt.Location = new System.Drawing.Point(343, 333);
             btnAddPrePromt.Margin = new System.Windows.Forms.Padding(2);
             btnAddPrePromt.Name = "btnAddPrePromt";
             btnAddPrePromt.NormalBorderColor = System.Drawing.Color.FromArgb(65, 177, 225);
@@ -464,7 +466,7 @@
             cmbPrePrompts.Name = "cmbPrePrompts";
             cmbPrePrompts.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
             cmbPrePrompts.SelectedItemForeColor = System.Drawing.Color.White;
-            cmbPrePrompts.Size = new System.Drawing.Size(335, 26);
+            cmbPrePrompts.Size = new System.Drawing.Size(338, 26);
             cmbPrePrompts.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             cmbPrePrompts.StyleManager = metroStyleManager;
             cmbPrePrompts.TabIndex = 5;
@@ -503,9 +505,9 @@
             // txt_resultPromptContextMenu
             // 
             txt_resultPromptContextMenu.IsDerivedStyle = true;
-            txt_resultPromptContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { sendToTTSToolStripMenuItem });
+            txt_resultPromptContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { sendToTTSToolStripMenuItem, setAsPromptToolStripMenuItem, copyToolStripMenuItem });
             txt_resultPromptContextMenu.Name = "txt_resultPromptContextMenu";
-            txt_resultPromptContextMenu.Size = new System.Drawing.Size(136, 26);
+            txt_resultPromptContextMenu.Size = new System.Drawing.Size(148, 70);
             txt_resultPromptContextMenu.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             txt_resultPromptContextMenu.StyleManager = null;
             txt_resultPromptContextMenu.ThemeAuthor = "Taiizor";
@@ -514,9 +516,23 @@
             // sendToTTSToolStripMenuItem
             // 
             sendToTTSToolStripMenuItem.Name = "sendToTTSToolStripMenuItem";
-            sendToTTSToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            sendToTTSToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             sendToTTSToolStripMenuItem.Text = "Send to TTS";
             sendToTTSToolStripMenuItem.Click += sendToTTSToolStripMenuItem_Click;
+            // 
+            // setAsPromptToolStripMenuItem
+            // 
+            setAsPromptToolStripMenuItem.Name = "setAsPromptToolStripMenuItem";
+            setAsPromptToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            setAsPromptToolStripMenuItem.Text = "Set as prompt";
+            setAsPromptToolStripMenuItem.Click += setAsPromptToolStripMenuItem_Click;
+            // 
+            // copyToolStripMenuItem
+            // 
+            copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            copyToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            copyToolStripMenuItem.Text = "Copy";
+            copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             // 
             // metroDivider1
             // 
@@ -717,7 +733,6 @@
             checkBoxDownloadTTS.ThemeAuthor = "Taiizor";
             checkBoxDownloadTTS.ThemeName = "MetroLight";
             toolTipMain.SetToolTip(checkBoxDownloadTTS, "Read aloud text");
-            checkBoxDownloadTTS.CheckedChanged += checkBoxDownloadTTS_CheckedChanged;
             // 
             // btn_DownloadTTS
             // 
@@ -859,7 +874,7 @@
             btn_asPromptSTT.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             btn_asPromptSTT.StyleManager = metroStyleManager;
             btn_asPromptSTT.TabIndex = 5;
-            btn_asPromptSTT.Text = "As Prompt";
+            btn_asPromptSTT.Text = "To Prompt";
             btn_asPromptSTT.ThemeAuthor = "Taiizor";
             btn_asPromptSTT.ThemeName = "MetroLight";
             toolTipMain.SetToolTip(btn_asPromptSTT, "Record and transcribe voice");
@@ -1004,7 +1019,7 @@
             txt_resultSTT.Margin = new System.Windows.Forms.Padding(2);
             txt_resultSTT.MaxLength = 32767;
             txt_resultSTT.Name = "txt_resultSTT";
-            txt_resultSTT.ReadOnly = true;
+            txt_resultSTT.ReadOnly = false;
             txt_resultSTT.Size = new System.Drawing.Size(469, 556);
             txt_resultSTT.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             txt_resultSTT.StyleManager = metroStyleManager;
@@ -2037,5 +2052,8 @@
         private ReaLTaiizor.Controls.MetroTextBox txt_QuickPrompt2;
         private ReaLTaiizor.Controls.MetroLabel metroLabel10;
         private ReaLTaiizor.Controls.MetroLinkLabel metroLinkLabel5;
+        private System.Windows.Forms.ToolStripMenuItem setAsPromptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private ReaLTaiizor.Controls.MetroButton btn_prompt_STTin;
     }
 }

@@ -54,8 +54,8 @@ You can download the latest version from the [Releases page](https://github.com/
 
 ## Roadmap
 
-- Customizable hotkey support.
 - Portability improvements (removal of dependency on user profile for settings).
+- Add STT as prompt on copied text.
 
 ## Contributing
 
