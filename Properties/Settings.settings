@@ -9,13 +9,13 @@
       <Value Profile="(Default)">gpt-4o-mini</Value>
     </Setting>
     <Setting Name="PrePromt" Type="System.String" Scope="User">
-      <Value Profile="(Default)">You are a helpful assistant for the user of this client PC. try to give a direct reply that can be pasted directly by the user.</Value>
+      <Value Profile="(Default)">You are a helpful assistant for the user of this client PC. Give a direct result that can be used directly by the user.</Value>
     </Setting>
     <Setting Name="HotKeyMod" Type="System.String" Scope="User">
       <Value Profile="(Default)">Alt</Value>
     </Setting>
     <Setting Name="HotKeyKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">g</Value>
+      <Value Profile="(Default)">a</Value>
     </Setting>
     <Setting Name="FirstLaunch" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

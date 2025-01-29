@@ -49,8 +49,8 @@ namespace AiCompanion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("You are a helpful assistant for the user of this client PC. try to give a direct " +
-            "reply that can be pasted directly by the user.")]
+        [global::System.Configuration.DefaultSettingValueAttribute("You are a helpful assistant for the user of this client PC. Give a direct result " +
+            "that can be used directly by the user.")]
         public string PrePromt {
             get {
                 return ((string)(this["PrePromt"]));
@@ -74,7 +74,7 @@ namespace AiCompanion.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("g")]
+        [global::System.Configuration.DefaultSettingValueAttribute("a")]
         public string HotKeyKey {
             get {
                 return ((string)(this["HotKeyKey"]));
