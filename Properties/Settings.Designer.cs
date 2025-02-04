@@ -12,7 +12,7 @@ namespace AiCompanion.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.11.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.12.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -50,7 +50,7 @@ namespace AiCompanion.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("You are a helpful assistant for the user of this client PC. Give a direct result " +
-            "that can be used directly by the user.")]
+            "that can be used directly by the user in other applications.")]
         public string PrePromt {
             get {
                 return ((string)(this["PrePromt"]));
@@ -277,6 +277,18 @@ namespace AiCompanion.Properties {
             }
             set {
                 this["API_URL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ExcludeAiThoughts {
+            get {
+                return ((bool)(this["ExcludeAiThoughts"]));
+            }
+            set {
+                this["ExcludeAiThoughts"] = value;
             }
         }
     }

@@ -33,9 +33,9 @@ namespace AiCompanion
             //Check settings
             string apiKey = Properties.Settings.Default.API_Key;
 
-            if (string.IsNullOrEmpty(apiKey) || Properties.Settings.Default.FirstLaunch)
+            if ( Properties.Settings.Default.FirstLaunch)
             {
-                MessageBox.Show("API key need to be set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("API key need to be set/verfied.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 
                 //Show settings as dialog but hide other tabs
                 FormMain setForm = new FormMain(0, "TabPageSettings");
@@ -52,11 +52,10 @@ namespace AiCompanion
                         tabPage.Show();
                 }
             }
-            if (!string.IsNullOrEmpty(apiKey))
-            {
+            
                 // Call the async function to populate the models list
                 LoadModelsAsync(apiKey).GetAwaiter().GetResult();
-            }
+            
 
                 // Create the form but do not show it initially
                 Form_mainPopup mainForm = new Form_mainPopup();
@@ -75,7 +74,11 @@ namespace AiCompanion
             try
             {
                 var api = new OpenAIAPI(apiKey);
-
+                string url = Properties.Settings.Default.API_URL;
+                url = url.EndsWith("/")
+                    ? url
+                    : url + "/";
+                api.ApiUrlFormat = url + "{0}/{1}";
                 // Get the available models
                 var models = await api.Models.GetModelsAsync();
 

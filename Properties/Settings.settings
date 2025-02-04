@@ -9,7 +9,7 @@
       <Value Profile="(Default)">gpt-4o-mini</Value>
     </Setting>
     <Setting Name="PrePromt" Type="System.String" Scope="User">
-      <Value Profile="(Default)">You are a helpful assistant for the user of this client PC. Give a direct result that can be used directly by the user.</Value>
+      <Value Profile="(Default)">You are a helpful assistant for the user of this client PC. Give a direct result that can be used directly by the user in other applications.</Value>
     </Setting>
     <Setting Name="HotKeyMod" Type="System.String" Scope="User">
       <Value Profile="(Default)">Alt</Value>
@@ -68,6 +68,9 @@
     </Setting>
     <Setting Name="API_URL" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://api.openai.com/</Value>
+    </Setting>
+    <Setting Name="ExcludeAiThoughts" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

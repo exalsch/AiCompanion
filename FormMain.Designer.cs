@@ -67,6 +67,9 @@
             btn_record = new ReaLTaiizor.Controls.MetroDefaultButton();
             txt_resultSTT = new ReaLTaiizor.Controls.MetroRichTextBox();
             TabPageSettings = new ReaLTaiizor.Child.Metro.MetroTabPage();
+            chkExThoughts = new ReaLTaiizor.Controls.MetroCheckBox();
+            txt_PrePrompt = new ReaLTaiizor.Controls.MetroTextBox();
+            label_PrePrompt = new ReaLTaiizor.Controls.MetroLabel();
             txt_QuickPrompt5 = new ReaLTaiizor.Controls.MetroTextBox();
             metroLabel13 = new ReaLTaiizor.Controls.MetroLabel();
             txt_QuickPrompt4 = new ReaLTaiizor.Controls.MetroTextBox();
@@ -1032,6 +1035,9 @@
             // TabPageSettings
             // 
             TabPageSettings.BaseColor = System.Drawing.Color.White;
+            TabPageSettings.Controls.Add(chkExThoughts);
+            TabPageSettings.Controls.Add(txt_PrePrompt);
+            TabPageSettings.Controls.Add(label_PrePrompt);
             TabPageSettings.Controls.Add(txt_QuickPrompt5);
             TabPageSettings.Controls.Add(metroLabel13);
             TabPageSettings.Controls.Add(txt_QuickPrompt4);
@@ -1075,6 +1081,71 @@
             TabPageSettings.ThemeName = "MetroLight";
             TabPageSettings.ToolTipText = null;
             // 
+            // chkExThoughts
+            // 
+            chkExThoughts.BackColor = System.Drawing.Color.Transparent;
+            chkExThoughts.BackgroundColor = System.Drawing.Color.White;
+            chkExThoughts.BorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            chkExThoughts.Checked = false;
+            chkExThoughts.CheckSignColor = System.Drawing.Color.FromArgb(65, 177, 225);
+            chkExThoughts.CheckState = ReaLTaiizor.Enum.Metro.CheckState.Unchecked;
+            chkExThoughts.DisabledBorderColor = System.Drawing.Color.FromArgb(205, 205, 205);
+            chkExThoughts.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            chkExThoughts.IsDerivedStyle = true;
+            chkExThoughts.Location = new System.Drawing.Point(94, 295);
+            chkExThoughts.Name = "chkExThoughts";
+            chkExThoughts.SignStyle = ReaLTaiizor.Enum.Metro.SignStyle.Sign;
+            chkExThoughts.Size = new System.Drawing.Size(151, 16);
+            chkExThoughts.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            chkExThoughts.StyleManager = null;
+            chkExThoughts.TabIndex = 30;
+            chkExThoughts.Text = "Exclude Ai Thoughts";
+            chkExThoughts.ThemeAuthor = "Taiizor";
+            chkExThoughts.ThemeName = "MetroLight";
+            // 
+            // txt_PrePrompt
+            // 
+            txt_PrePrompt.AutoCompleteCustomSource = null;
+            txt_PrePrompt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            txt_PrePrompt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            txt_PrePrompt.BorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_PrePrompt.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            txt_PrePrompt.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_PrePrompt.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            txt_PrePrompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            txt_PrePrompt.HoverColor = System.Drawing.Color.FromArgb(102, 102, 102);
+            txt_PrePrompt.Image = null;
+            txt_PrePrompt.IsDerivedStyle = true;
+            txt_PrePrompt.Lines = null;
+            txt_PrePrompt.Location = new System.Drawing.Point(91, 261);
+            txt_PrePrompt.MaxLength = 32767;
+            txt_PrePrompt.Multiline = false;
+            txt_PrePrompt.Name = "txt_PrePrompt";
+            txt_PrePrompt.ReadOnly = false;
+            txt_PrePrompt.Size = new System.Drawing.Size(378, 30);
+            txt_PrePrompt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            txt_PrePrompt.StyleManager = null;
+            txt_PrePrompt.TabIndex = 29;
+            txt_PrePrompt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txt_PrePrompt.ThemeAuthor = "Taiizor";
+            txt_PrePrompt.ThemeName = "MetroLight";
+            txt_PrePrompt.UseSystemPasswordChar = false;
+            txt_PrePrompt.WatermarkText = "";
+            // 
+            // label_PrePrompt
+            // 
+            label_PrePrompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            label_PrePrompt.IsDerivedStyle = true;
+            label_PrePrompt.Location = new System.Drawing.Point(9, 261);
+            label_PrePrompt.Name = "label_PrePrompt";
+            label_PrePrompt.Size = new System.Drawing.Size(100, 23);
+            label_PrePrompt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            label_PrePrompt.StyleManager = metroStyleManager;
+            label_PrePrompt.TabIndex = 28;
+            label_PrePrompt.Text = "Pre-Prompt:";
+            label_PrePrompt.ThemeAuthor = "Taiizor";
+            label_PrePrompt.ThemeName = "MetroLight";
+            // 
             // txt_QuickPrompt5
             // 
             txt_QuickPrompt5.AutoCompleteCustomSource = null;
@@ -1089,7 +1160,7 @@
             txt_QuickPrompt5.Image = null;
             txt_QuickPrompt5.IsDerivedStyle = true;
             txt_QuickPrompt5.Lines = null;
-            txt_QuickPrompt5.Location = new System.Drawing.Point(66, 461);
+            txt_QuickPrompt5.Location = new System.Drawing.Point(66, 529);
             txt_QuickPrompt5.MaxLength = 32767;
             txt_QuickPrompt5.Multiline = false;
             txt_QuickPrompt5.Name = "txt_QuickPrompt5";
@@ -1108,7 +1179,7 @@
             // 
             metroLabel13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel13.IsDerivedStyle = true;
-            metroLabel13.Location = new System.Drawing.Point(8, 461);
+            metroLabel13.Location = new System.Drawing.Point(8, 529);
             metroLabel13.Name = "metroLabel13";
             metroLabel13.Size = new System.Drawing.Size(54, 23);
             metroLabel13.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -1132,7 +1203,7 @@
             txt_QuickPrompt4.Image = null;
             txt_QuickPrompt4.IsDerivedStyle = true;
             txt_QuickPrompt4.Lines = null;
-            txt_QuickPrompt4.Location = new System.Drawing.Point(66, 425);
+            txt_QuickPrompt4.Location = new System.Drawing.Point(66, 493);
             txt_QuickPrompt4.MaxLength = 32767;
             txt_QuickPrompt4.Multiline = false;
             txt_QuickPrompt4.Name = "txt_QuickPrompt4";
@@ -1151,7 +1222,7 @@
             // 
             metroLabel12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel12.IsDerivedStyle = true;
-            metroLabel12.Location = new System.Drawing.Point(8, 425);
+            metroLabel12.Location = new System.Drawing.Point(8, 493);
             metroLabel12.Name = "metroLabel12";
             metroLabel12.Size = new System.Drawing.Size(54, 23);
             metroLabel12.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -1175,7 +1246,7 @@
             txt_QuickPrompt3.Image = null;
             txt_QuickPrompt3.IsDerivedStyle = true;
             txt_QuickPrompt3.Lines = null;
-            txt_QuickPrompt3.Location = new System.Drawing.Point(66, 389);
+            txt_QuickPrompt3.Location = new System.Drawing.Point(66, 457);
             txt_QuickPrompt3.MaxLength = 32767;
             txt_QuickPrompt3.Multiline = false;
             txt_QuickPrompt3.Name = "txt_QuickPrompt3";
@@ -1194,7 +1265,7 @@
             // 
             metroLabel11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel11.IsDerivedStyle = true;
-            metroLabel11.Location = new System.Drawing.Point(8, 389);
+            metroLabel11.Location = new System.Drawing.Point(8, 457);
             metroLabel11.Name = "metroLabel11";
             metroLabel11.Size = new System.Drawing.Size(54, 23);
             metroLabel11.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -1218,7 +1289,7 @@
             txt_QuickPrompt2.Image = null;
             txt_QuickPrompt2.IsDerivedStyle = true;
             txt_QuickPrompt2.Lines = null;
-            txt_QuickPrompt2.Location = new System.Drawing.Point(66, 353);
+            txt_QuickPrompt2.Location = new System.Drawing.Point(66, 421);
             txt_QuickPrompt2.MaxLength = 32767;
             txt_QuickPrompt2.Multiline = false;
             txt_QuickPrompt2.Name = "txt_QuickPrompt2";
@@ -1237,7 +1308,7 @@
             // 
             metroLabel10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel10.IsDerivedStyle = true;
-            metroLabel10.Location = new System.Drawing.Point(9, 353);
+            metroLabel10.Location = new System.Drawing.Point(9, 421);
             metroLabel10.Name = "metroLabel10";
             metroLabel10.Size = new System.Drawing.Size(54, 23);
             metroLabel10.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -1264,7 +1335,7 @@
             cmb_SettingQuickPromptModel.FormattingEnabled = true;
             cmb_SettingQuickPromptModel.IsDerivedStyle = true;
             cmb_SettingQuickPromptModel.ItemHeight = 20;
-            cmb_SettingQuickPromptModel.Location = new System.Drawing.Point(66, 279);
+            cmb_SettingQuickPromptModel.Location = new System.Drawing.Point(66, 347);
             cmb_SettingQuickPromptModel.Name = "cmb_SettingQuickPromptModel";
             cmb_SettingQuickPromptModel.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
             cmb_SettingQuickPromptModel.SelectedItemForeColor = System.Drawing.Color.White;
@@ -1279,7 +1350,7 @@
             // 
             metroLabel9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel9.IsDerivedStyle = true;
-            metroLabel9.Location = new System.Drawing.Point(8, 282);
+            metroLabel9.Location = new System.Drawing.Point(8, 350);
             metroLabel9.Name = "metroLabel9";
             metroLabel9.Size = new System.Drawing.Size(100, 23);
             metroLabel9.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -1303,7 +1374,7 @@
             txt_QuickPrompt1.Image = null;
             txt_QuickPrompt1.IsDerivedStyle = true;
             txt_QuickPrompt1.Lines = null;
-            txt_QuickPrompt1.Location = new System.Drawing.Point(66, 317);
+            txt_QuickPrompt1.Location = new System.Drawing.Point(66, 385);
             txt_QuickPrompt1.MaxLength = 32767;
             txt_QuickPrompt1.Multiline = false;
             txt_QuickPrompt1.Name = "txt_QuickPrompt1";
@@ -1322,7 +1393,7 @@
             // 
             metroLabel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel8.IsDerivedStyle = true;
-            metroLabel8.Location = new System.Drawing.Point(8, 317);
+            metroLabel8.Location = new System.Drawing.Point(8, 385);
             metroLabel8.Name = "metroLabel8";
             metroLabel8.Size = new System.Drawing.Size(54, 23);
             metroLabel8.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -1336,7 +1407,7 @@
             // 
             metroLabel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, 0);
             metroLabel7.IsDerivedStyle = true;
-            metroLabel7.Location = new System.Drawing.Point(6, 259);
+            metroLabel7.Location = new System.Drawing.Point(6, 327);
             metroLabel7.Name = "metroLabel7";
             metroLabel7.Size = new System.Drawing.Size(201, 23);
             metroLabel7.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -2055,5 +2126,8 @@
         private System.Windows.Forms.ToolStripMenuItem setAsPromptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private ReaLTaiizor.Controls.MetroButton btn_prompt_STTin;
+        private ReaLTaiizor.Controls.MetroLabel label_PrePrompt;
+        private ReaLTaiizor.Controls.MetroTextBox txt_PrePrompt;
+        private ReaLTaiizor.Controls.MetroCheckBox chkExThoughts;
     }
 }

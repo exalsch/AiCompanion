@@ -14,6 +14,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -136,7 +137,8 @@ namespace AiCompanion
             chkAutoStartTTS.Checked = Properties.Settings.Default.AutoStartTTS;
             switchDarkMode.Switched = Properties.Settings.Default.useDarkMode;
 
-
+            txt_PrePrompt.Text = Properties.Settings.Default.PrePromt;
+            chkExThoughts.Checked = Properties.Settings.Default.ExcludeAiThoughts;
             txt_QuickPrompt1.Text = Properties.Settings.Default.QPrompt1;
             txt_QuickPrompt2.Text = Properties.Settings.Default.QPrompt2;
             txt_QuickPrompt3.Text = Properties.Settings.Default.QPrompt3;
@@ -217,12 +219,7 @@ namespace AiCompanion
         {
             statusLabel.Text = "Idle";
             toolTipMain.SetToolTip(statusLabel, null);
-            if (string.IsNullOrEmpty(Properties.Settings.Default.API_Key))
-            {
-                Properties.Settings.Default.API_Key = InputBox.Show("Enter API Key:", "API Key not set");
-                Properties.Settings.Default.Save();
-                TabControl.SelectTab("TabPageSettings");
-            }
+            
             if (TabControl.SelectedTab.Text == "TabPagePrompt")
             {
 
@@ -882,6 +879,12 @@ namespace AiCompanion
                 if (chatResult != null)
                 {
                     var result = chatResult.Choices[0].Message.TextContent;
+                    //remove any <thinking> blocks
+                    if (Properties.Settings.Default.ExcludeAiThoughts)
+                    {
+                        result = Regex.Replace(result, @"<thinking>(.*?)</thinking>", "", RegexOptions.Multiline);
+                    }
+                    
                     txt_resultPrompt.Text = result;
                     btn_insertPrompt.Enabled = true;
                     btn_copyPrompt.Enabled = true;
@@ -1114,7 +1117,8 @@ namespace AiCompanion
             try
             {
                 Properties.Settings.Default.API_Key = txt_ApiKey.Text;
-
+                Properties.Settings.Default.PrePromt = txt_PrePrompt.Text;
+                Properties.Settings.Default.ExcludeAiThoughts = chkExThoughts.Checked;
                 txt_API_URL.Text = txt_API_URL.Text.EndsWith("/")
                     ? txt_API_URL.Text
                     : txt_API_URL.Text + "/";
