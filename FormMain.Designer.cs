@@ -87,6 +87,10 @@
             chkBAutoStartApp = new ReaLTaiizor.Controls.MetroCheckBox();
             chkAutoStartTTS = new ReaLTaiizor.Controls.MetroCheckBox();
             chkAutoStartSTT = new ReaLTaiizor.Controls.MetroCheckBox();
+            lblSttEngine = new ReaLTaiizor.Controls.MetroLabel();
+            cmbSttEngine = new ReaLTaiizor.Controls.MetroComboBox();
+            lblWhisperNetModel = new ReaLTaiizor.Controls.MetroLabel();
+            cmbWhisperNetModel = new ReaLTaiizor.Controls.MetroComboBox();
             metroLabel6 = new ReaLTaiizor.Controls.MetroLabel();
             switchDarkMode = new ReaLTaiizor.Controls.MetroSwitch();
             metroLabel5 = new ReaLTaiizor.Controls.MetroLabel();
@@ -1055,6 +1059,10 @@
             TabPageSettings.Controls.Add(chkBAutoStartApp);
             TabPageSettings.Controls.Add(chkAutoStartTTS);
             TabPageSettings.Controls.Add(chkAutoStartSTT);
+            TabPageSettings.Controls.Add(lblSttEngine);
+            TabPageSettings.Controls.Add(cmbSttEngine);
+            TabPageSettings.Controls.Add(lblWhisperNetModel);
+            TabPageSettings.Controls.Add(cmbWhisperNetModel);
             TabPageSettings.Controls.Add(metroLabel6);
             TabPageSettings.Controls.Add(switchDarkMode);
             TabPageSettings.Controls.Add(metroLabel5);
@@ -1136,7 +1144,7 @@
             // 
             label_PrePrompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             label_PrePrompt.IsDerivedStyle = true;
-            label_PrePrompt.Location = new System.Drawing.Point(9, 261);
+            label_PrePrompt.Location = new System.Drawing.Point(5, 261);
             label_PrePrompt.Name = "label_PrePrompt";
             label_PrePrompt.Size = new System.Drawing.Size(100, 23);
             label_PrePrompt.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -1466,7 +1474,7 @@
             chkAutoStartTTS.DisabledBorderColor = System.Drawing.Color.FromArgb(205, 205, 205);
             chkAutoStartTTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             chkAutoStartTTS.IsDerivedStyle = true;
-            chkAutoStartTTS.Location = new System.Drawing.Point(191, 150);
+            chkAutoStartTTS.Location = new System.Drawing.Point(190, 118);
             chkAutoStartTTS.Name = "chkAutoStartTTS";
             chkAutoStartTTS.SignStyle = ReaLTaiizor.Enum.Metro.SignStyle.Sign;
             chkAutoStartTTS.Size = new System.Drawing.Size(195, 16);
@@ -1488,7 +1496,7 @@
             chkAutoStartSTT.DisabledBorderColor = System.Drawing.Color.FromArgb(205, 205, 205);
             chkAutoStartSTT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             chkAutoStartSTT.IsDerivedStyle = true;
-            chkAutoStartSTT.Location = new System.Drawing.Point(5, 150);
+            chkAutoStartSTT.Location = new System.Drawing.Point(5, 118);
             chkAutoStartSTT.Name = "chkAutoStartSTT";
             chkAutoStartSTT.SignStyle = ReaLTaiizor.Enum.Metro.SignStyle.Sign;
             chkAutoStartSTT.Size = new System.Drawing.Size(179, 16);
@@ -1498,6 +1506,90 @@
             chkAutoStartSTT.Text = "Auto start recording - STT";
             chkAutoStartSTT.ThemeAuthor = "Taiizor";
             chkAutoStartSTT.ThemeName = "MetroLight";
+            // 
+            // lblSttEngine
+            // 
+            lblSttEngine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            lblSttEngine.IsDerivedStyle = true;
+            lblSttEngine.Location = new System.Drawing.Point(5, 137);
+            lblSttEngine.Name = "lblSttEngine";
+            lblSttEngine.Size = new System.Drawing.Size(88, 23);
+            lblSttEngine.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            lblSttEngine.StyleManager = metroStyleManager;
+            lblSttEngine.TabIndex = 20;
+            lblSttEngine.Text = "STT Engine:";
+            lblSttEngine.ThemeAuthor = "Taiizor";
+            lblSttEngine.ThemeName = "MetroLight";
+            // 
+            // cmbSttEngine
+            // 
+            cmbSttEngine.AllowDrop = true;
+            cmbSttEngine.ArrowColor = System.Drawing.Color.FromArgb(150, 150, 150);
+            cmbSttEngine.BackColor = System.Drawing.Color.Transparent;
+            cmbSttEngine.BackgroundColor = System.Drawing.Color.FromArgb(238, 238, 238);
+            cmbSttEngine.BorderColor = System.Drawing.Color.FromArgb(150, 150, 150);
+            cmbSttEngine.CausesValidation = false;
+            cmbSttEngine.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            cmbSttEngine.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            cmbSttEngine.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            cmbSttEngine.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            cmbSttEngine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cmbSttEngine.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            cmbSttEngine.FormattingEnabled = true;
+            cmbSttEngine.IsDerivedStyle = true;
+            cmbSttEngine.ItemHeight = 20;
+            cmbSttEngine.Location = new System.Drawing.Point(117, 137);
+            cmbSttEngine.Name = "cmbSttEngine";
+            cmbSttEngine.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
+            cmbSttEngine.SelectedItemForeColor = System.Drawing.Color.White;
+            cmbSttEngine.Size = new System.Drawing.Size(154, 26);
+            cmbSttEngine.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            cmbSttEngine.StyleManager = metroStyleManager;
+            cmbSttEngine.TabIndex = 21;
+            cmbSttEngine.ThemeAuthor = "Taiizor";
+            cmbSttEngine.ThemeName = "MetroLight";
+            // 
+            // lblWhisperNetModel
+            // 
+            lblWhisperNetModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            lblWhisperNetModel.IsDerivedStyle = true;
+            lblWhisperNetModel.Location = new System.Drawing.Point(5, 167);
+            lblWhisperNetModel.Name = "lblWhisperNetModel";
+            lblWhisperNetModel.Size = new System.Drawing.Size(111, 23);
+            lblWhisperNetModel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            lblWhisperNetModel.StyleManager = metroStyleManager;
+            lblWhisperNetModel.TabIndex = 22;
+            lblWhisperNetModel.Text = "Whisper Model:";
+            lblWhisperNetModel.ThemeAuthor = "Taiizor";
+            lblWhisperNetModel.ThemeName = "MetroLight";
+            // 
+            // cmbWhisperNetModel
+            // 
+            cmbWhisperNetModel.AllowDrop = true;
+            cmbWhisperNetModel.ArrowColor = System.Drawing.Color.FromArgb(150, 150, 150);
+            cmbWhisperNetModel.BackColor = System.Drawing.Color.Transparent;
+            cmbWhisperNetModel.BackgroundColor = System.Drawing.Color.FromArgb(238, 238, 238);
+            cmbWhisperNetModel.BorderColor = System.Drawing.Color.FromArgb(150, 150, 150);
+            cmbWhisperNetModel.CausesValidation = false;
+            cmbWhisperNetModel.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            cmbWhisperNetModel.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            cmbWhisperNetModel.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            cmbWhisperNetModel.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            cmbWhisperNetModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cmbWhisperNetModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            cmbWhisperNetModel.FormattingEnabled = true;
+            cmbWhisperNetModel.IsDerivedStyle = true;
+            cmbWhisperNetModel.ItemHeight = 20;
+            cmbWhisperNetModel.Location = new System.Drawing.Point(117, 167);
+            cmbWhisperNetModel.Name = "cmbWhisperNetModel";
+            cmbWhisperNetModel.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
+            cmbWhisperNetModel.SelectedItemForeColor = System.Drawing.Color.White;
+            cmbWhisperNetModel.Size = new System.Drawing.Size(154, 26);
+            cmbWhisperNetModel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            cmbWhisperNetModel.StyleManager = metroStyleManager;
+            cmbWhisperNetModel.TabIndex = 23;
+            cmbWhisperNetModel.ThemeAuthor = "Taiizor";
+            cmbWhisperNetModel.ThemeName = "MetroLight";
             // 
             // metroLabel6
             // 
@@ -1599,7 +1691,7 @@
             txt_HotkeyKey.Image = null;
             txt_HotkeyKey.IsDerivedStyle = true;
             txt_HotkeyKey.Lines = null;
-            txt_HotkeyKey.Location = new System.Drawing.Point(191, 118);
+            txt_HotkeyKey.Location = new System.Drawing.Point(294, 86);
             txt_HotkeyKey.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txt_HotkeyKey.MaxLength = 1;
             txt_HotkeyKey.Multiline = false;
@@ -1622,7 +1714,7 @@
             // 
             metroLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel4.IsDerivedStyle = true;
-            metroLabel4.Location = new System.Drawing.Point(154, 118);
+            metroLabel4.Location = new System.Drawing.Point(257, 86);
             metroLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             metroLabel4.Name = "metroLabel4";
             metroLabel4.Size = new System.Drawing.Size(30, 30);
@@ -1638,10 +1730,10 @@
             // 
             metroLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel3.IsDerivedStyle = true;
-            metroLabel3.Location = new System.Drawing.Point(5, 88);
+            metroLabel3.Location = new System.Drawing.Point(4, 88);
             metroLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             metroLabel3.Name = "metroLabel3";
-            metroLabel3.Size = new System.Drawing.Size(117, 27);
+            metroLabel3.Size = new System.Drawing.Size(104, 24);
             metroLabel3.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             metroLabel3.StyleManager = metroStyleManager;
             metroLabel3.TabIndex = 4;
@@ -1667,7 +1759,7 @@
             cmbHotKeyMod.IsDerivedStyle = true;
             cmbHotKeyMod.ItemHeight = 20;
             cmbHotKeyMod.Items.AddRange(new object[] { "Alt", "Control", "Alt+Shift", "Control+Shift" });
-            cmbHotKeyMod.Location = new System.Drawing.Point(5, 118);
+            cmbHotKeyMod.Location = new System.Drawing.Point(108, 86);
             cmbHotKeyMod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             cmbHotKeyMod.Name = "cmbHotKeyMod";
             cmbHotKeyMod.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
@@ -2129,5 +2221,9 @@
         private ReaLTaiizor.Controls.MetroLabel label_PrePrompt;
         private ReaLTaiizor.Controls.MetroTextBox txt_PrePrompt;
         private ReaLTaiizor.Controls.MetroCheckBox chkExThoughts;
+        private ReaLTaiizor.Controls.MetroLabel lblSttEngine;
+        private ReaLTaiizor.Controls.MetroComboBox cmbSttEngine;
+        private ReaLTaiizor.Controls.MetroLabel lblWhisperNetModel;
+        private ReaLTaiizor.Controls.MetroComboBox cmbWhisperNetModel;
     }
 }

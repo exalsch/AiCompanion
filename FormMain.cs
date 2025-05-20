@@ -1,4 +1,4 @@
-﻿using NAudio.Lame;
+using NAudio.Lame;
 using NAudio.Wave;
 using OpenAI_API;
 using OpenAI_API.Audio;
@@ -12,6 +12,7 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -21,12 +22,15 @@ using System.Windows.Forms;
 using static OpenAI_API.Chat.ChatMessage;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Net.WebRequestMethods;
+using AiCompanion.Services; // Added for WhisperNetService
+using Whisper.net.Ggml; // Added for GgmlType
 
 namespace AiCompanion
 {
     public partial class FormMain : MaterialForm
     {
         private OpenAIAPI openAiApi; // Instance of the OpenAI API
+        private readonly WhisperNetService _whisperNetService; // Added for Whisper.net
 
         //TTS related globals
         private WaveInEvent waveIn;
@@ -54,6 +58,7 @@ namespace AiCompanion
             //init API Client
             openAiApi = new OpenAIAPI(Properties.Settings.Default.API_Key);
             openAiApi.ApiUrlFormat = Properties.Settings.Default.API_URL + "{0}/{1}";
+            _whisperNetService = new WhisperNetService(); // Initialize WhisperNetService
             //pre fill controls and vars
             txt_TextTTS.Text = copiedText;
             txt_inputPrompt.Text = copiedText;
@@ -73,10 +78,48 @@ namespace AiCompanion
             }
 
 
-            statusLabel.Text = "Idle";
-            toolTipMain.SetToolTip(statusLabel, null);
+            // Populate and set STT Engine ComboBox
+            cmbSttEngine.Items.Add("OpenAI");
+            cmbSttEngine.Items.Add("Whisper.net");
+            // Ensure the setting exists and is valid, otherwise default
+            string currentSttEngine = Properties.Settings.Default.STTEngine;
+            if (cmbSttEngine.Items.Contains(currentSttEngine))
+            {
+                cmbSttEngine.SelectedItem = currentSttEngine;
+            }
+            else if (cmbSttEngine.Items.Count > 0)
+            {
+                cmbSttEngine.SelectedIndex = 0; // Default to the first item if setting is invalid
+                Properties.Settings.Default.STTEngine = cmbSttEngine.SelectedItem.ToString();
+                Properties.Settings.Default.Save();
+            }
 
-            //Load settings into controls
+            // Populate Whisper.net Model ComboBox
+            foreach (var modelName in Enum.GetNames(typeof(GgmlType)))
+            {
+                cmbWhisperNetModel.Items.Add(modelName);
+            }
+            // Ensure the setting exists and is valid, otherwise default
+            string currentWhisperModel = Properties.Settings.Default.WhisperNetModel;
+            if (cmbWhisperNetModel.Items.Contains(currentWhisperModel))
+            {
+                cmbWhisperNetModel.SelectedItem = currentWhisperModel;
+            }
+            else if (cmbWhisperNetModel.Items.Count > 0)
+            {
+                cmbWhisperNetModel.SelectedIndex = 0; // Default to the first model
+                Properties.Settings.Default.WhisperNetModel = cmbWhisperNetModel.SelectedItem.ToString();
+                Properties.Settings.Default.Save();
+            }
+
+            // Initial state for Whisper.net model controls
+            UpdateWhisperNetModelControlsVisibility();
+
+            // Wire up event handlers
+            this.cmbSttEngine.SelectedIndexChanged += new System.EventHandler(this.cmbSttEngine_SelectedIndexChanged);
+            this.cmbWhisperNetModel.SelectedIndexChanged += new System.EventHandler(this.cmbWhisperNetModel_SelectedIndexChanged);
+
+            // Load settings into controls
             txt_ApiKey.Text = Properties.Settings.Default.API_Key;
             txt_API_URL.Text = Properties.Settings.Default.API_URL;
 
@@ -201,6 +244,35 @@ namespace AiCompanion
                 //cmbx_SettingQuickPromptModel.Items.AddRange(new ListViewItem[] {
                 TabControl.SelectTab("TabPageSettings");
             }
+        }
+
+        private void cmbSttEngine_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSttEngine.SelectedItem != null)
+            {
+                Properties.Settings.Default.STTEngine = cmbSttEngine.SelectedItem.ToString();
+                Properties.Settings.Default.Save();
+                UpdateWhisperNetModelControlsVisibility();
+            }
+        }
+
+        private void cmbWhisperNetModel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbWhisperNetModel.SelectedItem != null)
+            {
+                Properties.Settings.Default.WhisperNetModel = cmbWhisperNetModel.SelectedItem.ToString();
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void UpdateWhisperNetModelControlsVisibility()
+        {
+            bool isWhisperNetSelected = (cmbSttEngine.SelectedItem?.ToString() == "Whisper.net");
+            lblWhisperNetModel.Visible = isWhisperNetSelected;
+            cmbWhisperNetModel.Visible = isWhisperNetSelected;
+            // You might want to use .Enabled instead of .Visible if you prefer them to be grayed out
+            // lblWhisperNetModel.Enabled = isWhisperNetSelected;
+            // cmbWhisperNetModel.Enabled = isWhisperNetSelected;
         }
 
         public static Bitmap LoadImageFromBase64String(string base64String)
@@ -341,7 +413,19 @@ namespace AiCompanion
             // Initialize recording components
             waveIn = new WaveInEvent();
             waveIn.DeviceNumber = 0;
-            waveIn.WaveFormat = new WaveFormat(44100, 1); // 44.1kHz, mono
+            
+            // Check which engine is selected to determine the appropriate sample rate
+            string selectedEngine = Properties.Settings.Default.STTEngine;
+            if (string.IsNullOrEmpty(selectedEngine) || selectedEngine != "Whisper.net")
+            {
+                // Use 44.1kHz for OpenAI (default)
+                waveIn.WaveFormat = new WaveFormat(44100, 1); // 44.1kHz, mono
+            }
+            else
+            {
+                // Use 16kHz for Whisper.net as required
+                waveIn.WaveFormat = new WaveFormat(16000, 1); // 16kHz, mono
+            }
 
             // Create memory stream for holding wave data
             waveStream = new MemoryStream();
@@ -358,12 +442,28 @@ namespace AiCompanion
             {
                 statusLabel.Text = "Processing recording...";
                 waveWriter.Flush(); // Ensure all data is written to the memory stream
-                string pathToFile = SaveAsMp3(waveStream); // Save data as MP3
-                waveWriter.Dispose(); // Dispose the wave writer after saving the MP3
-                waveStream.Dispose(); // Dispose the stream after saving the MP3
-                waveIn.Dispose(); // Clean up the waveIn resource
-                transcribe(pathToFile);
-                //statusLabel.Text = "Idle";
+                
+                // Check which engine is selected and save in appropriate format
+                string selectedEngine = Properties.Settings.Default.STTEngine;
+                if (string.IsNullOrEmpty(selectedEngine) || selectedEngine != "Whisper.net")
+                {
+                    // Use MP3 for OpenAI (default)
+                    string pathToFile = SaveAsMp3(waveStream);
+                    waveWriter.Dispose();
+                    waveStream.Dispose();
+                    waveIn.Dispose();
+                    transcribe(pathToFile);
+                }
+                else
+                {
+                    // Use WAV for Whisper.net
+                    string pathToFile = SaveAsWav(waveStream);
+                    waveWriter.Dispose();
+                    waveStream.Dispose();
+                    waveIn.Dispose();
+                    transcribe(pathToFile);
+                }
+                
                 toolTipMain.SetToolTip(statusLabel, null);
             };
 
@@ -413,20 +513,88 @@ namespace AiCompanion
             return tempFile;
         }
 
+        // Save the recorded data as a WAV file (for Whisper.net)
+        private string SaveAsWav(MemoryStream waveStream)
+        {
+            waveStream.Position = 0; // Reset the position of the memory stream
+
+            string tempFile = Path.Combine(Path.GetTempPath(), $"STT.wav");
+            deleteFile(tempFile);
+            using (var fileStream = new FileStream(tempFile, FileMode.Create, FileAccess.Write))
+            {
+                // Copy the wave data directly without conversion
+                waveStream.CopyTo(fileStream);
+            }
+            return tempFile;
+        }
+
         private async void transcribe(string path)
         {
             try
             {
-                string resultText = await openAiApi.Transcriptions.GetTextAsync(path, cmbSttLanguage.Text.Trim());
-                txt_resultSTT.Text = txt_resultSTT.Text + resultText;
-                // inline
-                //string resultText = await openAiApi.Transcriptions.GetTextAsync("conversation.mp3", "en", "This is a transcript of a conversation between a medical doctor and her patient: ", 0.3);
+                string resultText = string.Empty;
+                string selectedEngine = Properties.Settings.Default.STTEngine; // Placeholder for actual setting
+
+                // Default to OpenAI if setting is not present or invalid
+                if (string.IsNullOrEmpty(selectedEngine) || (selectedEngine != "OpenAI" && selectedEngine != "Whisper.net"))
+                {
+                    selectedEngine = "OpenAI"; 
+                }
+
+                if (selectedEngine == "Whisper.net")
+                {
+                    statusLabel.Text = "Transcribing (Whisper.net)...";
+                    string modelName = Properties.Settings.Default.WhisperNetModel; // e.g., "Base"
+                    if (string.IsNullOrEmpty(modelName)) modelName = "Base"; // Default model
+
+                    if (Enum.TryParse<GgmlType>(modelName, true, out GgmlType selectedModelType))
+                    {
+                        var segments = await _whisperNetService.TranscribeAsync(path, selectedModelType, cmbSttLanguage.Text.Trim());
+                        resultText = string.Join(" ", segments.Select(s => s.Text));
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Invalid Whisper.net model type specified in settings: {modelName}. Falling back to Base model.");
+                        var segments = await _whisperNetService.TranscribeAsync(path, GgmlType.Base, cmbSttLanguage.Text.Trim());
+                        resultText = string.Join(" ", segments.Select(s => s.Text));
+                    }
+                }
+                else // Default to OpenAI
+                {
+                    statusLabel.Text = "Transcribing (OpenAI)...";
+                    resultText = await openAiApi.Transcriptions.GetTextAsync(path, cmbSttLanguage.Text.Trim());
+                }
+
+                if (txt_resultSTT.InvokeRequired)
+                {
+                    txt_resultSTT.Invoke(new Action(() => 
+                    {
+                        txt_resultSTT.Text += resultText;
+                        statusLabel.Text = "Transcription complete.";
+                    }));
+                }
+                else
+                {
+                    txt_resultSTT.Text += resultText;
+                    statusLabel.Text = "Transcription complete.";
+                }
+
                 deleteFile(path);
             }
-            catch (Exception)
+            catch (Exception ex) // Catch specific exceptions if possible
             {
-
-                throw;
+                // Log the exception or show a more specific error message
+                MessageBox.Show($"Error during transcription: {ex.Message}", "Transcription Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (txt_resultSTT.InvokeRequired)
+                {
+                    txt_resultSTT.Invoke(new Action(() => statusLabel.Text = "Transcription failed."));
+                }
+                else
+                {
+                    statusLabel.Text = "Transcription failed.";
+                }
+                // Consider not re-throwing if you handle it here, or re-throw a custom exception
+                // throw;
             }
         }
 

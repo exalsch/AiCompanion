@@ -72,5 +72,11 @@
     <Setting Name="ExcludeAiThoughts" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="STTEngine" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OpenAI</Value>
+    </Setting>
+    <Setting Name="WhisperNetModel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Base</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
