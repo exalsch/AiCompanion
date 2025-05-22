@@ -78,5 +78,11 @@
     <Setting Name="WhisperNetModel" Type="System.String" Scope="User">
       <Value Profile="(Default)">Base</Value>
     </Setting>
+    <Setting Name="SttHotKeyMod" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Alt</Value>
+    </Setting>
+    <Setting Name="SttHotKeyKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -4,7 +4,7 @@ VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AiCompanion", "AiCompanion.csproj", "{2C449D42-EE54-48AF-BFA3-3FF7E0F0C188}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AiCompanionSetup", "..\Setup\Setup.vdproj", "{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AiCompanionSetup", ".\Setup\Setup.vdproj", "{EF7E7D3B-C5C1-4D83-A6D5-FE1A61C9B41F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

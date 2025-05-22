@@ -113,5 +113,7 @@ namespace AiCompanion.Services
             // You might want to filter this list based on what you practically want to offer.
             return Enum.GetValues(typeof(GgmlType)).Cast<GgmlType>();
         }
+
+
     }
 }

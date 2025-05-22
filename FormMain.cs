@@ -178,6 +178,8 @@ namespace AiCompanion
 
             chkAutoStartSTT.Checked = Properties.Settings.Default.AutoStartSTT;
             chkAutoStartTTS.Checked = Properties.Settings.Default.AutoStartTTS;
+            txt_SttHotkeyKey.Text = Properties.Settings.Default.SttHotKeyKey;
+            cmbSttHotKeyMod.SelectedItem = Properties.Settings.Default.SttHotKeyMod;
             switchDarkMode.Switched = Properties.Settings.Default.useDarkMode;
 
             txt_PrePrompt.Text = Properties.Settings.Default.PrePromt;
@@ -291,7 +293,7 @@ namespace AiCompanion
         {
             statusLabel.Text = "Idle";
             toolTipMain.SetToolTip(statusLabel, null);
-            
+
             if (TabControl.SelectedTab.Text == "TabPagePrompt")
             {
 
@@ -413,7 +415,7 @@ namespace AiCompanion
             // Initialize recording components
             waveIn = new WaveInEvent();
             waveIn.DeviceNumber = 0;
-            
+
             // Check which engine is selected to determine the appropriate sample rate
             string selectedEngine = Properties.Settings.Default.STTEngine;
             if (string.IsNullOrEmpty(selectedEngine) || selectedEngine != "Whisper.net")
@@ -442,7 +444,7 @@ namespace AiCompanion
             {
                 statusLabel.Text = "Processing recording...";
                 waveWriter.Flush(); // Ensure all data is written to the memory stream
-                
+
                 // Check which engine is selected and save in appropriate format
                 string selectedEngine = Properties.Settings.Default.STTEngine;
                 if (string.IsNullOrEmpty(selectedEngine) || selectedEngine != "Whisper.net")
@@ -463,7 +465,7 @@ namespace AiCompanion
                     waveIn.Dispose();
                     transcribe(pathToFile);
                 }
-                
+
                 toolTipMain.SetToolTip(statusLabel, null);
             };
 
@@ -538,7 +540,7 @@ namespace AiCompanion
                 // Default to OpenAI if setting is not present or invalid
                 if (string.IsNullOrEmpty(selectedEngine) || (selectedEngine != "OpenAI" && selectedEngine != "Whisper.net"))
                 {
-                    selectedEngine = "OpenAI"; 
+                    selectedEngine = "OpenAI";
                 }
 
                 if (selectedEngine == "Whisper.net")
@@ -567,7 +569,7 @@ namespace AiCompanion
 
                 if (txt_resultSTT.InvokeRequired)
                 {
-                    txt_resultSTT.Invoke(new Action(() => 
+                    txt_resultSTT.Invoke(new Action(() =>
                     {
                         txt_resultSTT.Text += resultText;
                         statusLabel.Text = "Transcription complete.";
@@ -1052,7 +1054,7 @@ namespace AiCompanion
                     {
                         result = Regex.Replace(result, @"<thinking>(.*?)</thinking>", "", RegexOptions.Multiline);
                     }
-                    
+
                     txt_resultPrompt.Text = result;
                     btn_insertPrompt.Enabled = true;
                     btn_copyPrompt.Enabled = true;
@@ -1298,14 +1300,22 @@ namespace AiCompanion
                 Properties.Settings.Default.useDarkMode = switchDarkMode.Switched;
                 Properties.Settings.Default.AutoStartSTT = chkAutoStartSTT.Checked;
                 Properties.Settings.Default.AutoStartTTS = chkAutoStartTTS.Checked;
+                Properties.Settings.Default.STTEngine = cmbSttEngine.SelectedItem.ToString();
+                Properties.Settings.Default.STT_lang = cmbSttLanguage.SelectedItem.ToString();
+                Properties.Settings.Default.WhisperNetModel = cmbWhisperNetModel.SelectedItem.ToString();
                 //hotkey changed? need a restart for now 
                 //TODO: make some kind of auto reload in the mainPopup
                 if (txt_HotkeyKey.Text != Properties.Settings.Default.HotKeyKey ||
-                    cmbHotKeyMod.SelectedItem.ToString() != Properties.Settings.Default.HotKeyMod)
+                    cmbHotKeyMod.SelectedItem.ToString() != Properties.Settings.Default.HotKeyMod ||
+                    txt_SttHotkeyKey.Text != Properties.Settings.Default.SttHotKeyKey ||
+                    cmbSttHotKeyMod.SelectedItem.ToString() != Properties.Settings.Default.SttHotKeyMod)
                     MessageBox.Show("A change of HotKey, currently requires a program restart!");
 
                 Properties.Settings.Default.HotKeyKey = txt_HotkeyKey.Text;
                 Properties.Settings.Default.HotKeyMod = cmbHotKeyMod.SelectedItem.ToString();
+                Properties.Settings.Default.SttHotKeyKey = txt_SttHotkeyKey.Text;
+                Properties.Settings.Default.SttHotKeyMod = cmbSttHotKeyMod.SelectedItem.ToString();
+
                 if (cmb_SettingQuickPromptModel.Items.Count > 0)
                 {
                     Properties.Settings.Default.QPromptModel = cmb_SettingQuickPromptModel.SelectedItem.ToString();
@@ -1317,6 +1327,38 @@ namespace AiCompanion
                 Properties.Settings.Default.QPrompt5 = txt_QuickPrompt5.Text;
 
                 Properties.Settings.Default.Save();
+                // if whisper.net is selected, download the model
+                if (cmbSttEngine.SelectedItem.ToString() == "Whisper.net")
+                {
+                    string model = Properties.Settings.Default.WhisperNetModel;
+                    if (Enum.TryParse<GgmlType>(model, true, out GgmlType selectedModelType))
+                    {
+                        Task.Run(async () =>
+                        {
+                            try
+                            {
+                                this.Invoke((System.Windows.Forms.MethodInvoker)delegate
+                                {
+                                    statusLabel.Text = $"Downloading Whisper.net model {model} ...";
+                                });
+
+                                await _whisperNetService.EnsureModelExistsAsync(selectedModelType).ConfigureAwait(false);
+
+                                this.Invoke((System.Windows.Forms.MethodInvoker)delegate
+                                {
+                                    statusLabel.Text = $"Whisper.net model {model} downloaded.";
+                                });
+                            }
+                            catch (Exception ex)
+                            {
+                                this.Invoke((System.Windows.Forms.MethodInvoker)delegate
+                                {
+                                    statusLabel.Text = $"Error downloading model: {ex.Message}";
+                                });
+                            }
+                        });
+                    }
+                }
                 //handle autostart
                 AutoStartManager autoStartManager = new AutoStartManager(Assembly.GetExecutingAssembly().GetName().Name);
                 if (chkBAutoStartApp.Checked)
@@ -1358,6 +1400,22 @@ namespace AiCompanion
             // Block everything else as invalid
             return false;
         }
+
+
+        private void txt_SttHotkeyKey_TextChanged(object sender, EventArgs e)
+        {
+            txt_SttHotkeyKey.Text = txt_SttHotkeyKey.Text.ToLower();
+        }
+
+        private void txt_SttHotkeyKey_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Only allow letters (A-Z), digits (0-9), and function keys (e.g., F1-F12)
+            if (!IsValidHotKeyKey(e.KeyChar))
+            {
+                // Invalid key, prevent the character from being added
+                e.Handled = true;
+            }
+        }
         private void switchDarkMode_SwitchedChanged(object sender)
         {
             try
@@ -1382,6 +1440,20 @@ namespace AiCompanion
             MinimumSize = new System.Drawing.Size(412, 562);
             chkAutoStartSTT.Checked = Properties.Settings.Default.AutoStartSTT;
             chkAutoStartTTS.Checked = Properties.Settings.Default.AutoStartTTS;
+        }
+
+        private void cmbSttEngine_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cmbSttEngine.SelectedItem.ToString() == "Whisper.net")
+            {
+                // add "auto" as language option to STT cmb box            
+                cmbSttLanguage.Items.Insert(0, "auto");
+            }
+            else
+            {
+                // remove "auto" from STT cmb box
+                cmbSttLanguage.Items.Remove("auto");
+            }
         }
 
     }

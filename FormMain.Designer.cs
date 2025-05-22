@@ -67,6 +67,10 @@
             btn_record = new ReaLTaiizor.Controls.MetroDefaultButton();
             txt_resultSTT = new ReaLTaiizor.Controls.MetroRichTextBox();
             TabPageSettings = new ReaLTaiizor.Child.Metro.MetroTabPage();
+            txt_SttHotkeyKey = new ReaLTaiizor.Controls.MetroTextBox();
+            metroLabel14 = new ReaLTaiizor.Controls.MetroLabel();
+            metroLabel15 = new ReaLTaiizor.Controls.MetroLabel();
+            cmbSttHotKeyMod = new ReaLTaiizor.Controls.MetroComboBox();
             chkExThoughts = new ReaLTaiizor.Controls.MetroCheckBox();
             txt_PrePrompt = new ReaLTaiizor.Controls.MetroTextBox();
             label_PrePrompt = new ReaLTaiizor.Controls.MetroLabel();
@@ -1039,6 +1043,10 @@
             // TabPageSettings
             // 
             TabPageSettings.BaseColor = System.Drawing.Color.White;
+            TabPageSettings.Controls.Add(txt_SttHotkeyKey);
+            TabPageSettings.Controls.Add(metroLabel14);
+            TabPageSettings.Controls.Add(metroLabel15);
+            TabPageSettings.Controls.Add(cmbSttHotKeyMod);
             TabPageSettings.Controls.Add(chkExThoughts);
             TabPageSettings.Controls.Add(txt_PrePrompt);
             TabPageSettings.Controls.Add(label_PrePrompt);
@@ -1088,6 +1096,100 @@
             TabPageSettings.ThemeAuthor = "Taiizor";
             TabPageSettings.ThemeName = "MetroLight";
             TabPageSettings.ToolTipText = null;
+            // 
+            // txt_SttHotkeyKey
+            // 
+            txt_SttHotkeyKey.AutoCompleteCustomSource = null;
+            txt_SttHotkeyKey.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            txt_SttHotkeyKey.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            txt_SttHotkeyKey.BorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_SttHotkeyKey.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            txt_SttHotkeyKey.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            txt_SttHotkeyKey.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            txt_SttHotkeyKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            txt_SttHotkeyKey.HoverColor = System.Drawing.Color.FromArgb(102, 102, 102);
+            txt_SttHotkeyKey.Image = null;
+            txt_SttHotkeyKey.IsDerivedStyle = true;
+            txt_SttHotkeyKey.Lines = null;
+            txt_SttHotkeyKey.Location = new System.Drawing.Point(278, 198);
+            txt_SttHotkeyKey.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txt_SttHotkeyKey.MaxLength = 1;
+            txt_SttHotkeyKey.Multiline = false;
+            txt_SttHotkeyKey.Name = "txt_SttHotkeyKey";
+            txt_SttHotkeyKey.ReadOnly = false;
+            txt_SttHotkeyKey.Size = new System.Drawing.Size(35, 26);
+            txt_SttHotkeyKey.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            txt_SttHotkeyKey.StyleManager = metroStyleManager;
+            txt_SttHotkeyKey.TabIndex = 34;
+            txt_SttHotkeyKey.Text = "G";
+            txt_SttHotkeyKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txt_SttHotkeyKey.ThemeAuthor = "Taiizor";
+            txt_SttHotkeyKey.ThemeName = "MetroLight";
+            txt_SttHotkeyKey.UseSystemPasswordChar = false;
+            txt_SttHotkeyKey.WatermarkText = "";
+            txt_SttHotkeyKey.TextChanged += txt_SttHotkeyKey_TextChanged;
+            txt_SttHotkeyKey.KeyPress += txt_SttHotkeyKey_KeyPress;
+            // 
+            // metroLabel14
+            // 
+            metroLabel14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            metroLabel14.IsDerivedStyle = true;
+            metroLabel14.Location = new System.Drawing.Point(253, 195);
+            metroLabel14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            metroLabel14.Name = "metroLabel14";
+            metroLabel14.Size = new System.Drawing.Size(17, 30);
+            metroLabel14.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLabel14.StyleManager = metroStyleManager;
+            metroLabel14.TabIndex = 33;
+            metroLabel14.Text = "&&";
+            metroLabel14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            metroLabel14.ThemeAuthor = "Taiizor";
+            metroLabel14.ThemeName = "MetroLight";
+            // 
+            // metroLabel15
+            // 
+            metroLabel15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            metroLabel15.IsDerivedStyle = true;
+            metroLabel15.Location = new System.Drawing.Point(4, 200);
+            metroLabel15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            metroLabel15.Name = "metroLabel15";
+            metroLabel15.Size = new System.Drawing.Size(104, 24);
+            metroLabel15.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroLabel15.StyleManager = metroStyleManager;
+            metroLabel15.TabIndex = 32;
+            metroLabel15.Text = "STT Hotkey:";
+            metroLabel15.ThemeAuthor = "Taiizor";
+            metroLabel15.ThemeName = "MetroLight";
+            // 
+            // cmbSttHotKeyMod
+            // 
+            cmbSttHotKeyMod.AllowDrop = true;
+            cmbSttHotKeyMod.ArrowColor = System.Drawing.Color.FromArgb(150, 150, 150);
+            cmbSttHotKeyMod.BackColor = System.Drawing.Color.Transparent;
+            cmbSttHotKeyMod.BackgroundColor = System.Drawing.Color.FromArgb(238, 238, 238);
+            cmbSttHotKeyMod.BorderColor = System.Drawing.Color.FromArgb(150, 150, 150);
+            cmbSttHotKeyMod.CausesValidation = false;
+            cmbSttHotKeyMod.DisabledBackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            cmbSttHotKeyMod.DisabledBorderColor = System.Drawing.Color.FromArgb(155, 155, 155);
+            cmbSttHotKeyMod.DisabledForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            cmbSttHotKeyMod.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            cmbSttHotKeyMod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cmbSttHotKeyMod.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            cmbSttHotKeyMod.FormattingEnabled = true;
+            cmbSttHotKeyMod.IsDerivedStyle = true;
+            cmbSttHotKeyMod.ItemHeight = 20;
+            cmbSttHotKeyMod.Items.AddRange(new object[] { "Alt", "Control", "Alt+Shift", "Control+Shift" });
+            cmbSttHotKeyMod.Location = new System.Drawing.Point(117, 198);
+            cmbSttHotKeyMod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            cmbSttHotKeyMod.Name = "cmbSttHotKeyMod";
+            cmbSttHotKeyMod.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
+            cmbSttHotKeyMod.SelectedItemForeColor = System.Drawing.Color.White;
+            cmbSttHotKeyMod.Size = new System.Drawing.Size(128, 26);
+            cmbSttHotKeyMod.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            cmbSttHotKeyMod.StyleManager = metroStyleManager;
+            cmbSttHotKeyMod.TabIndex = 31;
+            cmbSttHotKeyMod.ThemeAuthor = "Taiizor";
+            cmbSttHotKeyMod.ThemeName = "MetroLight";
             // 
             // chkExThoughts
             // 
@@ -1347,7 +1449,7 @@
             cmb_SettingQuickPromptModel.Name = "cmb_SettingQuickPromptModel";
             cmb_SettingQuickPromptModel.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
             cmb_SettingQuickPromptModel.SelectedItemForeColor = System.Drawing.Color.White;
-            cmb_SettingQuickPromptModel.Size = new System.Drawing.Size(220, 26);
+            cmb_SettingQuickPromptModel.Size = new System.Drawing.Size(179, 26);
             cmb_SettingQuickPromptModel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             cmb_SettingQuickPromptModel.StyleManager = metroStyleManager;
             cmb_SettingQuickPromptModel.TabIndex = 19;
@@ -1542,12 +1644,13 @@
             cmbSttEngine.Name = "cmbSttEngine";
             cmbSttEngine.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
             cmbSttEngine.SelectedItemForeColor = System.Drawing.Color.White;
-            cmbSttEngine.Size = new System.Drawing.Size(154, 26);
+            cmbSttEngine.Size = new System.Drawing.Size(128, 26);
             cmbSttEngine.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             cmbSttEngine.StyleManager = metroStyleManager;
             cmbSttEngine.TabIndex = 21;
             cmbSttEngine.ThemeAuthor = "Taiizor";
             cmbSttEngine.ThemeName = "MetroLight";
+            cmbSttEngine.SelectedIndexChanged += cmbSttEngine_SelectedIndexChanged_1;
             // 
             // lblWhisperNetModel
             // 
@@ -1584,7 +1687,7 @@
             cmbWhisperNetModel.Name = "cmbWhisperNetModel";
             cmbWhisperNetModel.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
             cmbWhisperNetModel.SelectedItemForeColor = System.Drawing.Color.White;
-            cmbWhisperNetModel.Size = new System.Drawing.Size(154, 26);
+            cmbWhisperNetModel.Size = new System.Drawing.Size(128, 26);
             cmbWhisperNetModel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             cmbWhisperNetModel.StyleManager = metroStyleManager;
             cmbWhisperNetModel.TabIndex = 23;
@@ -1595,7 +1698,7 @@
             // 
             metroLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel6.IsDerivedStyle = true;
-            metroLabel6.Location = new System.Drawing.Point(4, 199);
+            metroLabel6.Location = new System.Drawing.Point(264, 141);
             metroLabel6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             metroLabel6.Name = "metroLabel6";
             metroLabel6.Size = new System.Drawing.Size(105, 27);
@@ -1618,7 +1721,7 @@
             switchDarkMode.DisabledCheckColor = System.Drawing.Color.FromArgb(100, 65, 177, 225);
             switchDarkMode.DisabledUnCheckColor = System.Drawing.Color.FromArgb(200, 205, 205, 205);
             switchDarkMode.IsDerivedStyle = true;
-            switchDarkMode.Location = new System.Drawing.Point(117, 199);
+            switchDarkMode.Location = new System.Drawing.Point(377, 141);
             switchDarkMode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             switchDarkMode.Name = "switchDarkMode";
             switchDarkMode.Size = new System.Drawing.Size(58, 22);
@@ -1691,7 +1794,7 @@
             txt_HotkeyKey.Image = null;
             txt_HotkeyKey.IsDerivedStyle = true;
             txt_HotkeyKey.Lines = null;
-            txt_HotkeyKey.Location = new System.Drawing.Point(294, 86);
+            txt_HotkeyKey.Location = new System.Drawing.Point(278, 86);
             txt_HotkeyKey.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txt_HotkeyKey.MaxLength = 1;
             txt_HotkeyKey.Multiline = false;
@@ -1714,10 +1817,10 @@
             // 
             metroLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel4.IsDerivedStyle = true;
-            metroLabel4.Location = new System.Drawing.Point(257, 86);
+            metroLabel4.Location = new System.Drawing.Point(253, 83);
             metroLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             metroLabel4.Name = "metroLabel4";
-            metroLabel4.Size = new System.Drawing.Size(30, 30);
+            metroLabel4.Size = new System.Drawing.Size(17, 30);
             metroLabel4.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             metroLabel4.StyleManager = metroStyleManager;
             metroLabel4.TabIndex = 5;
@@ -1759,12 +1862,12 @@
             cmbHotKeyMod.IsDerivedStyle = true;
             cmbHotKeyMod.ItemHeight = 20;
             cmbHotKeyMod.Items.AddRange(new object[] { "Alt", "Control", "Alt+Shift", "Control+Shift" });
-            cmbHotKeyMod.Location = new System.Drawing.Point(108, 86);
+            cmbHotKeyMod.Location = new System.Drawing.Point(117, 86);
             cmbHotKeyMod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             cmbHotKeyMod.Name = "cmbHotKeyMod";
             cmbHotKeyMod.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
             cmbHotKeyMod.SelectedItemForeColor = System.Drawing.Color.White;
-            cmbHotKeyMod.Size = new System.Drawing.Size(140, 26);
+            cmbHotKeyMod.Size = new System.Drawing.Size(128, 26);
             cmbHotKeyMod.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             cmbHotKeyMod.StyleManager = metroStyleManager;
             cmbHotKeyMod.TabIndex = 3;
@@ -2225,5 +2328,9 @@
         private ReaLTaiizor.Controls.MetroComboBox cmbSttEngine;
         private ReaLTaiizor.Controls.MetroLabel lblWhisperNetModel;
         private ReaLTaiizor.Controls.MetroComboBox cmbWhisperNetModel;
+        private ReaLTaiizor.Controls.MetroTextBox txt_SttHotkeyKey;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel14;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel15;
+        private ReaLTaiizor.Controls.MetroComboBox cmbSttHotKeyMod;
     }
 }

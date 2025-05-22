@@ -62,19 +62,14 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
     <PackageReference Include="NAudio" Version="2.2.1" />
-    <PackageReference Include="NAudio.Asio" Version="2.2.1" />
-    <PackageReference Include="NAudio.Core" Version="2.2.1" />
     <PackageReference Include="NAudio.Lame" Version="2.1.0" />
-    <PackageReference Include="NAudio.Midi" Version="2.2.1" />
-    <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
     <PackageReference Include="NAudio.WinForms" Version="2.2.1" />
-    <PackageReference Include="NAudio.WinMM" Version="2.2.1" />
     <PackageReference Include="OpenAI" Version="1.11.0" />
-    <PackageReference Include="ReaLTaiizor" Version="3.8.0.7" />
-    <PackageReference Include="System.ClientModel" Version="1.1.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="Whisper.net.AllRuntimes" Version="1.8.1" />
+    <PackageReference Include="ReaLTaiizor" Version="3.8.1.2" />
+    <PackageReference Include="Whisper.net" Version="1.8.1" />
+    <PackageReference Include="Whisper.net.Runtime" Version="1.8.1" />
+    <PackageReference Include="Whisper.net.Runtime.Cuda.Windows" Version="1.8.1" />
+    <PackageReference Include="Whisper.net.Runtime.OpenVino" Version="1.8.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
