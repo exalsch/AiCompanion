@@ -436,34 +436,63 @@ namespace AiCompanion
             // Set up event for recording data
             waveIn.DataAvailable += (s, a) =>
             {
-                waveWriter.Write(a.Buffer, 0, a.BytesRecorded);
+                try
+                {
+                    // Check if waveWriter is not null before writing
+                    if (waveWriter != null)
+                    {
+                        // Make sure we don't try to write more bytes than available in the buffer
+                        if (a.BytesRecorded <= a.Buffer.Length)
+                        {
+                            waveWriter.Write(a.Buffer, 0, a.BytesRecorded);
+                        }
+                        else
+                        {
+                            // If BytesRecorded is somehow larger than buffer length, only write what's available
+                            waveWriter.Write(a.Buffer, 0, a.Buffer.Length);
+                        }
+                    }
+                    else
+                    {
+                        Debug.WriteLine("waveWriter is null in DataAvailable event");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error writing audio data: {ex.Message}");
+                }
             };
 
             // Event when recording stops
             waveIn.RecordingStopped += (s, a) =>
             {
                 statusLabel.Text = "Processing recording...";
-                waveWriter.Flush(); // Ensure all data is written to the memory stream
-
-                // Check which engine is selected and save in appropriate format
-                string selectedEngine = Properties.Settings.Default.STTEngine;
-                if (string.IsNullOrEmpty(selectedEngine) || selectedEngine != "Whisper.net")
+                
+                // Check if waveWriter is not null before flushing
+                if (waveWriter != null)
                 {
-                    // Use MP3 for OpenAI (default)
-                    string pathToFile = SaveAsMp3(waveStream);
-                    waveWriter.Dispose();
-                    waveStream.Dispose();
-                    waveIn.Dispose();
-                    transcribe(pathToFile);
-                }
-                else
-                {
-                    // Use WAV for Whisper.net
-                    string pathToFile = SaveAsWav(waveStream);
-                    waveWriter.Dispose();
-                    waveStream.Dispose();
-                    waveIn.Dispose();
-                    transcribe(pathToFile);
+                    waveWriter.Flush(); // Ensure all data is written to the memory stream
+                    
+                    // Check which engine is selected and save in appropriate format
+                    string selectedEngine = Properties.Settings.Default.STTEngine;
+                    if (string.IsNullOrEmpty(selectedEngine) || selectedEngine != "Whisper.net")
+                    {
+                        // Use MP3 for OpenAI (default)
+                        string pathToFile = SaveAsMp3(waveStream);
+                        waveWriter.Dispose();
+                        waveStream.Dispose();
+                        waveIn.Dispose();
+                        transcribe(pathToFile);
+                    }
+                    else
+                    {
+                        // Use WAV for Whisper.net
+                        string pathToFile = SaveAsWav(waveStream);
+                        waveWriter.Dispose();
+                        waveStream.Dispose();
+                        waveIn.Dispose();
+                        transcribe(pathToFile);
+                    }
                 }
 
                 toolTipMain.SetToolTip(statusLabel, null);

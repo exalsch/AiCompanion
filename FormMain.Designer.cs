@@ -1111,7 +1111,7 @@
             txt_SttHotkeyKey.Image = null;
             txt_SttHotkeyKey.IsDerivedStyle = true;
             txt_SttHotkeyKey.Lines = null;
-            txt_SttHotkeyKey.Location = new System.Drawing.Point(278, 198);
+            txt_SttHotkeyKey.Location = new System.Drawing.Point(278, 139);
             txt_SttHotkeyKey.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txt_SttHotkeyKey.MaxLength = 1;
             txt_SttHotkeyKey.Multiline = false;
@@ -1121,7 +1121,7 @@
             txt_SttHotkeyKey.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             txt_SttHotkeyKey.StyleManager = metroStyleManager;
             txt_SttHotkeyKey.TabIndex = 34;
-            txt_SttHotkeyKey.Text = "G";
+            txt_SttHotkeyKey.Text = ".";
             txt_SttHotkeyKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             txt_SttHotkeyKey.ThemeAuthor = "Taiizor";
             txt_SttHotkeyKey.ThemeName = "MetroLight";
@@ -1134,7 +1134,7 @@
             // 
             metroLabel14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel14.IsDerivedStyle = true;
-            metroLabel14.Location = new System.Drawing.Point(253, 195);
+            metroLabel14.Location = new System.Drawing.Point(253, 136);
             metroLabel14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             metroLabel14.Name = "metroLabel14";
             metroLabel14.Size = new System.Drawing.Size(17, 30);
@@ -1150,7 +1150,7 @@
             // 
             metroLabel15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel15.IsDerivedStyle = true;
-            metroLabel15.Location = new System.Drawing.Point(4, 200);
+            metroLabel15.Location = new System.Drawing.Point(4, 141);
             metroLabel15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             metroLabel15.Name = "metroLabel15";
             metroLabel15.Size = new System.Drawing.Size(104, 24);
@@ -1179,7 +1179,7 @@
             cmbSttHotKeyMod.IsDerivedStyle = true;
             cmbSttHotKeyMod.ItemHeight = 20;
             cmbSttHotKeyMod.Items.AddRange(new object[] { "Alt", "Control", "Alt+Shift", "Control+Shift" });
-            cmbSttHotKeyMod.Location = new System.Drawing.Point(117, 198);
+            cmbSttHotKeyMod.Location = new System.Drawing.Point(117, 139);
             cmbSttHotKeyMod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             cmbSttHotKeyMod.Name = "cmbSttHotKeyMod";
             cmbSttHotKeyMod.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
@@ -1557,7 +1557,7 @@
             chkBAutoStartApp.Location = new System.Drawing.Point(5, 232);
             chkBAutoStartApp.Name = "chkBAutoStartApp";
             chkBAutoStartApp.SignStyle = ReaLTaiizor.Enum.Metro.SignStyle.Sign;
-            chkBAutoStartApp.Size = new System.Drawing.Size(202, 16);
+            chkBAutoStartApp.Size = new System.Drawing.Size(163, 16);
             chkBAutoStartApp.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             chkBAutoStartApp.StyleManager = metroStyleManager;
             chkBAutoStartApp.TabIndex = 13;
@@ -1613,7 +1613,7 @@
             // 
             lblSttEngine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             lblSttEngine.IsDerivedStyle = true;
-            lblSttEngine.Location = new System.Drawing.Point(5, 137);
+            lblSttEngine.Location = new System.Drawing.Point(5, 171);
             lblSttEngine.Name = "lblSttEngine";
             lblSttEngine.Size = new System.Drawing.Size(88, 23);
             lblSttEngine.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -1640,7 +1640,7 @@
             cmbSttEngine.FormattingEnabled = true;
             cmbSttEngine.IsDerivedStyle = true;
             cmbSttEngine.ItemHeight = 20;
-            cmbSttEngine.Location = new System.Drawing.Point(117, 137);
+            cmbSttEngine.Location = new System.Drawing.Point(117, 171);
             cmbSttEngine.Name = "cmbSttEngine";
             cmbSttEngine.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
             cmbSttEngine.SelectedItemForeColor = System.Drawing.Color.White;
@@ -1656,7 +1656,7 @@
             // 
             lblWhisperNetModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             lblWhisperNetModel.IsDerivedStyle = true;
-            lblWhisperNetModel.Location = new System.Drawing.Point(5, 167);
+            lblWhisperNetModel.Location = new System.Drawing.Point(5, 201);
             lblWhisperNetModel.Name = "lblWhisperNetModel";
             lblWhisperNetModel.Size = new System.Drawing.Size(111, 23);
             lblWhisperNetModel.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -1683,7 +1683,7 @@
             cmbWhisperNetModel.FormattingEnabled = true;
             cmbWhisperNetModel.IsDerivedStyle = true;
             cmbWhisperNetModel.ItemHeight = 20;
-            cmbWhisperNetModel.Location = new System.Drawing.Point(117, 167);
+            cmbWhisperNetModel.Location = new System.Drawing.Point(117, 201);
             cmbWhisperNetModel.Name = "cmbWhisperNetModel";
             cmbWhisperNetModel.SelectedItemBackColor = System.Drawing.Color.FromArgb(65, 177, 225);
             cmbWhisperNetModel.SelectedItemForeColor = System.Drawing.Color.White;
@@ -1698,10 +1698,10 @@
             // 
             metroLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             metroLabel6.IsDerivedStyle = true;
-            metroLabel6.Location = new System.Drawing.Point(264, 141);
+            metroLabel6.Location = new System.Drawing.Point(165, 232);
             metroLabel6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             metroLabel6.Name = "metroLabel6";
-            metroLabel6.Size = new System.Drawing.Size(105, 27);
+            metroLabel6.Size = new System.Drawing.Size(113, 27);
             metroLabel6.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             metroLabel6.StyleManager = metroStyleManager;
             metroLabel6.TabIndex = 10;
@@ -1721,7 +1721,7 @@
             switchDarkMode.DisabledCheckColor = System.Drawing.Color.FromArgb(100, 65, 177, 225);
             switchDarkMode.DisabledUnCheckColor = System.Drawing.Color.FromArgb(200, 205, 205, 205);
             switchDarkMode.IsDerivedStyle = true;
-            switchDarkMode.Location = new System.Drawing.Point(377, 141);
+            switchDarkMode.Location = new System.Drawing.Point(278, 232);
             switchDarkMode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             switchDarkMode.Name = "switchDarkMode";
             switchDarkMode.Size = new System.Drawing.Size(58, 22);
