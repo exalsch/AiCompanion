@@ -765,6 +765,9 @@ namespace AiCompanion
                     isRecordingProcessing = true;
                     try
                     {
+                        //display waiting cursor
+                        this.Cursor = Cursors.WaitCursor;
+                    
                         waveWriter.Flush(); // Ensure all data is written to the memory stream
 
                         // Check which engine is selected and save in appropriate format
@@ -788,12 +791,14 @@ namespace AiCompanion
                             TranscribeAudio(pathToFile);
                         }
                         isRecordingProcessing = false;
+                        this.Cursor = Cursors.Default;
                     }
                     catch (Exception e)
                     {
                         MessageBox.Show("Error stoping recording: " + e.Message);
                         isRecording = false;
                         isRecordingProcessing = false;
+                        this.Cursor = Cursors.Default;
                     }
                 };
 
@@ -803,8 +808,6 @@ namespace AiCompanion
 
                 PlaySound();
 
-                // Visual feedback that recording has started
-                this.Cursor = Cursors.WaitCursor;
             }
             catch (Exception ex)
             {

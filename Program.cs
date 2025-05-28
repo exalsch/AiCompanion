@@ -52,9 +52,12 @@ namespace AiCompanion
                         tabPage.Show();
                 }
             }
-            
+            else
+            {
                 // Call the async function to populate the models list
                 LoadModelsAsync(apiKey).GetAwaiter().GetResult();
+            }
+
             
 
                 // Create the form but do not show it initially

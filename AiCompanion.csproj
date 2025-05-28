@@ -44,6 +44,12 @@
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Sounds\bubble-pop1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sounds\bubble-pop1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Wizard1.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -90,9 +96,6 @@
     <None Update="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-    </None>
-    <None Update="Sounds\bubble-pop1.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>
